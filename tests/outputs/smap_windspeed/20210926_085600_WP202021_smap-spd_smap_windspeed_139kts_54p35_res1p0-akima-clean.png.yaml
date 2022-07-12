@@ -1,0 +1,35 @@
+adjustment_id: akima
+aid_type: BEST
+bounding_box:
+  image_height: 1400
+  image_width: 1400
+  maxlat: 25.19502596032627
+  maxlon: 142.99502596032625
+  minlat: 12.604974039673728
+  minlon: 130.40497403967373
+  pixel_height_m: 1000.0
+  pixel_width_m: 1000.0
+  proj4_string: +proj=eqc +lat_ts=0 +lat_0=18.9 +lon_0=136.7 +x_0=0 +y_0=0 +R=6371228
+    +units=m +no_defs +type=crs
+clat: 18.9
+clon: 136.7
+deck_line: WP, 20, 2021092606,   , BEST,   0, 188N, 1367E, 145,  908, ST,  34, NEQ,  190,  145,  105,  145,
+  1004,  220,  15,   0,  20,   W,   0,    ,   0,   0,   MINDULLE, D,
+final_storm_name: MINDULLE
+interpolated_time: 2021-09-26 08:59:00
+invest_number: 99
+original_source_filenames:
+- RSS_smap_wind_daily_2021_09_26_NRT_v01.0.nc
+parser_name: bdeck_parser
+pressure: 914.02
+product_filename: $GEOIPS_OUTDIRS/preprocessed/tcwww/tc2021/WP/WP202021/png_clean/windspeed/smap/20210926_085600_WP202021_smap-spd_smap_windspeed_139kts_54p35_res1p0-akima-clean.png
+recenter_type: akima
+sector_type: tc
+source_filename: $GEOIPS_BASEDIR/geoips_packages/geoips/tests/sectors/tc_bdecks/bwp202021.dat
+source_sector_file: $GEOIPS_BASEDIR/geoips_packages/geoips/tests/sectors/tc_bdecks/bwp202021.dat
+storm_basin: WP
+storm_name: MINDULLE
+storm_num: 20
+storm_year: 2021
+synoptic_time: 2021-09-26 06:00:00
+vmax: 139.05

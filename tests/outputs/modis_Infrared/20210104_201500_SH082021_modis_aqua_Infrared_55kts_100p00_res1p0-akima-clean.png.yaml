@@ -1,0 +1,40 @@
+adjustment_id: akima
+aid_type: BEST
+bounding_box:
+  image_height: 1400
+  image_width: 1400
+  maxlat: -9.554974039673729
+  maxlon: 82.71502596032627
+  minlat: -22.145025960326272
+  minlon: 70.12497403967373
+  pixel_height_m: 1000.0
+  pixel_width_m: 1000.0
+  proj4_string: +proj=eqc +lat_ts=0 +lat_0=-15.85 +lon_0=76.42 +x_0=0 +y_0=0 +R=6371228
+    +units=m +no_defs +type=crs
+clat: -15.85
+clon: 76.42
+deck_line: SH, 08, 2021010418,   , BEST,   0, 157S,  763E,  50,  993, TS,  34, NEQ,   90,   95,   80,   75,
+  1006,  310,  20,   0,   0,   S,   0,    ,   0,   0,     DANILO, D,
+final_storm_name: DANILO
+interpolated_time: 2021-01-04 20:17:30
+invest_number: 96
+original_source_filenames:
+- MYD021KM.A2021004.2005.061.NRT.hdf
+- MYD03.A2021004.2005.061.NRT.hdf
+- MYD021KM.A2021004.2010.061.NRT.hdf
+- MYD03.A2021004.2010.061.NRT.hdf
+- MYD021KM.A2021004.2015.061.NRT.hdf
+- MYD03.A2021004.2015.061.NRT.hdf
+parser_name: bdeck_parser
+pressure: 990.32
+product_filename: $GEOIPS_OUTDIRS/preprocessed/tcwww/tc2021/SH/SH082021/png_clean/Infrared/aqua/20210104_201500_SH082021_modis_aqua_Infrared_55kts_100p00_res1p0-akima-clean.png
+recenter_type: akima
+sector_type: tc
+source_filename: $GEOIPS_BASEDIR/geoips_packages/geoips/tests/sectors/tc_bdecks/bsh082021.dat
+source_sector_file: $GEOIPS_BASEDIR/geoips_packages/geoips/tests/sectors/tc_bdecks/bsh082021.dat
+storm_basin: SH
+storm_name: DANILO
+storm_num: 8
+storm_year: 2021
+synoptic_time: 2021-01-04 18:00:00
+vmax: 54.96

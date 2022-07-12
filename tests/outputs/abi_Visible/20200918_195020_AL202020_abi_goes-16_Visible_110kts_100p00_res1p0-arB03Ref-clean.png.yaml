@@ -1,0 +1,38 @@
+adjustment_id: arB03Ref
+aid_type: BEST
+archer_fdeck: AL, 20, 2009181950,  70, VISI,          C,  , 2289N,  5670W,      ,
+  3,    ,  ,     ,  ,     ,    ,     ,     ,     ,     ,     ,  ,  ,  ,  ,  ,    ,    ,  ,  CIMS,
+  AUT,    ,             ,             ,    ,     ,                        v, irad=0.15
+  | r50=0.48 | r95=1.36 | ep=-99 | src=ARCH
+bounding_box:
+  image_height: 1400
+  image_width: 1400
+  maxlat: 29.185025960326275
+  maxlon: -50.40497403967373
+  minlat: 16.59497403967373
+  minlon: -62.995025960326274
+  pixel_height_m: 1000.0
+  pixel_width_m: 1000.0
+  proj4_string: +proj=eqc +lat_ts=0 +lat_0=22.89 +lon_0=-56.7 +x_0=0 +y_0=0 +R=6371228
+    +units=m +no_defs +type=crs
+clat: 22.89
+clon: -56.7
+deck_line: AL, 20, 2020091818,   , BEST,   0, 226N,  565W, 110,  952, HU,  34, NEQ,  200,  150,  120,  150,
+  1010,  200,  25, 135,   0,   L,   0,    ,   0,   0,      TEDDY, D, 12, NEQ,  420,  300,  300,  420,
+  genesis-num, 039,
+final_storm_name: TEDDY
+interpolated_time: 2020-09-18 19:55:05.925365
+invest_number: 95
+parser_name: bdeck_parser
+pressure: 952.47
+product_filename: $GEOIPS_OUTDIRS/preprocessed/tcwww/tc2020/AL/AL202020/png_clean/Visible/goes-16/20200918_195020_AL202020_abi_goes-16_Visible_110kts_100p00_res1p0-arB03Ref-clean.png
+recenter_type: B03Ref
+sector_type: tc
+source_filename: $GEOIPS_BASEDIR/geoips_packages/geoips/tests/sectors/tc_bdecks/bal202020.dat
+source_sector_file: $GEOIPS_BASEDIR/geoips_packages/geoips/tests/sectors/tc_bdecks/bal202020.dat
+storm_basin: AL
+storm_name: TEDDY
+storm_num: 20
+storm_year: 2020
+synoptic_time: 2020-09-18 18:00:00
+vmax: 110.02

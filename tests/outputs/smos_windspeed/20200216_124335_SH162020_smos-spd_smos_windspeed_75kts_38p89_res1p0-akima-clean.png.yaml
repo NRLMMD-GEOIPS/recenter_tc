@@ -1,0 +1,35 @@
+adjustment_id: akima
+aid_type: BEST
+bounding_box:
+  image_height: 1400
+  image_width: 1400
+  maxlat: -14.00497403967373
+  maxlon: 81.30502596032628
+  minlat: -26.59502596032627
+  minlon: 68.71497403967373
+  pixel_height_m: 1000.0
+  pixel_width_m: 1000.0
+  proj4_string: +proj=eqc +lat_ts=0 +lat_0=-20.3 +lon_0=75.01 +x_0=0 +y_0=0 +R=6371228
+    +units=m +no_defs +type=crs
+clat: -20.3
+clon: 75.01
+deck_line: SH, 16, 2020021612,   , BEST,   0, 202S,  750E,  75,  978, TY,  34, NEQ,   85,   80,   60,   60,
+  1005,  165,  20,   0,   0,   S,   0,    ,   0,   0,   GABEKILE, D,
+final_storm_name: GABEKILE
+interpolated_time: 2020-02-16 12:45:00
+invest_number: 94
+original_source_filenames:
+- SM_OPER_MIR_SCNFSW_20200216T120839_20200216T135041_110_001_7.nc
+parser_name: bdeck_parser
+pressure: 977.82
+product_filename: $GEOIPS_OUTDIRS/preprocessed/tcwww/tc2020/SH/SH162020/png_clean/windspeed/smos/20200216_124335_SH162020_smos-spd_smos_windspeed_75kts_38p89_res1p0-akima-clean.png
+recenter_type: akima
+sector_type: tc
+source_filename: $GEOIPS_BASEDIR/geoips_packages/geoips/tests/sectors/tc_bdecks/bsh162020.dat
+source_sector_file: $GEOIPS_BASEDIR/geoips_packages/geoips/tests/sectors/tc_bdecks/bsh162020.dat
+storm_basin: SH
+storm_name: GABEKILE
+storm_num: 16
+storm_year: 2020
+synoptic_time: 2020-02-16 12:00:00
+vmax: 75.0

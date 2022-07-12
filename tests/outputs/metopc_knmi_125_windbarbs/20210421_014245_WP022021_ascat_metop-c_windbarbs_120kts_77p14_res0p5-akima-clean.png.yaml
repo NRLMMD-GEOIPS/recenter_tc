@@ -1,0 +1,35 @@
+adjustment_id: akima
+aid_type: BEST
+bounding_box:
+  image_height: 1400
+  image_width: 1400
+  maxlat: 20.817512980163137
+  maxlon: 128.23751298016313
+  minlat: 14.522487019836865
+  minlon: 121.94248701983688
+  pixel_height_m: 500.0
+  pixel_width_m: 500.0
+  proj4_string: +proj=eqc +lat_ts=0 +lat_0=17.67 +lon_0=125.09 +x_0=0 +y_0=0 +R=6371228
+    +units=m +no_defs +type=crs
+clat: 17.67
+clon: 125.09
+deck_line: WP, 02, 2021042100,   , BEST,   0, 175N, 1252E, 120,  935, TY,  34, NEQ,  155,  170,  140,  160,
+  1004,  180,  25,   0,  40,   W,   0,    ,   0,   0,    SURIGAE, D,
+final_storm_name: SURIGAE
+interpolated_time: 2021-04-21 01:43:52
+invest_number: 94
+original_source_filenames:
+- ascat_20210421_010000_metopc_12730_eps_o_coa_3203_ovw.l2.nc
+parser_name: bdeck_parser
+pressure: 934.79
+product_filename: $GEOIPS_OUTDIRS/preprocessed/tcwww/tc2021/WP/WP022021/png_clean/windbarbs/metop-c/20210421_014245_WP022021_ascat_metop-c_windbarbs_120kts_77p14_res0p5-akima-clean.png
+recenter_type: akima
+sector_type: tc
+source_filename: $GEOIPS_BASEDIR/geoips_packages/geoips/tests/sectors/tc_bdecks/bwp022021.dat
+source_sector_file: $GEOIPS_BASEDIR/geoips_packages/geoips/tests/sectors/tc_bdecks/bwp022021.dat
+storm_basin: WP
+storm_name: SURIGAE
+storm_num: 2
+storm_year: 2021
+synoptic_time: 2021-04-21 00:00:00
+vmax: 120.0

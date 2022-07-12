@@ -1,0 +1,35 @@
+adjustment_id: akima
+aid_type: BEST
+bounding_box:
+  image_height: 1400
+  image_width: 1400
+  maxlat: -7.724974039673729
+  maxlon: 89.53502596032628
+  minlat: -20.31502596032627
+  minlon: 76.94497403967372
+  pixel_height_m: 1000.0
+  pixel_width_m: 1000.0
+  proj4_string: +proj=eqc +lat_ts=0 +lat_0=-14.02 +lon_0=83.24 +x_0=0 +y_0=0 +R=6371228
+    +units=m +no_defs +type=crs
+clat: -14.02
+clon: 83.24
+deck_line: SH, 19, 2021020900,   , BEST,   0, 141S,  830E, 135,  923, ST,  34, NEQ,   65,   90,  100,   65,
+  1005,  200,  12,   0,  15,   S,   0,    ,   0,   0,     FARAJI, D,
+final_storm_name: FARAJI
+interpolated_time: 2021-02-09 02:55:52
+invest_number: 90
+original_source_filenames:
+- oscat_20210209_022459_scasa1_23155_o_250_2202_ovw_l2.nc
+parser_name: bdeck_parser
+pressure: 925.91
+product_filename: $GEOIPS_OUTDIRS/preprocessed/tcwww/tc2021/SH/SH192021/png_clean/windspeed/scatsat-1/20210209_025351_SH192021_oscat_scatsat-1_windspeed_133kts_73p31_res1p0-akima-clean.png
+recenter_type: akima
+sector_type: tc
+source_filename: $GEOIPS_BASEDIR/geoips_packages/geoips/tests/sectors/tc_bdecks/bsh192021.dat
+source_sector_file: $GEOIPS_BASEDIR/geoips_packages/geoips/tests/sectors/tc_bdecks/bsh192021.dat
+storm_basin: SH
+storm_name: FARAJI
+storm_num: 19
+storm_year: 2021
+synoptic_time: 2021-02-09 00:00:00
+vmax: 133.07

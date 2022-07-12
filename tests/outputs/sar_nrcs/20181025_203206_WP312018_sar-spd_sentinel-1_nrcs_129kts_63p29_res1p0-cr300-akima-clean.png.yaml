@@ -1,0 +1,33 @@
+adjustment_id: akima
+aid_type: BEST
+bounding_box:
+  image_height: 1400
+  image_width: 1400
+  maxlat: 23.02502596032627
+  maxlon: 147.28502596032627
+  minlat: 10.43497403967373
+  minlon: 134.69497403967375
+  pixel_height_m: 1000.0
+  pixel_width_m: 1000.0
+  proj4_string: +proj=eqc +lat_ts=0 +lat_0=16.73 +lon_0=140.99 +x_0=0 +y_0=0 +R=6371228
+    +units=m +no_defs +type=crs
+clat: 16.73
+clon: 140.99
+deck_line: WP, 31, 2018102518,   , BEST,   0, 166N, 1414E, 130,  926, ST,  34, NEQ,  180,  175,  160,  170,
+  1004,  210,  10,   0,   0,   W,   0,    ,   0,   0,       YUTU, D,
+final_storm_name: YUTU
+interpolated_time: 2018-10-25 20:32:06
+invest_number: 97
+parser_name: bdeck_parser
+pressure: 926.26
+product_filename: $GEOIPS_OUTDIRS/preprocessed/tcwww/tc2018/WP/WP312018/png_clean/nrcs/sentinel-1/20181025_203206_WP312018_sar-spd_sentinel-1_nrcs_129kts_63p29_res1p0-cr300-akima-clean.png
+recenter_type: akima
+sector_type: tc
+source_filename: $GEOIPS_BASEDIR/geoips_packages/geoips/tests/sectors/tc_bdecks/bwp312018.dat
+source_sector_file: $GEOIPS_BASEDIR/geoips_packages/geoips/tests/sectors/tc_bdecks/bwp312018.dat
+storm_basin: WP
+storm_name: YUTU
+storm_num: 31
+storm_year: 2018
+synoptic_time: 2018-10-25 18:00:00
+vmax: 129.46

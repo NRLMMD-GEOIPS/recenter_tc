@@ -1,0 +1,35 @@
+adjustment_id: akima
+aid_type: BEST
+bounding_box:
+  image_height: 1400
+  image_width: 1400
+  maxlat: 23.915025960326272
+  maxlon: 142.36502596032625
+  minlat: 11.32497403967373
+  minlon: 129.77497403967374
+  pixel_height_m: 1000.0
+  pixel_width_m: 1000.0
+  proj4_string: +proj=eqc +lat_ts=0 +lat_0=17.62 +lon_0=136.07 +x_0=0 +y_0=0 +R=6371228
+    +units=m +no_defs +type=crs
+clat: 17.62
+clon: 136.07
+deck_line: WP, 27, 2021120206,   , BEST,   0, 172N, 1358E,  95,  960, TY,  34, NEQ,  175,  165,  125,  175,
+  1005,  230,  22, 110,  35,   W,   0,    ,   0,   0,     NYATOH, D,
+final_storm_name: NYATOH
+interpolated_time: 2021-12-02 08:42:48.500000
+invest_number: 93
+original_source_filenames:
+- hscat_20211202_080644_hy_2b__15571_o_250_2204_ovw_l2.nc
+parser_name: bdeck_parser
+pressure: 955.85
+product_filename: $GEOIPS_OUTDIRS/preprocessed/tcwww/tc2021/WP/WP272021/png_clean/windspeed/hy-2b/20211202_084043_WP272021_hscat_hy-2b_windspeed_100kts_98p29_res1p0-akima-clean.png
+recenter_type: akima
+sector_type: tc
+source_filename: $GEOIPS_BASEDIR/geoips_packages/geoips/tests/sectors/tc_bdecks/bwp272021.dat
+source_sector_file: $GEOIPS_BASEDIR/geoips_packages/geoips/tests/sectors/tc_bdecks/bwp272021.dat
+storm_basin: WP
+storm_name: NYATOH
+storm_num: 27
+storm_year: 2021
+synoptic_time: 2021-12-02 06:00:00
+vmax: 99.51

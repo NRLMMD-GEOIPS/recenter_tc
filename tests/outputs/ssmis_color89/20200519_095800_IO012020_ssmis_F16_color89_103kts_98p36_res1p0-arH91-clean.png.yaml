@@ -1,0 +1,38 @@
+adjustment_id: arH91
+aid_type: BEST
+archer_fdeck: IO, 1, 2005190958,  70, SSMS,          C,  , 1710N,  8702E,      , 1,    ,  ,     ,  ,     ,    ,     ,     ,     ,     ,     ,  ,  ,  ,  ,  ,    ,    ,  ,  CIMS,
+  AUT,    ,             ,             ,    ,     ,                        m, irad=0.15
+  | r50=0.14 | r95=0.40 | ep= 84 | src=ARCH
+bounding_box:
+  image_height: 1400
+  image_width: 1400
+  maxlat: 23.395025960326272
+  maxlon: 93.31502596032627
+  minlat: 10.80497403967373
+  minlon: 80.72497403967373
+  pixel_height_m: 1000.0
+  pixel_width_m: 1000.0
+  proj4_string: +proj=eqc +lat_ts=0 +lat_0=17.1 +lon_0=87.02 +x_0=0 +y_0=0 +R=6371228
+    +units=m +no_defs +type=crs
+clat: 17.1
+clon: 87.02
+deck_line: IO, 01, 2020051906,   , BEST,   0, 165N,  869E, 110,  941, TY,  34, NEQ,  175,  220,  145,  160,
+  1000,  210,   5,   0,  10,   B,   0,    ,   0,   0,     AMPHAN, D,
+final_storm_name: AMPHAN
+interpolated_time: 2020-05-19 10:01:00
+invest_number: 91
+original_source_filenames:
+- US058SORB-RAWspp.sdris_f16_d20200519_s084400_e102900_r85579_cfnoc.raw
+parser_name: bdeck_parser
+pressure: 947.69
+product_filename: $GEOIPS_OUTDIRS/preprocessed/tcwww/tc2020/IO/IO012020/png_clean/color89/F16/20200519_095800_IO012020_ssmis_F16_color89_103kts_98p36_res1p0-arH91-clean.png
+recenter_type: H91
+sector_type: tc
+source_filename: $GEOIPS_BASEDIR/geoips_packages/geoips/tests/sectors/tc_bdecks/bio012020.dat
+source_sector_file: $GEOIPS_BASEDIR/geoips_packages/geoips/tests/sectors/tc_bdecks/bio012020.dat
+storm_basin: IO
+storm_name: AMPHAN
+storm_num: 1
+storm_year: 2020
+synoptic_time: 2020-05-19 06:00:00
+vmax: 103.31
