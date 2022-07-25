@@ -39,7 +39,7 @@ run_procflow \
     --reader_name abi_netcdf \
     --resampled_read \
     --product_name Visible \
-    --compare_path "$GEOIPS_BASEDIR/geoips_packages/recenter_tc/tests/outputs/abi_<product>" \
+    --compare_path "$GEOIPS_BASEDIR/geoips_packages/recenter_tc/tests/outputs/abi.tc.Visible.imagery_clean" \
     --output_format imagery_clean \
     --filename_format tc_clean_fname \
     --adjust_area_def recenter_tc \

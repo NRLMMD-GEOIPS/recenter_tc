@@ -27,7 +27,7 @@
 
 # Note you must use the variable "call" in the for the loop
 
-# NOTE saphir and atms DON'T WORK!!
+# NOTE atms DOESN'T WORK!!
 
 . $GEOIPS/tests/utils/test_all_pre.sh recenter_tc
 
@@ -35,26 +35,27 @@ echo ""
 # "call" used in test_all_run.sh
 for call in \
 \
-            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/abi.sh" \
-            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/ahi.sh" \
-            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/amsr2.sh" \
-            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/amsr2_winds.sh" \
-            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/amsub_hdf.sh" \
-            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/amsub_mirs.sh" \
-            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/ascat_uhr_nrcs.sh" \
-            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/ascat_uhr.sh" \
-            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/gmi.sh" \
-            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/hy2.sh" \
-            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/imerg.sh" \
-            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/metopc_knmi_125.sh" \
-            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/modis.sh" \
-            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/oscat.sh" \
-            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/sar.sh" \
-            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/smap.sh" \
-            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/smos.sh" \
-            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/ssmi.sh" \
-            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/ssmis.sh" \
-            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/viirs.sh"
+            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/abi.tc.Visible.imagery_clean.sh" \
+            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/ahi.tc.IR-BD.imagery_clean.sh" \
+            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/amsr2.tc.color37.imagery_clean.sh" \
+            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/amsr2.tc.windspeed.imagery_clean.sh" \
+            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/amsub_hdf.tc.157V.imagery_clean.sh" \
+            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/amsub_mirs.tc.89V.imagery_clean.sh" \
+            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/ascat_uhr.tc.nrcs.imagery_clean.sh" \
+            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/ascat_uhr.tc.windbarbs.imagery_clean.sh" \
+            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/gmi.tc.89pct.imagery_clean.sh" \
+            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/hy2b.tc.windspeed.imagery_clean.sh" \
+            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/imerg.tc.Rain.imagery_clean.sh" \
+            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/metopc_knmi_125.tc.windbarbs.imagery_clean.sh" \
+            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/modis.tc.Infrared.imagery_clean.sh" \
+            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/oscat.tc.windspeed.imagery_clean.sh" \
+            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/saphir.tc.183-3H.imagery_clean.sh" \
+            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/sar.tc.nrcs.imagery_clean.sh" \
+            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/smap.tc.windspeed.imagery_clean.sh" \
+            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/smos.tc.windspeed.imagery_clean.sh" \
+            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/ssmis.tc.color89.imagery_clean.sh" \
+            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/ssmi.tc.37pct.imagery_clean.sh" \
+            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/viirs.tc.Infrared-Gray.imagery_clean.sh"
 do
     . $GEOIPS/tests/utils/test_all_run.sh
 done

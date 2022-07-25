@@ -17,19 +17,20 @@
 # # # See the included license for more details.
 
 #!/bin/bash
+
 run_procflow \
-    $GEOIPS_BASEDIR/test_data/test_data_amsub/data/NPR-MIRS-IMG_v11r4_ma2_s202104192335000_e202104190118000_c202104200206490.nc \
+    $GEOIPS_BASEDIR/test_data/test_data_amsub/data/NPR.MHOP.NP.D20134.S2106.E2252.B5805153.NS \
     --procflow single_source \
-    --reader_name amsub_mirs \
-    --product_name 89V \
-    --compare_path "$GEOIPS_BASEDIR/geoips_packages/recenter_tc/tests/outputs/amsub_mirs_<product>" \
+    --reader_name amsub_hdf \
+    --product_name 157V \
+    --compare_path "$GEOIPS_BASEDIR/geoips_packages/recenter_tc/tests/outputs/amsub_hdf.tc.157V.imagery_clean" \
     --output_format imagery_clean \
     --filename_format tc_clean_fname \
     --adjust_area_def recenter_tc \
     --metadata_filename_format metadata_default_fname \
     --metadata_output_format metadata_default \
     --trackfile_parser bdeck_parser \
-    --trackfiles $GEOIPS/tests/sectors/tc_bdecks/bwp022021.dat
+    --trackfiles $GEOIPS/tests/sectors/tc_bdecks/bwp012020.dat
 ss_retval=$?
 
 exit $((ss_retval))

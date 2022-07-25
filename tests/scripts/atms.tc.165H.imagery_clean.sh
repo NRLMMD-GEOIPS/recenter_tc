@@ -18,18 +18,19 @@
 
 #!/bin/bash
 
+# This one doesn't work!!!
 run_procflow \
-    $GEOIPS_BASEDIR/test_data/test_data_scat/data/metopc_byu_uhr/210421_0142_12730_SURIGAE_210421_0000.avewr.nc \
+    $GEOIPS_BASEDIR/test_data/test_data_atms/data/j01/20210809_0838/* \
     --procflow single_source \
-    --reader_name  ascat_uhr_netcdf \
-    --product_name nrcs \
-    --compare_path "$GEOIPS_BASEDIR/geoips_packages/recenter_tc/tests/outputs/ascat_uhr_<product>" \
+    --reader_name  atms_hdf5 \
+    --product_name 165H \
+    --compare_path "$GEOIPS_BASEDIR/geoips_packages/recenter_tc/tests/outputs/atms.tc.165H.imagery_clean" \
     --output_format imagery_clean \
     --filename_format tc_clean_fname \
     --metadata_filename_format metadata_default_fname \
     --metadata_output_format metadata_default \
     --trackfile_parser bdeck_parser \
-    --trackfiles $GEOIPS/tests/sectors/tc_bdecks/bwp022021.dat \
+    --trackfiles $GEOIPS/tests/sectors/tc_bdecks/bep112021.dat \
     --adjust_area_def recenter_tc
 ss_retval=$?
 

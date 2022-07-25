@@ -1,20 +1,80 @@
-#### # # Distribution Statement A. Approved for public release. Distribution unlimited.
-#### # # 
-#### # # Author:
-#### # # Naval Research Laboratory, Marine Meteorology Division
-#### # # 
-#### # # This program is free software:
-#### # # you can redistribute it and/or modify it under the terms
-#### # # of the NRLMMD License included with this program.
-#### # # 
-#### # # If you did not receive the license, see
-#### # # https://github.com/U-S-NRL-Marine-Meteorology-Division/
-#### # # for more information.
-#### # # 
-#### # # This program is distributed WITHOUT ANY WARRANTY;
-#### # # without even the implied warranty of MERCHANTABILITY
-#### # # or FITNESS FOR A PARTICULAR PURPOSE.
-#### # # See the included license for more details.
+    # # # Distribution Statement A. Approved for public release. Distribution unlimited.
+    # # # 
+    # # # Author:
+    # # # Naval Research Laboratory, Marine Meteorology Division
+    # # # 
+    # # # This program is free software:
+    # # # you can redistribute it and/or modify it under the terms
+    # # # of the NRLMMD License included with this program.
+    # # # 
+    # # # If you did not receive the license, see
+    # # # https://github.com/U-S-NRL-Marine-Meteorology-Division/
+    # # # for more information.
+    # # # 
+    # # # This program is distributed WITHOUT ANY WARRANTY;
+    # # # without even the implied warranty of MERCHANTABILITY
+    # # # or FITNESS FOR A PARTICULAR PURPOSE.
+    # # # See the included license for more details.
+
+
+# v1.5.1: 2022-07-13, update test repo outputs
+
+### Major New Functionality
+* **compare_outputs_recenter_tc.py**
+    * Add module to handle \*\_FIX fdeck files text comparisons (mimic compare\_outputs\_metoctiff.py).
+    * fdeck standard filename contains "." so text filename check fails (since splitext[-1] is not "")
+
+### Test Repo Updates
+* **Update Output Directory Structure**
+    * abi.tc.Visible.imagery\_clean
+    * ahi.tc.IR-BD.imagery\_clean
+    * amsr2.tc.color37.imagery\_clean
+    * amsr2.tc.windspeed.imagery\_clean
+    * amsub\_hdf.tc.157V.imagery\_clean
+    * amsub\_mirs.tc.89V.imagery\_clean
+    * ascat\_uhr.tc.nrcs.imagery\_clean
+    * ascat\_uhr.tc.windbarbs.imagery\_clean
+    * gmi.tc.89pct.imagery\_clean
+    * hy2b.tc.windspeed.imagery\_clean
+    * imerg.tc.Rain.imagery\_clean
+    * metopc\_knmi\_125.tc.windbarbs.imagery\_clean
+    * modis.tc.Infrared.imagery\_clean
+    * oscat.tc.windspeed.imagery\_clean
+    * saphir.tc.183-3H.imagery\_clean
+    * sar.tc.nrcs.imagery\_clean
+    * smap.tc.windspeed.imagery\_clean
+    * smos.tc.windspeed.imagery\_clean
+    * ssmis.tc.color89.imagery\_clean
+    * ssmi.tc.37pct.imagery\_clean
+    * viirs.tc.Infrared-Gray.imagery\_clean
+* **Update test script names**
+    * abi.tc.Visible.imagery\_clean.sh
+    * ahi.tc.IR-BD.imagery\_clean.sh
+    * amsr2.tc.color37.imagery\_clean.sh
+    * amsr2.tc.windspeed.imagery\_clean.sh
+    * amsub\_hdf.tc.157V.imagery\_clean.sh
+    * amsub\_mirs.tc.89V.imagery\_clean.sh
+    * ascat\_uhr.tc.nrcs.imagery\_clean.sh
+    * ascat\_uhr.tc.windbarbs.imagery\_clean.sh
+    * gmi.tc.89pct.imagery\_clean.sh
+    * hy2b.tc.windspeed.imagery\_clean.sh
+    * imerg.tc.Rain.imagery\_clean.sh
+    * metopc\_knmi\_125.tc.windbarbs.imagery\_clean.sh
+    * modis.tc.Infrared.imagery\_clean.sh
+    * oscat.tc.windspeed.imagery\_clean.sh
+    * saphir.tc.183-3H.imagery\_clean.sh
+    * sar.tc.nrcs.imagery\_clean.sh
+    * smap.tc.windspeed.imagery\_clean.sh
+    * smos.tc.windspeed.imagery\_clean.sh
+    * ssmis.tc.color89.imagery\_clean.sh
+    * ssmi.tc.37pct.imagery\_clean.sh
+    * viirs.tc.Infrared-Gray.imagery\_clean.sh
+* **Update test_all.sh for new script names**
+
+### Bug fixes
+* **recenter_tc**
+    * Update recenter\_with\_archer function to append "run\_archer" filenames to "out\_fnames" for return.
+        * Previously typo appended empty list to output filename list.
 
 
 # v1.5.0: 2022-06-09, geoips2->geoips, GEOIPS\_REPO\_URL, consolidate test outputs, remove old style test scripts
@@ -121,7 +181,6 @@
 * **File modifications**
     * Update all instances of 'geoips2' with 'geoips'
     * Update all instances of 'GEOIPS2' with 'GEOIPS'
-    * Update all instances of 'inversion' with 'github'
 
 ### Documentation Updates
 * **README.md**

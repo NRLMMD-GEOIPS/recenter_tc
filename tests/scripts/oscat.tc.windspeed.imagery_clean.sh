@@ -19,17 +19,17 @@
 #!/bin/bash
 
 run_procflow \
-    $GEOIPS_BASEDIR/test_data/test_data_ssmi/data/US058SORB-DEFspp.sdrmi_f15_d20200519_s080800_e095300_r05633_cfnoc.def \
+    ${GEOIPS_BASEDIR}/test_data/test_data_scat/data/oscat_250/oscat_20210209_022459_scasa1_23155_o_250_2202_ovw_l2.nc \
     --procflow single_source \
-    --reader_name  ssmi_binary \
-    --product_name 37pct \
-    --compare_path "$GEOIPS_BASEDIR/geoips_packages/recenter_tc/tests/outputs/ssmi_<product>" \
+    --reader_name scat_knmi_winds_netcdf \
+    --product_name windspeed \
+    --compare_path "$GEOIPS_BASEDIR/geoips_packages/recenter_tc/tests/outputs/oscat.tc.windspeed.imagery_clean" \
     --output_format imagery_clean \
     --filename_format tc_clean_fname \
     --metadata_filename_format metadata_default_fname \
     --metadata_output_format metadata_default \
     --trackfile_parser bdeck_parser \
-    --trackfiles $GEOIPS/tests/sectors/tc_bdecks/bio012020.dat \
+    --trackfiles $GEOIPS/tests/sectors/tc_bdecks/bsh192021.dat \
     --adjust_area_def recenter_tc
 ss_retval=$?
 

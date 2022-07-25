@@ -37,5 +37,8 @@ setuptools.setup(
             'archer_fix=recenter_tc.interface_modules.filename_formats.archer_fix:archer_fix',
             'archer_image=recenter_tc.interface_modules.filename_formats.archer_image:archer_image',
         ],
+        'geoips.output_comparisons': [
+            'compare_outputs_recenter_tc=recenter_tc.compare_outputs_recenter_tc:compare_outputs_recenter_tc',
+        ],
     }
 )

@@ -19,17 +19,18 @@
 #!/bin/bash
 
 run_procflow \
-    $GEOIPS_BASEDIR/test_data/test_data_amsr2/data//*mbt* \
+    $GEOIPS_BASEDIR/test_data/test_data_scat/data/metopc_byu_uhr/210421_0142_12730_SURIGAE_210421_0000.WRave3.nc \
     --procflow single_source \
-    --reader_name  amsr2_netcdf \
-    --product_name color37 \
-    --compare_path "$GEOIPS_BASEDIR/geoips_packages/recenter_tc/tests/outputs/amsr2_<product>" \
+    --reader_name  ascat_uhr_netcdf \
+    --product_name windbarbs \
+    --tc_template_yaml $GEOIPS/geoips/yaml_configs/sectors_dynamic/tc_web_ascatuhr_barbs_template.yaml \
+    --compare_path "$GEOIPS_BASEDIR/geoips_packages/recenter_tc/tests/outputs/ascat_uhr.tc.windbarbs.imagery_clean" \
     --output_format imagery_clean \
     --filename_format tc_clean_fname \
     --metadata_filename_format metadata_default_fname \
     --metadata_output_format metadata_default \
     --trackfile_parser bdeck_parser \
-    --trackfiles $GEOIPS/tests/sectors/tc_bdecks/bio012020.dat \
+    --trackfiles $GEOIPS/tests/sectors/tc_bdecks/bwp022021.dat \
     --adjust_area_def recenter_tc
 ss_retval=$?
 

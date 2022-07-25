@@ -18,20 +18,19 @@
 
 #!/bin/bash
 
-# 160 files - 10 per channel
 run_procflow \
-    $GEOIPS_BASEDIR/test_data/test_data_ahi_day/data/20200405_0000/HS_H08_20200405_0000_B*_FLDK_R*_S*.DAT \
+    $GEOIPS_BASEDIR/test_data/test_data_smap/data/RSS_smap_wind_daily_2021_09_26_NRT_v01.0.nc \
     --procflow single_source \
-    --reader_name ahi_hsd \
-    --product_name IR-BD \
-    --compare_path "$GEOIPS_BASEDIR/geoips_packages/recenter_tc/tests/outputs/ahi_<product>" \
+    --reader_name smap_remss_winds_netcdf \
+    --product_name windspeed \
+    --compare_path "$GEOIPS_BASEDIR/geoips_packages/recenter_tc/tests/outputs/smap.tc.windspeed.imagery_clean" \
     --output_format imagery_clean \
     --filename_format tc_clean_fname \
-    --adjust_area_def recenter_tc \
     --metadata_filename_format metadata_default_fname \
     --metadata_output_format metadata_default \
     --trackfile_parser bdeck_parser \
-    --trackfiles $GEOIPS/tests/sectors/tc_bdecks/bsh252020.dat
+    --trackfiles $GEOIPS/tests/sectors/tc_bdecks/bwp202021.dat \
+    --adjust_area_def recenter_tc
 ss_retval=$?
 
 exit $((ss_retval))

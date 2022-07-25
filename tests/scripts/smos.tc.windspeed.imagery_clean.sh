@@ -18,19 +18,18 @@
 
 #!/bin/bash
 
-# This one doesn't work!!!
 run_procflow \
-    $GEOIPS_BASEDIR/test_data/test_data_atms/data/j01/20210809_0838/* \
+    ${GEOIPS_BASEDIR}/test_data/test_data_smos/data/SM_OPER_MIR_SCNFSW_20200216T120839_20200216T135041_110_001_7.nc \
     --procflow single_source \
-    --reader_name  atms_hdf5 \
-    --product_name 165H \
-    --compare_path "$GEOIPS_BASEDIR/geoips_packages/recenter_tc/tests/outputs/atms_<product>" \
+    --reader_name smos_winds_netcdf \
+    --product_name windspeed \
+    --compare_path "$GEOIPS_BASEDIR/geoips_packages/recenter_tc/tests/outputs/smos.tc.windspeed.imagery_clean" \
     --output_format imagery_clean \
     --filename_format tc_clean_fname \
     --metadata_filename_format metadata_default_fname \
     --metadata_output_format metadata_default \
     --trackfile_parser bdeck_parser \
-    --trackfiles $GEOIPS/tests/sectors/tc_bdecks/bep112021.dat \
+    --trackfiles $GEOIPS/tests/sectors/tc_bdecks/bsh162020.dat \
     --adjust_area_def recenter_tc
 ss_retval=$?
 

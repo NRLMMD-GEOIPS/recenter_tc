@@ -229,10 +229,13 @@ def recenter_tc(xobjs, area_def, variables, recenter_variables=None):
             ret_area_def = recentered_area_defs[recenter_varname]
             break
 
-    LOG.info(f'\n\n********Done recentering TC sector'\
-             f'\n************************************************************************************'\
-             f'\n************************************************************************************'\
-             f'\n************************************************************************************'\
+    LOG.info(f'\n\nout_fnames'
+             f'\n{out_fnames}')
+
+    LOG.info(f'\n\n********Done recentering TC sector'
+             f'\n************************************************************************************'
+             f'\n************************************************************************************'
+             f'\n************************************************************************************'
              f'\n************************************************************************************')
 
     # If nothing recentered, return the original area_def
@@ -301,7 +304,7 @@ def recenter_with_archer(sect_xarray, variables, area_def_to_recenter):
                  f'\n********Running ARCHER on {varname}...\n')
 
         in_dict, out_dict, score_dict, curr_out_fnames = run_archer(archer_xarray, varname)
-        out_fnames += out_fnames
+        out_fnames += curr_out_fnames
         # YAML output fails on numpy.float64, so cast as float
         if out_dict and out_dict['center_lat']:
             new_fields['clat'] = round(float(out_dict['center_lat']), 2)
@@ -416,6 +419,7 @@ def recenter_tc_area_def(area_def, sect_xarray, variables):
     from geoips.sector_utils.utils import is_sector_type
     # Only recenter if this is a TC sector
     recentered_area_defs = {}
+    out_fnames = []
     if is_sector_type(area_def, 'tc'):
 
         recentered_area_defs['akima'] = recenter_with_akima(sect_xarray, area_def)
