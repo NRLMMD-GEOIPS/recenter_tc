@@ -17,6 +17,16 @@
     # # # See the included license for more details.
 
 
+## NRLMMD-GEOIPS/recenter_tc#3: 2022-12-07, add mac install instructions
+### Documentation
+* **New mac-specific system requirements**
+    * xcode command line tools
+    * Updated `llvm`, `clang`, and `libomp`
+* **Additional environment variables for install on mac**
+    * LIBRARY_PATH
+    * PATH
+
+
 # v1.5.1: 2022-07-13, update test repo outputs
 
 ### Major New Functionality
