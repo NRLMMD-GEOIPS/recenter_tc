@@ -20,7 +20,8 @@ Installation Guide
 ==================
 
 This installation guide has installation steps specific to installing this plugin, including
-the base geoips conda install if not already installed.
+the base geoips conda install if not already installed. Note that there are additional requirements 
+and slightly different installation steps for Linux and Mac.
 
 
 System Requirements
@@ -29,6 +30,13 @@ System Requirements
 * Fortran compiler supported by f2py required for akima86 dependency - load appropriately prior to installation.
 * git > 2.19.1 for "git -C" clone commands
 * Test data repos contained in $GEOIPS_BASEDIR/test_data/ for tests to pass.
+
+Additional Mac-specific System Requirements
+-------------------------------------------
+* xcode command line tools
+  Can be installed using `xcode-select --install`
+* Updated `llvm`, `clang`, and `libomp`
+  Can be installed via Homebrew using `brew install llvm libomp`
 
 
 Setup System Environment Variables
@@ -93,7 +101,7 @@ IF REQUIRED: Install and test base geoips conda environment
     $GEOIPS_BASEDIR/geoips_packages/geoips/base_install_and_test.sh dev
 ```
 
-Install recenter_tc package
+Install recenter_tc package on Linux
 -------------------------
 ```bash
     $GEOIPS_BASEDIR/geoips_packages/recenter_tc/setup.sh repo_clone
@@ -101,6 +109,18 @@ Install recenter_tc package
     source $GEOIPS_CONFIG_FILE
     pip install -e $GEOIPS_BASEDIR/geoips_packages/geoips
     $GEOIPS_BASEDIR/geoips_packages/recenter_tc/setup.sh install
+```
+
+Install recenter_tc package on Mac
+-------------------------
+```bash
+    $GEOIPS_BASEDIR/geoips_packages/recenter_tc/setup.sh repo_clone
+    $GEOIPS_BASEDIR/geoips_packages/recenter_tc/setup.sh repo_update
+    source $GEOIPS_CONFIG_FILE
+    pip install -e $GEOIPS_BASEDIR/geoips_packages/geoips
+    LIBRARY_PATH=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib \
+        PATH=/usr/local/opt/llvm/bin:$PATH \
+        $GEOIPS_BASEDIR/geoips_packages/recenter_tc/setup.sh install
 ```
 
 Test recenter_tc installation - these test scripts provide you with the full command line calls
