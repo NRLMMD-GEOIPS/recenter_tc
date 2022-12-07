@@ -1,21 +1,26 @@
     # # # Distribution Statement A. Approved for public release. Distribution unlimited.
-    # # # 
+    # # #
     # # # Author:
     # # # Naval Research Laboratory, Marine Meteorology Division
-    # # # 
+    # # #
     # # # This program is free software:
     # # # you can redistribute it and/or modify it under the terms
     # # # of the NRLMMD License included with this program.
-    # # # 
+    # # #
     # # # If you did not receive the license, see
     # # # https://github.com/U-S-NRL-Marine-Meteorology-Division/
     # # # for more information.
-    # # # 
+    # # #
     # # # This program is distributed WITHOUT ANY WARRANTY;
     # # # without even the implied warranty of MERCHANTABILITY
     # # # or FITNESS FOR A PARTICULAR PURPOSE.
     # # # See the included license for more details.
 
+## NRLMMD-GEOIPS/recenter_tc#5: 2022-12-07, Update for class-based interfaces
+### Code Updates
+* **Update to use new class-based interfaces from GeoIPS**
+    * Switch from using `geoips.dev.filenamer` to using `geoips.interfaces.filename_formatters`
+      in `recenter_tc/interface_modules/area_def_adjusters/recenter_tc.py`
 
 # v1.5.1: 2022-07-13, update test repo outputs
 
@@ -376,7 +381,7 @@
         * SMAP
         * SMOS
         * SSMI/S
-    * Updated SMAP 
+    * Updated SMAP
         * tc_clean output
         * new test dataset
         * now produce both overpasses rather than one
@@ -409,7 +414,7 @@
         * SMAP
         * SMOS
         * SSMI/S
-    * Updated SMAP 
+    * Updated SMAP
         * tc_clean output
         * new test dataset
         * now produce both overpasses rather than one

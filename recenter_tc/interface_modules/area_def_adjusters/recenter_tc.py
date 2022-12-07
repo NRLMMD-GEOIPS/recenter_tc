@@ -1,16 +1,16 @@
 # # # Distribution Statement A. Approved for public release. Distribution unlimited.
-# # # 
+# # #
 # # # Author:
 # # # Naval Research Laboratory, Marine Meteorology Division
-# # # 
+# # #
 # # # This program is free software:
 # # # you can redistribute it and/or modify it under the terms
 # # # of the NRLMMD License included with this program.
-# # # 
+# # #
 # # # If you did not receive the license, see
 # # # https://github.com/U-S-NRL-Marine-Meteorology-Division/
 # # # for more information.
-# # # 
+# # #
 # # # This program is distributed WITHOUT ANY WARRANTY;
 # # # without even the implied warranty of MERCHANTABILITY
 # # # or FITNESS FOR A PARTICULAR PURPOSE.
@@ -25,7 +25,7 @@ import logging
 from geoips.interface_modules.procflows.single_source import print_area_def
 from recenter_tc.filenames.base_paths import PATHS as GPATHS
 from geoips.filenames.base_paths import make_dirs
-from geoips.dev.filename import get_filenamer, get_filenamer_type
+from geoips.interfaces import filename_formatters
 
 ARCHER_REQUIRED_VMAX_KTS = 50
 ARCHER_IMAGE_FILENAME_FORMAT = GPATHS['ARCHER_IMAGE_FILENAME_FORMAT']
@@ -71,21 +71,19 @@ def run_archer(xarray_obj, varname):
     archer_image_fname = None
     archer_fix_fname = None
 
-    filenamer_type = get_filenamer_type(ARCHER_IMAGE_FILENAME_FORMAT)
-    if filenamer_type != 'xarray_metadata_to_filename':
+    filenamer = filename_formatters.get(ARCHER_IMAGE_FILENAME_FORMAT)
+    if filenamer.family != 'xarray_metadata_to_filename':
         LOG.warning('Unsupported filename type %s %s, not producing ARCHER IMAGE output',
-                    filenamer_type, ARCHER_IMAGE_FILENAME_FORMAT)
+                    filenamer.family, ARCHER_IMAGE_FILENAME_FORMAT)
     else:
-        filename_func = get_filenamer(ARCHER_IMAGE_FILENAME_FORMAT)
-        archer_image_fname = filename_func(xarray_obj, variable_name=varname, archer_channel_type=archer_channel_type)
+        archer_image_fname = filenamer(xarray_obj, variable_name=varname, archer_channel_type=archer_channel_type)
 
-    filenamer_type = get_filenamer_type(ARCHER_FIX_FILENAME_FORMAT)
-    if filenamer_type != 'xarray_metadata_to_filename':
+    filenamer = filename_formatters.get(ARCHER_FIX_FILENAME_FORMAT)
+    if filenamer.family != 'xarray_metadata_to_filename':
         LOG.warning('Unsupported filename type %s %s, not producing ARCHER FIX output',
-                    filenamer_type, ARCHER_FIX_FILENAME_FORMAT)
+                    filenamer.family, ARCHER_FIX_FILENAME_FORMAT)
     else:
-        filename_func = get_filenamer(ARCHER_FIX_FILENAME_FORMAT)
-        archer_fix_fname = filename_func(xarray_obj, variable_name=varname, archer_channel_type=archer_channel_type)
+        archer_fix_fname = filenamer(xarray_obj, variable_name=varname, archer_channel_type=archer_channel_type)
 
     image['lat_grid'] = xarray_obj['latitude'].to_masked_array()
     image['lon_grid'] = xarray_obj['longitude'].to_masked_array()
@@ -110,7 +108,7 @@ def run_archer(xarray_obj, varname):
     if xarray_obj.platform_name == 'msg-4':
         attrib['sensor'] = 'Imager'
         attrib['scan_type'] = 'Geo'
-        attrib['nadir_lon'] = -0.3 
+        attrib['nadir_lon'] = -0.3
     if xarray_obj.platform_name == 'msg-1':
         attrib['sensor'] = 'Imager'
         attrib['scan_type'] = 'Geo'
@@ -173,7 +171,7 @@ def run_archer(xarray_obj, varname):
     in_dict, out_dict, score_dict = \
         archer4(image, attrib, first_guess, para_fix=True, display_filename=archer_image_fname,
                 sector_info=xarray_obj.area_definition.sector_info)
-    
+
     if archer_fix_fname is not None:
         make_dirs(dirname(archer_fix_fname))
         out_fnames += [archer_fix_fname]
@@ -292,7 +290,7 @@ def recenter_with_archer(sect_xarray, variables, area_def_to_recenter):
         lat_pad = 15
         lon_pad = 15
     archer_xarray = sector_xarray_spatial(sect_xarray,
-                                          [minlon, minlat, maxlon, maxlat], 
+                                          [minlon, minlat, maxlon, maxlat],
                                           variables+['latitude', 'longitude'],
                                           lon_pad=lon_pad, lat_pad=lat_pad, drop=True)
     archer_xarray.attrs['area_definition'] = area_def_to_recenter
