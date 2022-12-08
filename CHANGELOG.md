@@ -16,6 +16,11 @@
     # # # or FITNESS FOR A PARTICULAR PURPOSE.
     # # # See the included license for more details.
 
+## NRLMMD-GEOIPS/recenter_tc#1: 2022-12-07, add __init__.py
+### Bug fixes
+* **Add missing __init__.py**
+    * recenter_tc/filenames/__init__.py
+    * recenter_tc/interface_modules/filename_formats/__init__.py
 
 # v1.5.1: 2022-07-13, update test repo outputs
 
