@@ -30,6 +30,7 @@ source_sector_file: $GEOIPS_BASEDIR/geoips_packages/geoips/tests/sectors/tc_bdec
 storm_basin: WP
 storm_name: MINDULLE
 storm_num: 20
+storm_start_datetime: 2021-09-20 12:00:00
 storm_year: 2021
 synoptic_time: 2021-09-27 00:00:00
 vmax: 103.52
