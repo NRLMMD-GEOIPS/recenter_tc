@@ -11,6 +11,11 @@
     # # # https://github.com/U-S-NRL-Marine-Meteorology-Division/
 
 ## NRLMMD-GEOIPS/recenter_tc#5: 2022-12-07, Update for class-based interfaces
+### Bug fixes
+* Switch ABI test data from test_data_abi_day to test_data_noaa_aws
+```
+modified: tests/scripts/abi.tc.Visible.imagery_clean.sh
+```
 ### Code Updates
 * **Update to use new class-based interfaces from GeoIPS**
   * Switch from using `geoips.dev.filenamer` to using `geoips.interfaces.filename_formatters`
