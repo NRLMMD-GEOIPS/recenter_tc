@@ -20,6 +20,10 @@ modified: tests/scripts/abi.tc.Visible.imagery_clean.sh
 ```
 modified: geoips/interface_modules/area_def_adjusters/recenter_tc.py
 ```
+* Update AMSR2 YAML metadata output with updated original filename
+```
+modified: tests/outputs/amsr2.tc.color37.imagery_clean/20200518_073604_IO012020_amsr2_gcom-w1_color37_142kts_99p86_res1p0-artb36h-clean.png.yaml
+```
 ### Code Updates
 * **Update to use new class-based interfaces from GeoIPS**
   * Switch from using `geoips.dev.filenamer` to using `geoips.interfaces.filename_formatters`
