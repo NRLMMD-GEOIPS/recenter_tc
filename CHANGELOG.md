@@ -16,6 +16,10 @@
 ```
 modified: tests/scripts/abi.tc.Visible.imagery_clean.sh
 ```
+* Replace filename_formatters.get with filename_formats.get_plugin
+```
+modified: geoips/interface_modules/area_def_adjusters/recenter_tc.py
+```
 ### Code Updates
 * **Update to use new class-based interfaces from GeoIPS**
   * Switch from using `geoips.dev.filenamer` to using `geoips.interfaces.filename_formatters`
