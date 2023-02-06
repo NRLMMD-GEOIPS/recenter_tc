@@ -3,24 +3,70 @@
     # # # Author:
     # # # Naval Research Laboratory, Marine Meteorology Division
     # # #
-    # # # This program is free software:
-    # # # you can redistribute it and/or modify it under the terms
-    # # # of the NRLMMD License included with this program.
-    # # #
-    # # # If you did not receive the license, see
+    # # # This program is free software: you can redistribute it and/or modify it under
+    # # # the terms of the NRLMMD License included with this program. This program is
+    # # # distributed WITHOUT ANY WARRANTY; without even the implied warranty of
+    # # # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the included license
+    # # # for more details. If you did not receive the license, for more information see:
     # # # https://github.com/U-S-NRL-Marine-Meteorology-Division/
-    # # # for more information.
-    # # #
-    # # # This program is distributed WITHOUT ANY WARRANTY;
-    # # # without even the implied warranty of MERCHANTABILITY
-    # # # or FITNESS FOR A PARTICULAR PURPOSE.
-    # # # See the included license for more details.
 
 ## NRLMMD-GEOIPS/recenter_tc#5: 2022-12-07, Update for class-based interfaces
 ### Code Updates
 * **Update to use new class-based interfaces from GeoIPS**
-    * Switch from using `geoips.dev.filenamer` to using `geoips.interfaces.filename_formatters`
-      in `recenter_tc/interface_modules/area_def_adjusters/recenter_tc.py`
+  * Switch from using `geoips.dev.filenamer` to using `geoips.interfaces.filename_formatters`
+    in `recenter_tc/interface_modules/area_def_adjusters/recenter_tc.py`
+
+# v1.6.0: 2022-11-28, open source release
+## GEOIPS#119: 2022-11-28, simplify README
+### Documentation
+#### Simplify README and installation
+* Update README.md to standard contents
+    * use links to geoips repo as appropriate
+    * Include actual information about the package.
+* Remove setup.sh
+    * Rely on default setup.py pip install, and geoips installation documentation
+    * Add archer and akima86 github locations to setup.py
+
+# v1.5.3: 2022-11-07, Update test repo outputs, add storm_datetime to YAML metadata
+
+## GEOIPS#8: 2022-10-25, update ASCAT UHR test data path
+### Bug fixes
+* Rearranged ASCAT test datasets when implementing layered imagery
+* Update ASCAT UHR test data path in NRCS and windbarbs test scripts to reference new locations
+```
+modified: tests/scripts/ascat_uhr.tc.nrcs.imagery_clean.sh
+modified: tests/scripts/ascat_uhr.tc.windbarbs.imagery_clean.sh
+```
+## GEOIPS#103: 2022-10-20, add storm_start_datetime to YAML metadata output
+### Test Repo Updates
+#### Update YAML metadata test outputs to include storm_start_datetime field
+* NOTE: We are NOT removing YAML metadata from recenter_tc repo, because it tracks the actual fdeck output
+* Any time metadata output is updated, all recenter_tc test outputs will require updating as well.
+* Modified files:
+```
+modified: tests/outputs/abi.tc.Visible.imagery_clean/20200918_195020_AL202020_abi_goes-16_Visible_110kts_100p00_res1p0-arB03Ref-clean.png.yaml
+modified: tests/outputs/ahi.tc.IR-BD.imagery_clean/20200405_000000_SH252020_ahi_himawari-8_IR-BD_100kts_100p00_res1p0-arB13BT-clean.png.yaml
+modified: tests/outputs/amsr2.tc.color37.imagery_clean/20200518_073604_IO012020_amsr2_gcom-w1_color37_142kts_99p86_res1p0-artb36h-clean.png.yaml
+modified: tests/outputs/amsr2.tc.windspeed.imagery_clean/20200518_073604_IO012020_amsr2_gcom-w1_windspeed_142kts_85p08_res1p0-akima-clean.png.yaml
+modified: tests/outputs/amsub_hdf.tc.157V.imagery_clean/20200513_215200_WP012020_amsu-b_noaa-19_157V_96kts_87p15_res1p0-akima-clean.png.yaml
+modified: tests/outputs/amsub_mirs.tc.89V.imagery_clean/20210419_235400_WP022021_amsu-b_metop-a_89V_115kts_100p00_res1p0-arChan1_AT-clean.png.yaml
+modified: tests/outputs/ascat_uhr.tc.nrcs.imagery_clean/20210421_014200_WP022021_ascatuhr_metop-c_nrcs_120kts_98p21_res1p0-cr300-akima-clean.png.yaml
+modified: tests/outputs/ascat_uhr.tc.windbarbs.imagery_clean/20210421_014200_WP022021_ascatuhr_metop-c_windbarbs_120kts_100p00_res0p1-akima-clean.png.yaml
+modified: tests/outputs/gmi.tc.89pct.imagery_clean/20200917_172047_AL202020_gmi_GPM_89pct_113kts_17p67_res1p0-arH89-clean.png.yaml
+modified: tests/outputs/hy2b.tc.windspeed.imagery_clean/20211202_084043_WP272021_hscat_hy-2b_windspeed_100kts_98p29_res1p0-akima-clean.png.yaml
+modified: tests/outputs/imerg.tc.Rain.imagery_clean/20200917_170000_AL202020_imerg_GPM_Rain_113kts_36p43_res1p0-akima-clean.png.yaml
+modified: tests/outputs/metopc_knmi_125.tc.windbarbs.imagery_clean/20210421_014245_WP022021_ascat_metop-c_windbarbs_120kts_77p14_res0p5-akima-clean.png.yaml
+modified: tests/outputs/modis.tc.Infrared.imagery_clean/20210104_201500_SH082021_modis_aqua_Infrared_55kts_100p00_res1p0-akima-clean.png.yaml
+modified: tests/outputs/oscat.tc.windspeed.imagery_clean/20210209_025351_SH192021_oscat_scatsat-1_windspeed_133kts_73p31_res1p0-akima-clean.png.yaml
+modified: tests/outputs/saphir.tc.183-3H.imagery_clean/20210209_003103_SH192021_saphir_meghatropiques_183-3H_134kts_89p04_res1p0-akima-clean.png.yaml
+modified: tests/outputs/sar.tc.nrcs.imagery_clean/20181025_203206_WP312018_sar-spd_sentinel-1_nrcs_129kts_63p29_res1p0-cr300-akima-clean.png.yaml
+modified: tests/outputs/smap.tc.windspeed.imagery_clean/20210926_085600_WP202021_smap-spd_smap_windspeed_139kts_54p35_res1p0-akima-clean.png.yaml
+modified: tests/outputs/smap.tc.windspeed.imagery_clean/20210926_210400_WP202021_smap-spd_smap_windspeed_104kts_74p70_res1p0-akima-clean.png.yaml
+modified: tests/outputs/smos.tc.windspeed.imagery_clean/20200216_124335_SH162020_smos-spd_smos_windspeed_75kts_38p89_res1p0-akima-clean.png.yaml
+modified: tests/outputs/ssmi.tc.37pct.imagery_clean/20200519_080900_IO012020_ssmi_F15_37pct_105kts_48p73_res1p0-arH37-clean.png.yaml
+modified: tests/outputs/ssmis.tc.color89.imagery_clean/20200519_095800_IO012020_ssmis_F16_color89_103kts_98p36_res1p0-arH91-clean.png.yaml
+modified: tests/outputs/viirs.tc.Infrared-Gray.imagery_clean/20210209_074210_SH192021_viirs_noaa-20_Infrared-Gray_127kts_100p00_res1p0-akima-clean.png.yaml
+```
 
 # v1.5.1: 2022-07-13, update test repo outputs
 

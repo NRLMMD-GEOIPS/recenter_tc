@@ -35,6 +35,7 @@ source_sector_file: $GEOIPS_BASEDIR/geoips_packages/geoips/tests/sectors/tc_bdec
 storm_basin: SH
 storm_name: DANILO
 storm_num: 8
+storm_start_datetime: 2020-12-29 06:00:00
 storm_year: 2021
 synoptic_time: 2021-01-04 18:00:00
 vmax: 54.96
