@@ -10,6 +10,24 @@
     # # # for more details. If you did not receive the license, for more information see:
     # # # https://github.com/U-S-NRL-Marine-Meteorology-Division/
 
+## NRLMMD-GEOIPS/recenter_tc#5: 2022-12-07, Update for class-based interfaces
+### Bug fixes
+* Switch ABI test data from test_data_abi_day to test_data_noaa_aws
+```
+modified: tests/scripts/abi.tc.Visible.imagery_clean.sh
+```
+* Replace filename_formatters.get with filename_formats.get_plugin
+```
+modified: geoips/interface_modules/area_def_adjusters/recenter_tc.py
+```
+* Update AMSR2 YAML metadata output with updated original filename
+```
+modified: tests/outputs/amsr2.tc.color37.imagery_clean/20200518_073604_IO012020_amsr2_gcom-w1_color37_142kts_99p86_res1p0-artb36h-clean.png.yaml
+```
+### Code Updates
+* **Update to use new class-based interfaces from GeoIPS**
+  * Switch from using `geoips.dev.filenamer` to using `geoips.interfaces.filename_formatters`
+    in `recenter_tc/interface_modules/area_def_adjusters/recenter_tc.py`
 
 # v1.6.0: 2022-11-28, open source release
 ## GEOIPS#119: 2022-11-28, simplify README
@@ -32,8 +50,6 @@
 modified: tests/scripts/ascat_uhr.tc.nrcs.imagery_clean.sh
 modified: tests/scripts/ascat_uhr.tc.windbarbs.imagery_clean.sh
 ```
-
-
 ## GEOIPS#103: 2022-10-20, add storm_start_datetime to YAML metadata output
 ### Test Repo Updates
 #### Update YAML metadata test outputs to include storm_start_datetime field
@@ -64,7 +80,6 @@ modified: tests/outputs/ssmi.tc.37pct.imagery_clean/20200519_080900_IO012020_ssm
 modified: tests/outputs/ssmis.tc.color89.imagery_clean/20200519_095800_IO012020_ssmis_F16_color89_103kts_98p36_res1p0-arH91-clean.png.yaml
 modified: tests/outputs/viirs.tc.Infrared-Gray.imagery_clean/20210209_074210_SH192021_viirs_noaa-20_Infrared-Gray_127kts_100p00_res1p0-akima-clean.png.yaml
 ```
-
 
 # v1.5.1: 2022-07-13, update test repo outputs
 
@@ -425,7 +440,7 @@ modified: tests/outputs/viirs.tc.Infrared-Gray.imagery_clean/20210209_074210_SH1
         * SMAP
         * SMOS
         * SSMI/S
-    * Updated SMAP 
+    * Updated SMAP
         * tc_clean output
         * new test dataset
         * now produce both overpasses rather than one
@@ -458,7 +473,7 @@ modified: tests/outputs/viirs.tc.Infrared-Gray.imagery_clean/20210209_074210_SH1
         * SMAP
         * SMOS
         * SSMI/S
-    * Updated SMAP 
+    * Updated SMAP
         * tc_clean output
         * new test dataset
         * now produce both overpasses rather than one
