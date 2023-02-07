@@ -81,7 +81,7 @@ Install recenter_tc package
     # Assuming you followed the fully supported installation,
     # using $GEOIPS_PACKAGES_DIR and $GEOIPS_CONFIG_FILE:
     source $GEOIPS_CONFIG_FILE
-    git clone -b $GEOIPS_ACTIVE_BRANCH $GEOIPS_REPO_URL $GEOIPS_PACKAGES_DIR/recenter_tc
+    git clone https://github.com/NRLMMD-GEOIPS/recenter_tc $GEOIPS_PACKAGES_DIR/recenter_tc
     pip install -e $GEOIPS_PACKAGES_DIR/recenter_tc
 ```
 
