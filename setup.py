@@ -10,33 +10,35 @@
 # # # for more details. If you did not receive the license, for more information see:
 # # # https://github.com/U-S-NRL-Marine-Meteorology-Division/
 
-'''Installation instructions for recenter_tc package'''
-
-from os.path import realpath, join, dirname
+"""Installation instructions for recenter_tc package"""
 
 import setuptools
 
-with open(join(dirname(realpath(__file__)), 'VERSION'), encoding='utf-8') as version_file:
-    version = version_file.read().strip()
+package_name = "recenter_tc"
 
 setuptools.setup(
-    name='recenter_tc',
-    version=version,
+    name=package_name,
+    use_scm_version={
+        "write_to": f"{package_name}/version.py",  # Writes hard coded version to file
+        "version_scheme": "post-release",  # Use current version .postN vs incrementing
+        "local_scheme": "no-local-version",
+    },  # Does not include extra hash info
+    setup_requires=["setuptools_scm"],
     packages=setuptools.find_packages(),
     install_requires=[
-                      'archer @ git+https://github.com/ajwimmers/archer.git',
-                      'akima86 @ git+https://github.com/NRLMMD-GEOIPS/akima86.git',
-                      ],
+        "archer @ git+https://github.com/ajwimmers/archer.git",
+        "akima86 @ git+https://github.com/NRLMMD-GEOIPS/akima86.git",
+    ],
     entry_points={
-        'geoips.area_def_adjusters': [
-            'recenter_tc=recenter_tc.interface_modules.area_def_adjusters.recenter_tc:recenter_tc',
+        "geoips.area_def_adjusters": [
+            "recenter_tc=recenter_tc.interface_modules.area_def_adjusters.recenter_tc:recenter_tc",
         ],
-        'geoips.filename_formats': [
-            'archer_fix=recenter_tc.interface_modules.filename_formats.archer_fix:archer_fix',
-            'archer_image=recenter_tc.interface_modules.filename_formats.archer_image:archer_image',
+        "geoips.filename_formats": [
+            "archer_fix=recenter_tc.interface_modules.filename_formats.archer_fix:archer_fix",
+            "archer_image=recenter_tc.interface_modules.filename_formats.archer_image:archer_image",
         ],
-        'geoips.output_comparisons': [
-            'compare_outputs_recenter_tc=recenter_tc.compare_outputs_recenter_tc:compare_outputs_recenter_tc',
+        "geoips.output_comparisons": [
+            "compare_outputs_recenter_tc=recenter_tc.compare_outputs_recenter_tc:compare_outputs_recenter_tc",
         ],
-    }
+    },
 )

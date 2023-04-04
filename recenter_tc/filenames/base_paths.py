@@ -10,9 +10,9 @@
 # # # for more details. If you did not receive the license, for more information see:
 # # # https://github.com/U-S-NRL-Marine-Meteorology-Division/
 
-''' Collection of base path names used throughout GeoIPS.  Everything defaults to subdirectories relative to
+""" Collection of base path names used throughout GeoIPS.  Everything defaults to subdirectories relative to
     the REQUIRED environment variable GEOIPS_OUTDIRS.  Individual GEOIPS_OUTDIRS relative paths can be overridden
-    by setting appropriate environment variables. '''
+    by setting appropriate environment variables. """
 
 
 # Python Standard Libraries
@@ -27,23 +27,31 @@ PATHS = {}
 from geoips.filenames.base_paths import PATHS as GPATHS
 
 
-if getenv('ARCHER_IMAGE_PATH'):
-    PATHS['ARCHER_IMAGE_PATH'] = getenv('ARCHER_IMAGE_PATH').rstrip('/')
+if getenv("ARCHER_IMAGE_PATH"):
+    PATHS["ARCHER_IMAGE_PATH"] = getenv("ARCHER_IMAGE_PATH").rstrip("/")
 else:
-    PATHS['ARCHER_IMAGE_PATH'] = pathjoin(GPATHS['GEOIPS_OUTDIRS'], 'preprocessed', 'archer', 'image')
+    PATHS["ARCHER_IMAGE_PATH"] = pathjoin(
+        GPATHS["GEOIPS_OUTDIRS"], "preprocessed", "archer", "image"
+    )
 
-if getenv('ARCHER_IMAGE_FILENAME_FORMAT'):
-    PATHS['ARCHER_IMAGE_FILENAME_FORMAT'] = getenv('ARCHER_IMAGE_FILENAME_FORMAT').rstrip('/')
+if getenv("ARCHER_IMAGE_FILENAME_FORMAT"):
+    PATHS["ARCHER_IMAGE_FILENAME_FORMAT"] = getenv(
+        "ARCHER_IMAGE_FILENAME_FORMAT"
+    ).rstrip("/")
 else:
-    PATHS['ARCHER_IMAGE_FILENAME_FORMAT'] = 'archer_image'
+    PATHS["ARCHER_IMAGE_FILENAME_FORMAT"] = "archer_image"
 
 
-if getenv('ARCHER_FIX_PATH'):
-    PATHS['ARCHER_FIX_PATH'] = getenv('ARCHER_FIX_PATH').rstrip('/')
+if getenv("ARCHER_FIX_PATH"):
+    PATHS["ARCHER_FIX_PATH"] = getenv("ARCHER_FIX_PATH").rstrip("/")
 else:
-    PATHS['ARCHER_FIX_PATH'] = pathjoin(GPATHS['GEOIPS_OUTDIRS'], 'preprocessed', 'archer', 'fix')
+    PATHS["ARCHER_FIX_PATH"] = pathjoin(
+        GPATHS["GEOIPS_OUTDIRS"], "preprocessed", "archer", "fix"
+    )
 
-if getenv('ARCHER_FIX_FILENAME_FORMAT'):
-    PATHS['ARCHER_FIX_FILENAME_FORMAT'] = getenv('ARCHER_FIX_FILENAME_FORMAT').rstrip('/')
+if getenv("ARCHER_FIX_FILENAME_FORMAT"):
+    PATHS["ARCHER_FIX_FILENAME_FORMAT"] = getenv("ARCHER_FIX_FILENAME_FORMAT").rstrip(
+        "/"
+    )
 else:
-    PATHS['ARCHER_FIX_FILENAME_FORMAT'] = 'archer_fix'
+    PATHS["ARCHER_FIX_FILENAME_FORMAT"] = "archer_fix"

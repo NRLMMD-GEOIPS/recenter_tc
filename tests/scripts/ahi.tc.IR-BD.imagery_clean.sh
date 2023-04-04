@@ -14,11 +14,11 @@
 
 # 160 files - 10 per channel
 run_procflow \
-    $GEOIPS_BASEDIR/test_data/test_data_ahi_day/data/20200405_0000/HS_H08_20200405_0000_B*_FLDK_R*_S*.DAT \
+    $GEOIPS_TESTDATA_DIR/test_data_ahi_day/data/20200405_0000/HS_H08_20200405_0000_B*_FLDK_R*_S*.DAT \
     --procflow single_source \
     --reader_name ahi_hsd \
     --product_name IR-BD \
-    --compare_path "$GEOIPS_BASEDIR/geoips_packages/recenter_tc/tests/outputs/ahi.tc.IR-BD.imagery_clean" \
+    --compare_path "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/outputs/ahi.tc.IR-BD.imagery_clean" \
     --output_format imagery_clean \
     --filename_format tc_clean_fname \
     --adjust_area_def recenter_tc \
