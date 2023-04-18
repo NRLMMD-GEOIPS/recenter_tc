@@ -22,6 +22,7 @@ Update interface naming and move to plugins directory
 * Moved interface_modules to plugins/modules
 
   * Updated related imports
+  * Updated entry points
 * Renamed filename_format to filename_formatter
 * Renamed output_format to output_formatter
 
