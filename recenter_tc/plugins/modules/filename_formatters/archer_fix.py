@@ -118,7 +118,7 @@ def assemble_archer_fname(basedir, variable_name, archer_channel_type,
             '/outdir/tc2020/SH/SH162020/txt/archer
     '''
 
-    from geoips.interface_modules.filename_formats.utils.tc_file_naming import tc_storm_basedir
+    from geoips.plugins.modules.filename_formatters.utils.tc_file_naming import tc_storm_basedir
     if use_storm_subdirs:
         path = pathjoin(tc_storm_basedir(basedir, tc_year, tc_basin, tc_stormnum),
                         'txt', 'archer')

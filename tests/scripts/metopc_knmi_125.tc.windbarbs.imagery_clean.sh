@@ -18,11 +18,11 @@ run_procflow \
     --reader_name scat_knmi_winds_netcdf \
     --product_name windbarbs \
     --compare_path "$GEOIPS_BASEDIR/geoips_packages/recenter_tc/tests/outputs/metopc_knmi_125.tc.windbarbs.imagery_clean" \
-    --tc_template_yaml $GEOIPS/geoips/yaml_configs/sectors_dynamic/tc_web_ascat_high_barbs_template.yaml \
-    --output_format imagery_clean \
-    --filename_format tc_clean_fname \
-    --metadata_filename_format metadata_default_fname \
-    --metadata_output_format metadata_default \
+    --tc_template_yaml $GEOIPS/geoips/plugins/yaml/sectors_dynamic/tc_web_ascat_high_barbs_template.yaml \
+    --output_formatter imagery_clean \
+    --filename_formatter tc_clean_fname \
+    --metadata_filename_formatter metadata_default_fname \
+    --metadata_output_formatter metadata_default \
     --trackfile_parser bdeck_parser \
     --trackfiles $GEOIPS/tests/sectors/tc_bdecks/bwp022021.dat \
     --adjust_area_def recenter_tc

@@ -28,12 +28,12 @@ setuptools.setup(
                       'akima86 @ git+https://github.com/NRLMMD-GEOIPS/akima86.git',
                       ],
     entry_points={
-        'geoips.area_def_adjusters': [
-            'recenter_tc=recenter_tc.interface_modules.area_def_adjusters.recenter_tc:recenter_tc',
+        'geoips.sector_adjusters': [
+            'recenter_tc=recenter_tc.plugins.modules.sector_adjusters.recenter_tc:recenter_tc',
         ],
-        'geoips.filename_formats': [
-            'archer_fix=recenter_tc.interface_modules.filename_formats.archer_fix:archer_fix',
-            'archer_image=recenter_tc.interface_modules.filename_formats.archer_image:archer_image',
+        'geoips.filename_formatters': [
+            'archer_fix=recenter_tc.plugins.modules.filename_formatters.archer_fix:archer_fix',
+            'archer_image=recenter_tc.plugins.modules.filename_formatters.archer_image:archer_image',
         ],
         'geoips.output_comparisons': [
             'compare_outputs_recenter_tc=recenter_tc.compare_outputs_recenter_tc:compare_outputs_recenter_tc',

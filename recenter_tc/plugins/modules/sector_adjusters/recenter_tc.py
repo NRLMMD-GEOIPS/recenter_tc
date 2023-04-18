@@ -16,10 +16,10 @@ from os.path import dirname
 
 import logging
 
-from geoips.interface_modules.procflows.single_source import print_area_def
+from geoips.plugins.modules.procflows.single_source import print_area_def
 from recenter_tc.filenames.base_paths import PATHS as GPATHS
 from geoips.filenames.base_paths import make_dirs
-from geoips.interfaces import filename_formats
+from geoips.interfaces import filename_formatters
 
 ARCHER_REQUIRED_VMAX_KTS = 50
 ARCHER_IMAGE_FILENAME_FORMAT = GPATHS['ARCHER_IMAGE_FILENAME_FORMAT']
@@ -65,14 +65,14 @@ def run_archer(xarray_obj, varname):
     archer_image_fname = None
     archer_fix_fname = None
 
-    filenamer = filename_formats.get_plugin(ARCHER_IMAGE_FILENAME_FORMAT)
+    filenamer = filename_formatters.get_plugin(ARCHER_IMAGE_FILENAME_FORMAT)
     if filenamer.family != 'xarray_metadata_to_filename':
         LOG.warning('Unsupported filename type %s %s, not producing ARCHER IMAGE output',
                     filenamer.family, ARCHER_IMAGE_FILENAME_FORMAT)
     else:
         archer_image_fname = filenamer(xarray_obj, variable_name=varname, archer_channel_type=archer_channel_type)
 
-    filenamer = filename_formats.get_plugin(ARCHER_FIX_FILENAME_FORMAT)
+    filenamer = filename_formatters.get_plugin(ARCHER_FIX_FILENAME_FORMAT)
     if filenamer.family != 'xarray_metadata_to_filename':
         LOG.warning('Unsupported filename type %s %s, not producing ARCHER FIX output',
                     filenamer.family, ARCHER_FIX_FILENAME_FORMAT)
@@ -236,7 +236,7 @@ def recenter_tc(xobjs, area_def, variables, recenter_variables=None):
 
 def recenter_area_def(area_def, fields):
     from geoips.sector_utils.tc_tracks import get_tc_long_description
-    from geoips.interface_modules.area_def_generators.clat_clon_resolution_shape import clat_clon_resolution_shape
+    from geoips.plugins.modules.sector_loaders.dynamic.clat_clon_resolution_shape import clat_clon_resolution_shape
     new_area_def = clat_clon_resolution_shape(area_id=area_def.area_id,
                                               long_description=get_tc_long_description(area_def.area_id,
                                                                                        fields),

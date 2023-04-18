@@ -19,10 +19,10 @@ run_procflow \
     --reader_name  atms_hdf5 \
     --product_name 165H \
     --compare_path "$GEOIPS_BASEDIR/geoips_packages/recenter_tc/tests/outputs/atms.tc.165H.imagery_clean" \
-    --output_format imagery_clean \
-    --filename_format tc_clean_fname \
-    --metadata_filename_format metadata_default_fname \
-    --metadata_output_format metadata_default \
+    --output_formatter imagery_clean \
+    --filename_formatter tc_clean_fname \
+    --metadata_filename_formatter metadata_default_fname \
+    --metadata_output_formatter metadata_default \
     --trackfile_parser bdeck_parser \
     --trackfiles $GEOIPS/tests/sectors/tc_bdecks/bep112021.dat \
     --adjust_area_def recenter_tc
