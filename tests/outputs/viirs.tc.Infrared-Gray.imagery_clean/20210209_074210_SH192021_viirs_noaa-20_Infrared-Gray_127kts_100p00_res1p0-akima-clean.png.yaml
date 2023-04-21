@@ -28,8 +28,8 @@ pressure: 932.75
 product_filename: $GEOIPS_OUTDIRS/preprocessed/tcwww/tc2021/SH/SH192021/png_clean/Infrared-Gray/noaa-20/20210209_074210_SH192021_viirs_noaa-20_Infrared-Gray_127kts_100p00_res1p0-akima-clean.png
 recenter_type: akima
 sector_type: tc
-source_filename: $GEOIPS_BASEDIR/geoips_packages/geoips/tests/sectors/tc_bdecks/bsh192021.dat
-source_sector_file: $GEOIPS_BASEDIR/geoips_packages/geoips/tests/sectors/tc_bdecks/bsh192021.dat
+source_filename: $GEOIPS_PACKAGES_DIR/geoips/tests/sectors/tc_bdecks/bsh192021.dat
+source_sector_file: $GEOIPS_PACKAGES_DIR/geoips/tests/sectors/tc_bdecks/bsh192021.dat
 storm_basin: SH
 storm_name: FARAJI
 storm_num: 19

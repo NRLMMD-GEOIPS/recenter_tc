@@ -13,11 +13,11 @@
 #!/bin/bash
 
 run_procflow \
-    $GEOIPS_BASEDIR/test_data/test_data_amsub/data/NPR.MHOP.NP.D20134.S2106.E2252.B5805153.NS \
+    $GEOIPS_TESTDATA_DIR/test_data_amsub/data/NPR.MHOP.NP.D20134.S2106.E2252.B5805153.NS \
     --procflow single_source \
     --reader_name amsub_hdf \
     --product_name 157V \
-    --compare_path "$GEOIPS_BASEDIR/geoips_packages/recenter_tc/tests/outputs/amsub_hdf.tc.157V.imagery_clean" \
+    --compare_path "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/outputs/amsub_hdf.tc.157V.imagery_clean" \
     --output_format imagery_clean \
     --filename_format tc_clean_fname \
     --adjust_area_def recenter_tc \

@@ -14,11 +14,11 @@
 
 # This one doesn't work!!!
 run_procflow \
-    $GEOIPS_BASEDIR/test_data/test_data_atms/data/j01/20210809_0838/* \
+    $GEOIPS_TESTDATA_DIR/test_data_atms/data/j01/20210809_0838/* \
     --procflow single_source \
     --reader_name  atms_hdf5 \
     --product_name 165H \
-    --compare_path "$GEOIPS_BASEDIR/geoips_packages/recenter_tc/tests/outputs/atms.tc.165H.imagery_clean" \
+    --compare_path "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/outputs/atms.tc.165H.imagery_clean" \
     --output_format imagery_clean \
     --filename_format tc_clean_fname \
     --metadata_filename_format metadata_default_fname \

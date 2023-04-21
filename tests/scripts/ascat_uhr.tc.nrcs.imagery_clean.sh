@@ -13,11 +13,11 @@
 #!/bin/bash
 
 run_procflow \
-    $GEOIPS_BASEDIR/test_data/test_data_scat/data/20210421_metopc_byu_uhr_tc2021wp02surigae/210421_0142_12730_SURIGAE_210421_0000.avewr.nc \
+    $GEOIPS_TESTDATA_DIR/test_data_scat/data/20210421_metopc_byu_uhr_tc2021wp02surigae/210421_0142_12730_SURIGAE_210421_0000.avewr.nc \
     --procflow single_source \
     --reader_name  ascat_uhr_netcdf \
     --product_name nrcs \
-    --compare_path "$GEOIPS_BASEDIR/geoips_packages/recenter_tc/tests/outputs/ascat_uhr.tc.nrcs.imagery_clean" \
+    --compare_path "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/outputs/ascat_uhr.tc.nrcs.imagery_clean" \
     --output_format imagery_clean \
     --filename_format tc_clean_fname \
     --metadata_filename_format metadata_default_fname \

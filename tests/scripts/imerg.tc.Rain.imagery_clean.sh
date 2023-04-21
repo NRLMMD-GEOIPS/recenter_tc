@@ -13,11 +13,11 @@
 #!/bin/bash
 
 run_procflow \
-    $GEOIPS_BASEDIR/test_data/test_data_gpm/data/3B-HHR-L.MS.MRG.3IMERG.20200917-S170000-E172959.1020.V06B.RT-H5 \
+    $GEOIPS_TESTDATA_DIR/test_data_gpm/data/3B-HHR-L.MS.MRG.3IMERG.20200917-S170000-E172959.1020.V06B.RT-H5 \
     --procflow single_source \
     --reader_name  imerg_hdf5 \
     --product_name Rain \
-    --compare_path "$GEOIPS_BASEDIR/geoips_packages/recenter_tc/tests/outputs/imerg.tc.Rain.imagery_clean" \
+    --compare_path "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/outputs/imerg.tc.Rain.imagery_clean" \
     --output_format imagery_clean \
     --filename_format tc_clean_fname \
     --metadata_filename_format metadata_default_fname \

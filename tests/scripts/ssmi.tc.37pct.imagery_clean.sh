@@ -13,11 +13,11 @@
 #!/bin/bash
 
 run_procflow \
-    $GEOIPS_BASEDIR/test_data/test_data_ssmi/data/US058SORB-DEFspp.sdrmi_f15_d20200519_s080800_e095300_r05633_cfnoc.def \
+    $GEOIPS_TESTDATA_DIR/test_data_ssmi/data/US058SORB-DEFspp.sdrmi_f15_d20200519_s080800_e095300_r05633_cfnoc.def \
     --procflow single_source \
     --reader_name  ssmi_binary \
     --product_name 37pct \
-    --compare_path "$GEOIPS_BASEDIR/geoips_packages/recenter_tc/tests/outputs/ssmi.tc.37pct.imagery_clean" \
+    --compare_path "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/outputs/ssmi.tc.37pct.imagery_clean" \
     --output_format imagery_clean \
     --filename_format tc_clean_fname \
     --metadata_filename_format metadata_default_fname \
