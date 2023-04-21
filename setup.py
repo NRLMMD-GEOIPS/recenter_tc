@@ -39,9 +39,6 @@ setuptools.setup(
         ],
         "geoips.output_comparisons": [
             "compare_outputs_recenter_tc=recenter_tc.compare_outputs_recenter_tc:compare_outputs_recenter_tc",
-        "geoips.output_comparisons": [
-            "compare_outputs_recenter_tc=recenter_tc.compare_outputs_recenter_tc:compare_outputs_recenter_tc",
         ],
-    },
     },
 )
