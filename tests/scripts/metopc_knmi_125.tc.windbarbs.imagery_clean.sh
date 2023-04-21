@@ -13,7 +13,7 @@
 #!/bin/bash
 
 run_procflow \
-    $GEOIPS_BASEDIR/test_data/test_data_scat/data/metopc_knmi_125/ascat_20210421_010000_metopc_12730_eps_o_coa_3203_ovw.l2.nc \
+    $GEOIPS_TESTDATA_DIR/test_data_scat/data/metopc_knmi_125/ascat_20210421_010000_metopc_12730_eps_o_coa_3203_ovw.l2.nc \
     --procflow single_source \
     --reader_name scat_knmi_winds_netcdf \
     --product_name windbarbs \

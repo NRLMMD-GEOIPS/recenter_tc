@@ -13,7 +13,7 @@
 #!/bin/bash
 
 run_procflow \
-    $GEOIPS_BASEDIR/test_data/test_data_amsub/data/NPR.MHOP.NP.D20134.S2106.E2252.B5805153.NS \
+    $GEOIPS_TESTDATA_DIR/test_data_amsub/data/NPR.MHOP.NP.D20134.S2106.E2252.B5805153.NS \
     --procflow single_source \
     --reader_name amsub_hdf \
     --product_name 157V \

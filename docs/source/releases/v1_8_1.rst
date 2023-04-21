@@ -1,0 +1,49 @@
+ | # # # Distribution Statement A. Approved for public release. Distribution unlimited.
+ | # # #
+ | # # # Author:
+ | # # # Naval Research Laboratory, Marine Meteorology Division
+ | # # #
+ | # # # This program is free software: you can redistribute it and/or modify it under
+ | # # # the terms of the NRLMMD License included with this program. This program is
+ | # # # distributed WITHOUT ANY WARRANTY; without even the implied warranty of
+ | # # # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the included license
+ | # # # for more details. If you did not receive the license, for more information see:
+ | # # # https://github.com/U-S-NRL-Marine-Meteorology-Division/
+
+Version 1.8.1 (2023-03-15)
+**************************
+
+Version 1.8.1 includes:
+
+* SSMI/S 89GHz -> 91 GHz product name
+
+Test Repo Updates
+=================
+
+Replace SSMI/S 89GHz test outputs with 91GHz
+--------------------------------------------
+
+Update product names to more accurately reflect the actual channel frequency.
+
+::
+
+    renamed: tests/outputs/ssmis.tc.color89.imagery_clean/20200519_095800_IO012020_ssmis_F16_color89_103kts_98p36_res1p0-arH91-clean.png -> tests/outputs/ssmis.tc.color91.imagery_clean/20200519_095800_IO012020_ssmis_F16_color91_103kts_98p36_res1p0-arH91-clean.png
+    renamed: tests/outputs/ssmis.tc.color89.imagery_clean/20200519_095800_IO012020_ssmis_F16_color89_103kts_98p36_res1p0-arH91-clean.png.yaml -> tests/outputs/ssmis.tc.color91.imagery_clean/20200519_095800_IO012020_ssmis_F16_color91_103kts_98p36_res1p0-arH91-clean.png.yaml
+    renamed: tests/scripts/ssmis.tc.color89.imagery_clean.sh -> tests/scripts/ssmis.tc.color91.imagery_clean.sh
+    modified: tests/outputs/ssmis.tc.color91.imagery_clean/20200519_095800_IO012020_ssmis_F16_color91_103kts_98p36_res1p0-arH91-clean.png.yaml
+    modified: tests/test_all.sh
+
+
+Bug Fixes
+=========
+
+Increase lon padding for AMSU-B recentering
+-------------------------------------------
+
+*From GEOIPS#28: 2023-03-20, increase lon padding for amsu-b*
+
+* Increase lon padding for AMSU-B from 15 -> 25
+
+::
+
+    modified: recenter_tc/interface_modules/area_def_adjusters/recenter_tc.py

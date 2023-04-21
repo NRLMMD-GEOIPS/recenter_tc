@@ -13,7 +13,7 @@
 #!/bin/bash
 
 run_procflow \
-    ${GEOIPS_BASEDIR}/test_data/test_data_hy2/data/hscat_20211202_080644_hy_2b__15571_o_250_2204_ovw_l2.nc \
+    $GEOIPS_TESTDATA_DIR/test_data_hy2/data/hscat_20211202_080644_hy_2b__15571_o_250_2204_ovw_l2.nc \
     --procflow single_source \
     --reader_name scat_knmi_winds_netcdf \
     --product_name windspeed \

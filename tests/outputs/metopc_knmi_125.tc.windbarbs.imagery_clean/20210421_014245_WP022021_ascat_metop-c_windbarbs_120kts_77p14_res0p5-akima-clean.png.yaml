@@ -25,8 +25,8 @@ pressure: 934.79
 product_filename: $GEOIPS_OUTDIRS/preprocessed/tcwww/tc2021/WP/WP022021/png_clean/windbarbs/metop-c/20210421_014245_WP022021_ascat_metop-c_windbarbs_120kts_77p14_res0p5-akima-clean.png
 recenter_type: akima
 sector_type: tc
-source_filename: $GEOIPS_BASEDIR/geoips_packages/geoips/tests/sectors/tc_bdecks/bwp022021.dat
-source_sector_file: $GEOIPS_BASEDIR/geoips_packages/geoips/tests/sectors/tc_bdecks/bwp022021.dat
+source_filename: $GEOIPS_PACKAGES_DIR/geoips/tests/sectors/tc_bdecks/bwp022021.dat
+source_sector_file: $GEOIPS_PACKAGES_DIR/geoips/tests/sectors/tc_bdecks/bwp022021.dat
 storm_basin: WP
 storm_name: SURIGAE
 storm_num: 2

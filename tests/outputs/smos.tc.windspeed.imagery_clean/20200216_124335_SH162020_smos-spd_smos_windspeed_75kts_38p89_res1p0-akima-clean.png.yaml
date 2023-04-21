@@ -25,8 +25,8 @@ pressure: 977.82
 product_filename: $GEOIPS_OUTDIRS/preprocessed/tcwww/tc2020/SH/SH162020/png_clean/windspeed/smos/20200216_124335_SH162020_smos-spd_smos_windspeed_75kts_38p89_res1p0-akima-clean.png
 recenter_type: akima
 sector_type: tc
-source_filename: $GEOIPS_BASEDIR/geoips_packages/geoips/tests/sectors/tc_bdecks/bsh162020.dat
-source_sector_file: $GEOIPS_BASEDIR/geoips_packages/geoips/tests/sectors/tc_bdecks/bsh162020.dat
+source_filename: $GEOIPS_PACKAGES_DIR/geoips/tests/sectors/tc_bdecks/bsh162020.dat
+source_sector_file: $GEOIPS_PACKAGES_DIR/geoips/tests/sectors/tc_bdecks/bsh162020.dat
 storm_basin: SH
 storm_name: GABEKILE
 storm_num: 16

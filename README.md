@@ -14,7 +14,7 @@ Tropical Cyclone Recentering GeoIPS Plugin
 ===========================================
 
 The recenter_tc package is a GeoIPS-compatible plugin, intended to be used within the GeoIPS ecosystem.
-Please see the 
+Please see the
 [GeoIPS Documentation](https://github.com/NRLMMD-GEOIPS/geoips/blob/main/README.md)
 for more information on the GeoIPS plugin architecture and base infrastructure.
 
@@ -39,7 +39,7 @@ to the actual data time.
 T. Wimmers University of Wisconsin Cooperative Institute for Meteorological Satellite Studies
 
 Using the akima86 interpolated center as a starting point, ARCHER identifies the actual storm
-center from the data itself.  ARCHER operates on passive microwave, visible, and infrared data types 
+center from the data itself.  ARCHER operates on passive microwave, visible, and infrared data types
 
 ### recenter_tc wrapper "area_def_adjuster"
 
@@ -69,7 +69,7 @@ System Requirements
 
 IF REQUIRED: Install base geoips package
 ------------------------------------------------------------
-SKIP IF YOU HAVE ALREADY INSTALLED BASE GEOIPS ENVIRONMENT 
+SKIP IF YOU HAVE ALREADY INSTALLED BASE GEOIPS ENVIRONMENT
 
 If GeoIPS Base is not yet installed, follow the
 [installation instructions](https://github.com/NRLMMD-GEOIPS/geoips/blob/main/docs/installation.rst)

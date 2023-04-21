@@ -16,7 +16,7 @@
 
 # The $GEOIPS tests modules sourced within this script handle:
    # setting up the appropriate associative arrays for tracking the overall return value,
-   # calling the test scripts appropriately, and 
+   # calling the test scripts appropriately, and
    # setting the final return value.
 
 # Note you must use the variable "call" in the for the loop
@@ -47,7 +47,7 @@ for call in \
             "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/sar.tc.nrcs.imagery_clean.sh" \
             "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/smap.tc.windspeed.imagery_clean.sh" \
             "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/smos.tc.windspeed.imagery_clean.sh" \
-            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/ssmis.tc.color89.imagery_clean.sh" \
+            "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/ssmis.tc.color91.imagery_clean.sh" \
             "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/ssmi.tc.37pct.imagery_clean.sh" \
             "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/viirs.tc.Infrared-Gray.imagery_clean.sh"
 do

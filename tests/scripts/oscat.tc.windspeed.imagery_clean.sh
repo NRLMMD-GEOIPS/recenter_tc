@@ -13,7 +13,7 @@
 #!/bin/bash
 
 run_procflow \
-    ${GEOIPS_BASEDIR}/test_data/test_data_scat/data/oscat_250/oscat_20210209_022459_scasa1_23155_o_250_2202_ovw_l2.nc \
+    $GEOIPS_TESTDATA_DIR/test_data_scat/data/oscat_250/oscat_20210209_022459_scasa1_23155_o_250_2202_ovw_l2.nc \
     --procflow single_source \
     --reader_name scat_knmi_winds_netcdf \
     --product_name windspeed \

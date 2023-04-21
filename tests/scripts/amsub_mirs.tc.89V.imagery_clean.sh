@@ -12,7 +12,7 @@
 
 #!/bin/bash
 run_procflow \
-    $GEOIPS_BASEDIR/test_data/test_data_amsub/data/NPR-MIRS-IMG_v11r4_ma2_s202104192335000_e202104190118000_c202104200206490.nc \
+    $GEOIPS_TESTDATA_DIR/test_data_amsub/data/NPR-MIRS-IMG_v11r4_ma2_s202104192335000_e202104190118000_c202104200206490.nc \
     --procflow single_source \
     --reader_name amsub_mirs \
     --product_name 89V \

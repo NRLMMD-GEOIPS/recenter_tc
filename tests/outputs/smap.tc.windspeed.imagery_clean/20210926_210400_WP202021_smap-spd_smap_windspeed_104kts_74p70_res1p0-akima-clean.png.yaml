@@ -25,8 +25,8 @@ pressure: 949.82
 product_filename: $GEOIPS_OUTDIRS/preprocessed/tcwww/tc2021/WP/WP202021/png_clean/windspeed/smap/20210926_210400_WP202021_smap-spd_smap_windspeed_104kts_74p70_res1p0-akima-clean.png
 recenter_type: akima
 sector_type: tc
-source_filename: $GEOIPS_BASEDIR/geoips_packages/geoips/tests/sectors/tc_bdecks/bwp202021.dat
-source_sector_file: $GEOIPS_BASEDIR/geoips_packages/geoips/tests/sectors/tc_bdecks/bwp202021.dat
+source_filename: $GEOIPS_PACKAGES_DIR/geoips/tests/sectors/tc_bdecks/bwp202021.dat
+source_sector_file: $GEOIPS_PACKAGES_DIR/geoips/tests/sectors/tc_bdecks/bwp202021.dat
 storm_basin: WP
 storm_name: MINDULLE
 storm_num: 20

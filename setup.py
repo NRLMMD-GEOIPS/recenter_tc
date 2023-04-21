@@ -12,18 +12,18 @@
 
 """Installation instructions for recenter_tc package"""
 
-from os.path import realpath, join, dirname
-
 import setuptools
 
-with open(
-    join(dirname(realpath(__file__)), "VERSION"), encoding="utf-8"
-) as version_file:
-    version = version_file.read().strip()
+package_name = "recenter_tc"
 
 setuptools.setup(
-    name="recenter_tc",
-    version=version,
+    name=package_name,
+    use_scm_version={
+        "write_to": f"{package_name}/version.py",  # Writes hard coded version to file
+        "version_scheme": "post-release",  # Use current version .postN vs incrementing
+        "local_scheme": "no-local-version",
+    },  # Does not include extra hash info
+    setup_requires=["setuptools_scm"],
     packages=setuptools.find_packages(),
     install_requires=[
         "archer @ git+https://github.com/ajwimmers/archer.git",
@@ -39,6 +39,9 @@ setuptools.setup(
         ],
         "geoips.output_comparisons": [
             "compare_outputs_recenter_tc=recenter_tc.compare_outputs_recenter_tc:compare_outputs_recenter_tc",
+        "geoips.output_comparisons": [
+            "compare_outputs_recenter_tc=recenter_tc.compare_outputs_recenter_tc:compare_outputs_recenter_tc",
         ],
+    },
     },
 )

@@ -13,7 +13,7 @@
 #!/bin/bash
 
 run_procflow \
-    ${GEOIPS_BASEDIR}/test_data/test_data_smos/data/SM_OPER_MIR_SCNFSW_20200216T120839_20200216T135041_110_001_7.nc \
+    $GEOIPS_TESTDATA_DIR/test_data_smos/data/SM_OPER_MIR_SCNFSW_20200216T120839_20200216T135041_110_001_7.nc \
     --procflow single_source \
     --reader_name smos_winds_netcdf \
     --product_name windspeed \
