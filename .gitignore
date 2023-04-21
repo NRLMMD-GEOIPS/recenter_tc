@@ -2,3 +2,4 @@
 *.egg-info
 archer_test*
 *diff_test_output*
+version.py
