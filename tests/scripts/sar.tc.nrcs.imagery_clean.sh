@@ -17,7 +17,7 @@ run_procflow \
     --procflow single_source \
     --reader_name sar_winds_netcdf \
     --product_name nrcs \
-    --compare_path "$GEOIPS_BASEDIR/geoips_packages/recenter_tc/tests/outputs/sar.tc.nrcs.imagery_clean" \
+    --compare_path "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/outputs/sar.tc.nrcs.imagery_clean" \
     --output_formatter imagery_clean \
     --filename_formatter tc_clean_fname \
     --adjust_area_def recenter_tc \

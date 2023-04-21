@@ -17,7 +17,7 @@ run_procflow \
     --procflow single_source \
     --reader_name scat_knmi_winds_netcdf \
     --product_name windbarbs \
-    --compare_path "$GEOIPS_BASEDIR/geoips_packages/recenter_tc/tests/outputs/metopc_knmi_125.tc.windbarbs.imagery_clean" \
+    --compare_path "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/outputs/metopc_knmi_125.tc.windbarbs.imagery_clean" \
     --tc_template_yaml $GEOIPS/geoips/plugins/yaml/sectors_dynamic/tc_web_ascat_high_barbs_template.yaml \
     --output_formatter imagery_clean \
     --filename_formatter tc_clean_fname \

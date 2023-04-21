@@ -18,7 +18,7 @@ run_procflow \
     --procflow single_source \
     --reader_name  saphir_hdf5 \
     --product_name "183-3H" \
-    --compare_path "$GEOIPS_BASEDIR/geoips_packages/recenter_tc/tests/outputs/saphir.tc.183-3H.imagery_clean" \
+    --compare_path "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/outputs/saphir.tc.183-3H.imagery_clean" \
     --output_formatter imagery_clean \
     --filename_formatter tc_clean_fname \
     --metadata_filename_formatter metadata_default_fname \

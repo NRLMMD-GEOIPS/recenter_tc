@@ -28,7 +28,7 @@ run_procflow \
     --procflow single_source \
     --reader_name viirs_netcdf \
     --product_name Infrared-Gray \
-    --compare_path "$GEOIPS_BASEDIR/geoips_packages/recenter_tc/tests/outputs/viirs.tc.Infrared-Gray.imagery_clean" \
+    --compare_path "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/outputs/viirs.tc.Infrared-Gray.imagery_clean" \
     --output_formatter imagery_clean \
     --filename_formatter tc_clean_fname \
     --adjust_area_def recenter_tc \

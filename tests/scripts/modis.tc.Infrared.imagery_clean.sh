@@ -25,7 +25,7 @@ run_procflow \
     --procflow single_source \
     --reader_name modis_hdf4\
     --product_name Infrared \
-    --compare_path "$GEOIPS_BASEDIR/geoips_packages/recenter_tc/tests/outputs/modis.tc.Infrared.imagery_clean" \
+    --compare_path "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/outputs/modis.tc.Infrared.imagery_clean" \
     --output_formatter imagery_clean \
     --filename_formatter tc_clean_fname \
     --adjust_area_def recenter_tc \

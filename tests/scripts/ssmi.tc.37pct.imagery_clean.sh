@@ -17,7 +17,7 @@ run_procflow \
     --procflow single_source \
     --reader_name  ssmi_binary \
     --product_name 37pct \
-    --compare_path "$GEOIPS_BASEDIR/geoips_packages/recenter_tc/tests/outputs/ssmi.tc.37pct.imagery_clean" \
+    --compare_path "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/outputs/ssmi.tc.37pct.imagery_clean" \
     --output_formatter imagery_clean \
     --filename_formatter tc_clean_fname \
     --metadata_filename_formatter metadata_default_fname \

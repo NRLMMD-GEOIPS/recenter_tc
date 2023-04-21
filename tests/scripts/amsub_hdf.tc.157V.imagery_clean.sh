@@ -17,7 +17,7 @@ run_procflow \
     --procflow single_source \
     --reader_name amsub_hdf \
     --product_name 157V \
-    --compare_path "$GEOIPS_BASEDIR/geoips_packages/recenter_tc/tests/outputs/amsub_hdf.tc.157V.imagery_clean" \
+    --compare_path "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/outputs/amsub_hdf.tc.157V.imagery_clean" \
     --output_formatter imagery_clean \
     --filename_formatter tc_clean_fname \
     --adjust_area_def recenter_tc \

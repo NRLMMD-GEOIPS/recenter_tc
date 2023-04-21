@@ -17,7 +17,7 @@ run_procflow \
     --procflow single_source \
     --reader_name scat_knmi_winds_netcdf \
     --product_name windspeed \
-    --compare_path "$GEOIPS_BASEDIR/geoips_packages/recenter_tc/tests/outputs/oscat.tc.windspeed.imagery_clean" \
+    --compare_path "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/outputs/oscat.tc.windspeed.imagery_clean" \
     --output_formatter imagery_clean \
     --filename_formatter tc_clean_fname \
     --metadata_filename_formatter metadata_default_fname \

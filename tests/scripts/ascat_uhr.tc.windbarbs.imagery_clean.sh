@@ -18,7 +18,7 @@ run_procflow \
     --reader_name  ascat_uhr_netcdf \
     --product_name windbarbs \
     --tc_template_yaml $GEOIPS/geoips/plugins/yaml/sectors_dynamic/tc_web_ascatuhr_barbs_template.yaml \
-    --compare_path "$GEOIPS_BASEDIR/geoips_packages/recenter_tc/tests/outputs/ascat_uhr.tc.windbarbs.imagery_clean" \
+    --compare_path "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/outputs/ascat_uhr.tc.windbarbs.imagery_clean" \
     --output_formatter imagery_clean \
     --filename_formatter tc_clean_fname \
     --metadata_filename_formatter metadata_default_fname \
