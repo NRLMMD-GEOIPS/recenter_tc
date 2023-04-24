@@ -28,54 +28,14 @@ filename_type = "xarray_metadata_to_filename"
 LOG = logging.getLogger(__name__)
 
 
-def get_basin_letter(tc_basin, tc_clon, tc_clat):
-    # atcf/form_sectorfile.py has Q listed as both SL and LS, include both here.
-    # Only IO and SH can have possibly multiple basin designators, dependent on longitude.
-    # Note we want to determine the basin designator at the start of the storm, and do not change if the storm
-    # happens to cross over the longitude line.  Thus, check for existing directory first, and if it doesn't exist,
-    # create based on current center lat/lon of storm.  Note this could potentially cause a problem if we run a
-    # storm for the first time in the middle of the storm, but I'm going to take that risk at this point.
-    basin_letters = {
-        "AL": ["L"],
-        "SL": ["Q"],
-        "LS": ["Q"],
-        "IO": ["A", "B"],
-        "SH": ["S", "P"],
-        "CP": ["C"],
-        "EP": ["E"],
-        "WP": ["W"],
-    }
-
-    if tc_basin in ["AL", "CP", "EP", "WP", "SL", "LS"]:
-        basin_letter = basin_letters[tc_basin][0]
-    elif tc_basin == "IO":
-        if tc_clon >= 77.5 and tc_clon < 100.0:
-            basin_letter = "B"
-        elif tc_clon >= 40.0 and tc_clon < 77.5:
-            basin_letter = "A"
-    elif tc_basin == "SH":
-        if tc_clon >= 20.0 and tc_clon < 135.0:
-            basin_letter = "S"
-        else:
-            basin_letter = "P"
-
-    return basin_letter
-
-
-def archer_fix(
+def archer_image(
     xarray_obj,
-    extension=None,
-    basedir=gpaths["ARCHER_FIX_PATH"],
+    extension=".png",
+    basedir=gpaths["ARCHER_IMAGE_PATH"],
     variable_name=None,
     archer_channel_type=None,
-    use_storm_subdirs=False,
 ):
     area_def = xarray_obj.area_definition
-    basin_letter = get_basin_letter(
-        area_def.sector_info["storm_basin"],
-        area_def.sector_info["clon"],
-        area_def.sector_info["clat"],
-    )
     return assemble_archer_fname(
         basedir=basedir,
         variable_name=variable_name,
@@ -88,9 +48,7 @@ def archer_fix(
         platform_name=xarray_obj.platform_name,
         product_datetime=xarray_obj.start_datetime,
         data_provider=xarray_obj.data_provider,
-        basin_letter=basin_letter,
         extension=extension,
-        use_storm_subdirs=use_storm_subdirs,
     )
 
 
@@ -106,9 +64,7 @@ def assemble_archer_fname(
     platform_name,
     product_datetime,
     data_provider,
-    basin_letter,
-    extension=".txt",
-    use_storm_subdirs=False,
+    extension=".png",
 ):
     """Produce full output product path from product / sensor specifications.
 
@@ -139,17 +95,13 @@ def assemble_archer_fname(
         '/outdir/tc2020/SH/SH162020/txt/archer
     """
 
-    from geoips.interface_modules.filename_formats.utils.tc_file_naming import (
+    from geoips.plugins.modules.filename_formatters.utils.tc_file_naming import (
         tc_storm_basedir,
     )
 
-    if use_storm_subdirs:
-        path = pathjoin(
-            tc_storm_basedir(basedir, tc_year, tc_basin, tc_stormnum), "txt", "archer"
-        )
-    else:
-        path = basedir
-    # MUST end in _02W_FIX (for example)
+    path = pathjoin(
+        tc_storm_basedir(basedir, tc_year, tc_basin, tc_stormnum), "png", "archer"
+    )
     fname = "_".join(
         [
             product_datetime.strftime("%Y%m%d.%H%M"),
@@ -160,8 +112,6 @@ def assemble_archer_fname(
             archer_channel_type,
             data_provider,
             platform_name,
-            "{0:02d}{1}".format(tc_stormnum, basin_letter),
-            "FIX",
         ]
     )
     if extension is not None:
