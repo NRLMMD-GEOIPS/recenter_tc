@@ -18,10 +18,10 @@ run_procflow \
     --reader_name  imerg_hdf5 \
     --product_name Rain \
     --compare_path "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/outputs/imerg.tc.Rain.imagery_clean" \
-    --output_format imagery_clean \
-    --filename_format tc_clean_fname \
-    --metadata_filename_format metadata_default_fname \
-    --metadata_output_format metadata_default \
+    --output_formatter imagery_clean \
+    --filename_formatter tc_clean_fname \
+    --metadata_filename_formatter metadata_default_fname \
+    --metadata_output_formatter metadata_default \
     --trackfile_parser bdeck_parser \
     --trackfiles $GEOIPS/tests/sectors/tc_bdecks/bal202020.dat \
     --adjust_area_def recenter_tc

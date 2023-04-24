@@ -26,11 +26,11 @@ run_procflow \
     --reader_name modis_hdf4\
     --product_name Infrared \
     --compare_path "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/outputs/modis.tc.Infrared.imagery_clean" \
-    --output_format imagery_clean \
-    --filename_format tc_clean_fname \
+    --output_formatter imagery_clean \
+    --filename_formatter tc_clean_fname \
     --adjust_area_def recenter_tc \
-    --metadata_filename_format metadata_default_fname \
-    --metadata_output_format metadata_default \
+    --metadata_filename_formatter metadata_default_fname \
+    --metadata_output_formatter metadata_default \
     --trackfile_parser bdeck_parser \
     --trackfiles $GEOIPS/tests/sectors/tc_bdecks/bsh082021.dat
 ss_retval=$?

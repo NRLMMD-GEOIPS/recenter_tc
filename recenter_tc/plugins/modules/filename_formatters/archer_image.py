@@ -95,7 +95,7 @@ def assemble_archer_fname(
         '/outdir/tc2020/SH/SH162020/txt/archer
     """
 
-    from geoips.interface_modules.filename_formats.utils.tc_file_naming import (
+    from geoips.plugins.modules.filename_formatters.utils.tc_file_naming import (
         tc_storm_basedir,
     )
 
