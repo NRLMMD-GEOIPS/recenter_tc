@@ -18,8 +18,8 @@ Version 1.10.0a0 (2023-04-28)
 Breaking Changes
 ================
 
-Remove references to GEOIPS BASEDIR
------------------------------------
+Update clat_clon_resolution_shape plugin name to center_coordinates
+-------------------------------------------------------------------
 
 *From GEOIPS/geoips#195: 2023-03-30, update sector_spec/metadata_generator*
 
