@@ -1,0 +1,34 @@
+ | # # # Distribution Statement A. Approved for public release. Distribution unlimited.
+ | # # #
+ | # # # Author:
+ | # # # Naval Research Laboratory, Marine Meteorology Division
+ | # # #
+ | # # # This program is free software: you can redistribute it and/or modify it under
+ | # # # the terms of the NRLMMD License included with this program. This program is
+ | # # # distributed WITHOUT ANY WARRANTY; without even the implied warranty of
+ | # # # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the included license
+ | # # # for more details. If you did not receive the license, for more information see:
+ | # # # https://github.com/U-S-NRL-Marine-Meteorology-Division/
+
+Version 1.10.0a0 (2023-04-28)
+*****************************
+
+* Update clat_clon_resolution_shape to center_coordinates
+
+Breaking Changes
+================
+
+Remove references to GEOIPS BASEDIR
+-----------------------------------
+
+*From GEOIPS/geoips#195: 2023-03-30, update sector_spec/metadata_generator*
+
+When updating area_def_generators interface to sector_spec_generators, and
+trackfile_parsers interface to sector_metadata_generators, also generalized
+plugin naming.
+
+clat_clon_resolution_shape now referred to as "center_coordinates"
+
+::
+
+  modified:   recenter_tc/plugins/modules/sector_adjusters/recenter_tc.py

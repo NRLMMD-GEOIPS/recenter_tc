@@ -298,11 +298,9 @@ def recenter_tc(xobjs, area_def, variables, recenter_variables=None):
 
 def recenter_area_def(area_def, fields):
     from geoips.sector_utils.tc_tracks import get_tc_long_description
-    from geoips.plugins.modules.sector_loaders.dynamic.clat_clon_resolution_shape import (
-        clat_clon_resolution_shape,
-    )
+    from geoips.plugins.modules.sector_spec_generators import center_coordinates
 
-    new_area_def = clat_clon_resolution_shape(
+    new_area_def = center_coordinates.call(
         area_id=area_def.area_id,
         long_description=get_tc_long_description(area_def.area_id, fields),
         clat=fields["clat"],
