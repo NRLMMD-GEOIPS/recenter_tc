@@ -14,25 +14,3 @@ Please see geoips/CHANGELOG_TEMPLATE.rst for instructions on updating
 CHANGELOG appropriately with each PR
 
 Release notes for previous versions can be found in docs/source/releases, for reference
-
-Breaking Changes
-================
-
-Update interface naming and move to plugins directory
--------------------------------------------------
-
-*From issue GEOIPS/recenter_tc#10: 2023-04-18*
-
-* Moved interface_modules to plugins/modules
-
-  * Updated related imports
-  * Updated entry points
-* Renamed filename_format to filename_formatter
-* Renamed output_format to output_formatter
-
-::
-
-    moved: recenter_tc/interface_modules to recenter_tc/plugins/modules
-    modified: tests/scripts/*
-    renamed: recenter_tc/plugins/modules/filename_formats -> recenter_tc/plugins/modules/filename_formatters
-    renamed: recenter_tc/plugins/modules/area_def_adjusters -> recenter_tc/plugins/modules/sector_adjusters
