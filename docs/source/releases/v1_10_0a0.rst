@@ -10,13 +10,29 @@
  | # # # for more details. If you did not receive the license, for more information see:
  | # # # https://github.com/U-S-NRL-Marine-Meteorology-Division/
 
-Version 1.10.0a0 (2023-04-24)
+Version 1.10.0a0 (2023-04-28)
 *****************************
 
+* Update clat_clon_resolution_shape to center_coordinates
 * Update interface naming and move to plugins directory
 
 Breaking Changes
 ================
+
+Update clat_clon_resolution_shape plugin name to center_coordinates
+-------------------------------------------------------------------
+
+*From GEOIPS/geoips#195: 2023-04-28, update sector_spec/metadata_generator*
+
+When updating area_def_generators interface to sector_spec_generators, and
+trackfile_parsers interface to sector_metadata_generators, also generalized
+plugin naming.
+
+clat_clon_resolution_shape now referred to as "center_coordinates"
+
+::
+
+  modified:   recenter_tc/plugins/modules/sector_adjusters/recenter_tc.py
 
 Update interface naming and move to plugins directory
 -----------------------------------------------------
@@ -36,4 +52,3 @@ Update interface naming and move to plugins directory
     modified: tests/scripts/*
     renamed: recenter_tc/plugins/modules/filename_formats -> recenter_tc/plugins/modules/filename_formatters
     renamed: recenter_tc/plugins/modules/area_def_adjusters -> recenter_tc/plugins/modules/sector_adjusters
-
