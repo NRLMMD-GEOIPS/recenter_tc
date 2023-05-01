@@ -1,0 +1,45 @@
+ | # # # Distribution Statement A. Approved for public release. Distribution unlimited.
+ | # # #
+ | # # # Author:
+ | # # # Naval Research Laboratory, Marine Meteorology Division
+ | # # #
+ | # # # This program is free software: you can redistribute it and/or modify it under
+ | # # # the terms of the NRLMMD License included with this program. This program is
+ | # # # distributed WITHOUT ANY WARRANTY; without even the implied warranty of
+ | # # # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the included license
+ | # # # for more details. If you did not receive the license, for more information see:
+ | # # # https://github.com/U-S-NRL-Marine-Meteorology-Division/
+
+Version 1.10.0a1 (2023-04-30)
+*****************************
+
+* Finalize module-based plugins to include required attributes
+
+  * filename_formatters
+  * sector_adjusters
+* Replace setup.py with pyproject.toml
+
+Breaking Changes
+================
+
+Add required attributes to module-based plugins
+-----------------------------------------------
+
+*From NRLMMD-GEOIPS/geoips#206: 2023-04-30, update plugin format*
+
+* Add interface, family, name to all python module plugins
+* Ensure module-level docstring exists
+* Rename callable from <plugin_name> to "call"
+* Update pyproject.toml to point to module vs function
+
+recenter_tc plugins updated in the following interfaces:
+
+* filename_formatters
+* sector_adjusters
+
+::
+
+  modified: pyproject.toml
+  modified: recenter_tc/plugins/modules/filename_formatters/archer_fix.py
+  modified: recenter_tc/plugins/modules/filename_formatters/archer_image.py
+  modified: recenter_tc/plugins/modules/sector_adjusters/recenter_tc.py

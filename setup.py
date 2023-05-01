@@ -31,14 +31,14 @@ setuptools.setup(
     ],
     entry_points={
         "geoips.sector_adjusters": [
-            "recenter_tc=recenter_tc.plugins.modules.sector_adjusters.recenter_tc:recenter_tc",
+            "recenter_tc=recenter_tc.plugins.modules.sector_adjusters.recenter_tc",
         ],
         "geoips.filename_formatters": [
-            "archer_fix=recenter_tc.plugins.modules.filename_formatters.archer_fix:archer_fix",
-            "archer_image=recenter_tc.plugins.modules.filename_formatters.archer_image:archer_image",
+            "archer_fix=recenter_tc.plugins.modules.filename_formatters.archer_fix",
+            "archer_image=recenter_tc.plugins.modules.filename_formatters.archer_image",
         ],
         "geoips.output_comparisons": [
-            "compare_outputs_recenter_tc=recenter_tc.compare_outputs_recenter_tc:compare_outputs_recenter_tc",
+            "compare_outputs_recenter_tc=recenter_tc.compare_outputs_recenter_tc",
         ],
     },
 )
