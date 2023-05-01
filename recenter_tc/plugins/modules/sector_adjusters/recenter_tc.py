@@ -10,7 +10,7 @@
 # # # for more details. If you did not receive the license, for more information see:
 # # # https://github.com/U-S-NRL-Marine-Meteorology-Division/
 
-""" Functionality for recentering TC sectors, based on akima and archer algorithms"""
+"""Functionality for recentering TC sectors, based on akima and archer algorithms."""
 
 from os.path import dirname
 
@@ -27,11 +27,13 @@ ARCHER_FIX_FILENAME_FORMAT = GPATHS["ARCHER_FIX_FILENAME_FORMAT"]
 
 LOG = logging.getLogger(__name__)
 
-adjuster_type = "list_xarray_list_variables_to_area_def_out_fnames"
+interface = "sector_adjusters"
+family = "list_xarray_list_variables_to_area_def_out_fnames"
+name = "recenter_tc"
 
 
 def run_archer(xarray_obj, varname):
-    """Run archer on the variable varname found in the xarray_obj"""
+    """Run archer on the variable varname found in the xarray_obj."""
     KtoC_conversion = -273.15
     if varname in [
         "tb89h",
@@ -230,7 +232,7 @@ def run_archer(xarray_obj, varname):
     return in_dict, out_dict, score_dict, out_fnames
 
 
-def recenter_tc(xobjs, area_def, variables, recenter_variables=None):
+def call(xobjs, area_def, variables, recenter_variables=None):
     LOG.info(
         f"\n\n************************************************************************************"
         f"\n************************************************************************************"

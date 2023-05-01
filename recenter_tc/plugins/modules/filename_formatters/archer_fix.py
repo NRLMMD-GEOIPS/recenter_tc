@@ -10,7 +10,7 @@
 # # # for more details. If you did not receive the license, for more information see:
 # # # https://github.com/U-S-NRL-Marine-Meteorology-Division/
 
-""" Specifications for output filename formats for tc product types. """
+"""Specifications for output filename formats for tc product types."""
 
 import logging
 
@@ -23,7 +23,9 @@ from os import unlink as osunlink
 from recenter_tc.filenames.base_paths import PATHS as gpaths
 from geoips.data_manipulations.merge import minrange
 
-filename_type = "xarray_metadata_to_filename"
+interface = "filename_formatters"
+family = "xarray_metadata_to_filename"
+name = "archer_fix"
 
 LOG = logging.getLogger(__name__)
 
@@ -62,7 +64,7 @@ def get_basin_letter(tc_basin, tc_clon, tc_clat):
     return basin_letter
 
 
-def archer_fix(
+def call(
     xarray_obj,
     extension=None,
     basedir=gpaths["ARCHER_FIX_PATH"],
