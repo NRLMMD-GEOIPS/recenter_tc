@@ -24,7 +24,7 @@ run_procflow \
     --metadata_filename_formatter metadata_default_fname \
     --metadata_output_formatter metadata_default \
     --trackfile_parser bdeck_parser \
-    --trackfiles $GEOIPS/tests/sectors/tc_bdecks/bwp012020.dat
+    --trackfiles $GEOIPS_PACKAGES_DIR/geoips/tests/sectors/tc_bdecks/bwp012020.dat
 ss_retval=$?
 
 exit $((ss_retval))

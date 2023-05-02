@@ -23,7 +23,7 @@
 
 # NOTE atms DOESN'T WORK!!
 
-. $GEOIPS/tests/utils/test_all_pre.sh recenter_tc
+. $GEOIPS_PACKAGES_DIR/geoips/tests/utils/test_all_pre.sh recenter_tc
 
 echo ""
 # "call" used in test_all_run.sh
@@ -51,7 +51,7 @@ for call in \
             "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/ssmi.tc.37pct.imagery_clean.sh" \
             "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/viirs.tc.Infrared-Gray.imagery_clean.sh"
 do
-    . $GEOIPS/tests/utils/test_all_run.sh
+    . $GEOIPS_PACKAGES_DIR/geoips/tests/utils/test_all_run.sh
 done
 
-. $GEOIPS/tests/utils/test_all_post.sh
+. $GEOIPS_PACKAGES_DIR/geoips/tests/utils/test_all_post.sh
