@@ -25,7 +25,7 @@ run_procflow \
     --metadata_output_formatter metadata_default \
     --trackfile_parser bdeck_parser \
     --trackfiles $GEOIPS/tests/sectors/tc_bdecks/bsh192021.dat \
-    --adjust_area_def recenter_tc
+    --sector_adjuster recenter_tc
 ss_retval=$?
 
 exit $((ss_retval))
