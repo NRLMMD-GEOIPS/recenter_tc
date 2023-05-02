@@ -3,9 +3,19 @@ Pre Version 1.10.0a12 (2023-05-02)
 
 * Update command line argument in test scripts from
   adjust_area_def to sector_adjuster
+* Update command line argument in test scripts from
+  tc_template_yaml to tc_spec_template
 
 Breaking Change
 ===============
+
+Update command line argument from tc_template_yaml to tc_spec_template
+----------------------------------------------------------------------
+
+::
+
+  modified: tests/scripts/ascat_uhr.tc.windbarbs.imagery_clean.sh
+  modified: tests/scripts/metopc_knmi_125.tc.windbarbs.imagery_clean.sh
 
 Update command line argument from adjust_area_def to sector_adjuster
 --------------------------------------------------------------------
