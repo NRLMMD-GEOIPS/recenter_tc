@@ -20,7 +20,7 @@ Release Updates
 
 * Update VERSION to 1.7.0, add 1.7.0 release note
 
-::  
+::
 
     modified: VERSION
     modified: CHANGELOG.rst

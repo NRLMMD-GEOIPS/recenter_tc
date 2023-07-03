@@ -15,7 +15,7 @@ Tropical Cyclone Recentering GeoIPS Plugin
 
 The recenter_tc package is a GeoIPS-compatible plugin, intended to be used within the GeoIPS ecosystem.
 Please see the
-[GeoIPS Documentation](https://github.com/NRLMMD-GEOIPS/geoips/blob/main/README.md)
+[GeoIPS Documentation](https://github.com/NRLMMD-GEOIPS/geoips#readme)
 for more information on the GeoIPS plugin architecture and base infrastructure.
 
 Package Overview
@@ -62,7 +62,7 @@ The default filename format plugins currently in use within recenter_tc are:
 System Requirements
 ---------------------
 
-* geoips >= 1.5.3
+* geoips >= 1.10.0
 * akima86 Python package, and required dependencies
 * archer Python package, and required dependencies
 * Test data repos contained in $GEOIPS_TESTDATA_DIR for tests to pass.
@@ -72,7 +72,7 @@ IF REQUIRED: Install base geoips package
 SKIP IF YOU HAVE ALREADY INSTALLED BASE GEOIPS ENVIRONMENT
 
 If GeoIPS Base is not yet installed, follow the
-[installation instructions](https://github.com/NRLMMD-GEOIPS/geoips/blob/main/docs/installation.rst)
+[installation instructions](https://github.com/NRLMMD-GEOIPS/geoips#installation)
 within the geoips source repo documentation:
 
 Install recenter_tc package
@@ -88,9 +88,8 @@ Install recenter_tc package
 Test recenter_tc installation
 -----------------------------
 ```bash
-    # Assuming you followed the fully supported installation,
-    # using $GEOIPS_PACKAGES_DIR and $GEOIPS_CONFIG_FILE:
-    source $GEOIPS_CONFIG_FILE
+
+    # Ensure GeoIPS Python environment is enabled.
 
     # If you have the full ABI and AMSR2 test datasets:
     $GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/abi.tc.Visible.imagery_clean.sh

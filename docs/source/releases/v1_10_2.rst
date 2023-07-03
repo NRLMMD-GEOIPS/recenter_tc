@@ -1,0 +1,44 @@
+ | # # # Distribution Statement A. Approved for public release. Distribution unlimited.
+ | # # #
+ | # # # Author:
+ | # # # Naval Research Laboratory, Marine Meteorology Division
+ | # # #
+ | # # # This program is free software: you can redistribute it and/or modify it under
+ | # # # the terms of the NRLMMD License included with this program. This program is
+ | # # # distributed WITHOUT ANY WARRANTY; without even the implied warranty of
+ | # # # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the included license
+ | # # # for more details. If you did not receive the license, for more information see:
+ | # # # https://github.com/U-S-NRL-Marine-Meteorology-Division/
+
+Version 1.10.0 (2023-06-12)
+***************************
+
+* Return archer info from recentering
+* Add "akima_only" kwarg to recenter_tc sector_adjuster
+
+Enhancements
+============
+
+Return archer info from recentering to include in YAML metadata
+---------------------------------------------------------------
+
+Include various archer parameters in a return archer_info
+dictionary after running archer.  These fields can be used
+in the YAML metadata outputs
+
+Ensure types are correct for writing to YAML.
+
+::
+ 
+  modified: recenter_tc/plugins/modules/sector_adjusters/recenter_tc.py
+
+Add "akima_only" kwarg to recenter_tc sector_adjuster
+-----------------------------------------------------
+
+Allow ONLY running akima interpolation-based recentering, if
+ARCHER not required.
+
+::
+
+  modified: recenter_tc/plugins/modules/sector_adjusters/recenter_tc.py
+

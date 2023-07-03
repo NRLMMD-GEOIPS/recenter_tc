@@ -29,13 +29,13 @@ run_procflow \
     --reader_name viirs_netcdf \
     --product_name Infrared-Gray \
     --compare_path "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/outputs/viirs.tc.Infrared-Gray.imagery_clean" \
-    --output_format imagery_clean \
-    --filename_format tc_clean_fname \
-    --adjust_area_def recenter_tc \
-    --metadata_filename_format metadata_default_fname \
-    --metadata_output_format metadata_default \
+    --output_formatter imagery_clean \
+    --filename_formatter tc_clean_fname \
+    --sector_adjuster recenter_tc \
+    --metadata_filename_formatter metadata_default_fname \
+    --metadata_output_formatter metadata_default \
     --trackfile_parser bdeck_parser \
-    --trackfiles $GEOIPS/tests/sectors/tc_bdecks/bsh192021.dat
+    --trackfiles $GEOIPS_PACKAGES_DIR/geoips/tests/sectors/tc_bdecks/bsh192021.dat
 ss_retval=$?
 
 exit $((ss_retval))

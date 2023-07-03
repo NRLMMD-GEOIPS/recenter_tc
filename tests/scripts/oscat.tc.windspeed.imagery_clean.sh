@@ -18,13 +18,13 @@ run_procflow \
     --reader_name scat_knmi_winds_netcdf \
     --product_name windspeed \
     --compare_path "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/outputs/oscat.tc.windspeed.imagery_clean" \
-    --output_format imagery_clean \
-    --filename_format tc_clean_fname \
-    --metadata_filename_format metadata_default_fname \
-    --metadata_output_format metadata_default \
+    --output_formatter imagery_clean \
+    --filename_formatter tc_clean_fname \
+    --metadata_filename_formatter metadata_default_fname \
+    --metadata_output_formatter metadata_default \
     --trackfile_parser bdeck_parser \
-    --trackfiles $GEOIPS/tests/sectors/tc_bdecks/bsh192021.dat \
-    --adjust_area_def recenter_tc
+    --trackfiles $GEOIPS_PACKAGES_DIR/geoips/tests/sectors/tc_bdecks/bsh192021.dat \
+    --sector_adjuster recenter_tc
 ss_retval=$?
 
 exit $((ss_retval))

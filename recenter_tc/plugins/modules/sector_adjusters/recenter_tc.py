@@ -10,16 +10,16 @@
 # # # for more details. If you did not receive the license, for more information see:
 # # # https://github.com/U-S-NRL-Marine-Meteorology-Division/
 
-""" Functionality for recentering TC sectors, based on akima and archer algorithms"""
+"""Functionality for recentering TC sectors, based on akima and archer algorithms."""
 
 from os.path import dirname
 
 import logging
 
-from geoips.interface_modules.procflows.single_source import print_area_def
+from geoips.plugins.modules.procflows.single_source import print_area_def
 from recenter_tc.filenames.base_paths import PATHS as GPATHS
 from geoips.filenames.base_paths import make_dirs
-from geoips.interfaces import filename_formats
+from geoips.interfaces import filename_formatters
 
 ARCHER_REQUIRED_VMAX_KTS = 50
 ARCHER_IMAGE_FILENAME_FORMAT = GPATHS["ARCHER_IMAGE_FILENAME_FORMAT"]
@@ -27,11 +27,13 @@ ARCHER_FIX_FILENAME_FORMAT = GPATHS["ARCHER_FIX_FILENAME_FORMAT"]
 
 LOG = logging.getLogger(__name__)
 
-adjuster_type = "list_xarray_list_variables_to_area_def_out_fnames"
+interface = "sector_adjusters"
+family = "list_xarray_list_variables_to_area_def_out_fnames"
+name = "recenter_tc"
 
 
 def run_archer(xarray_obj, varname):
-    """Run archer on the variable varname found in the xarray_obj"""
+    """Run archer on the variable varname found in the xarray_obj."""
     KtoC_conversion = -273.15
     if varname in [
         "tb89h",
@@ -80,7 +82,7 @@ def run_archer(xarray_obj, varname):
             xarray_obj.source_name,
             varname,
         )
-        return {}, {}, {}, []
+        return {}, {}, {}, [], {}
     image = {}
     attrib = {}
     first_guess = {}
@@ -93,27 +95,27 @@ def run_archer(xarray_obj, varname):
     archer_image_fname = None
     archer_fix_fname = None
 
-    filename_plugin = filename_formats.get_plugin(ARCHER_IMAGE_FILENAME_FORMAT)
-    if filename_plugin.family != "xarray_metadata_to_filename":
+    filenamer = filename_formatters.get_plugin(ARCHER_IMAGE_FILENAME_FORMAT)
+    if filenamer.family != "xarray_metadata_to_filename":
         LOG.warning(
             "Unsupported filename type %s %s, not producing ARCHER IMAGE output",
-            filenamer_type,
+            filenamer.family,
             ARCHER_IMAGE_FILENAME_FORMAT,
         )
     else:
-        archer_image_fname = filename_plugin(
+        archer_image_fname = filenamer(
             xarray_obj, variable_name=varname, archer_channel_type=archer_channel_type
         )
 
-    filename_plugin = filename_formats.get_plugin(ARCHER_FIX_FILENAME_FORMAT)
-    if filename_plugin.family != "xarray_metadata_to_filename":
+    filenamer = filename_formatters.get_plugin(ARCHER_FIX_FILENAME_FORMAT)
+    if filenamer.family != "xarray_metadata_to_filename":
         LOG.warning(
             "Unsupported filename type %s %s, not producing ARCHER FIX output",
-            filenamer_type,
+            filenamer.family,
             ARCHER_FIX_FILENAME_FORMAT,
         )
     else:
-        archer_fix_fname = filename_plugin(
+        archer_fix_fname = filenamer(
             xarray_obj, variable_name=varname, archer_channel_type=archer_channel_type
         )
 
@@ -130,7 +132,7 @@ def run_archer(xarray_obj, varname):
             num_masked,
             image["data_grid"].size,
         )
-        return {}, {}, {}, []
+        return {}, {}, {}, [], {}
     # image['time_arr'] = Does not exist
 
     if "BT" in varname:
@@ -140,53 +142,53 @@ def run_archer(xarray_obj, varname):
         ):
             image["data_grid"] = xarray_obj[varname].to_masked_array() - KtoC_conversion
 
-    if xarray_obj.platform_name == 'himawari-8':
-        attrib['sensor'] = 'Imager'
-        attrib['scan_type'] = 'Geo'
-        attrib['nadir_lon'] = 140.7
-    if xarray_obj.platform_name == 'msg-4':
-        attrib['sensor'] = 'Imager'
-        attrib['scan_type'] = 'Geo'
-        attrib['nadir_lon'] = -0.3
-    if xarray_obj.platform_name == 'msg-1':
-        attrib['sensor'] = 'Imager'
-        attrib['scan_type'] = 'Geo'
-        attrib['nadir_lon'] = 41.5
-    if xarray_obj.platform_name == 'goes-16':
-        attrib['sensor'] = 'Imager'
-        attrib['scan_type'] = 'Geo'
-        attrib['nadir_lon'] = -75.2
-    if xarray_obj.platform_name == 'goes-17':
-        attrib['sensor'] = 'Imager'
-        attrib['scan_type'] = 'Geo'
-        attrib['nadir_lon'] = 137.2
-    if xarray_obj.source_name == 'ssmis':
-        attrib['sensor'] = 'SSMIS'
-        attrib['scan_type'] = 'Conical'
-    if xarray_obj.source_name == 'ssmi':
-        attrib['sensor'] = 'SSMI'
-        attrib['scan_type'] = 'Conical'
-    if xarray_obj.source_name == 'tmi':
-        attrib['sensor'] = 'TMI'
-        attrib['scan_type'] = 'Conical'
-    if xarray_obj.source_name in ['amsre', 'amsr-e']:
-        attrib['sensor'] = 'AMSRE'
-        attrib['scan_type'] = 'Conical'
-    if xarray_obj.source_name == 'amsr2':
-        attrib['sensor'] = 'AMSR2'
-        attrib['scan_type'] = 'Conical'
-    if xarray_obj.source_name == 'gmi':
-        attrib['sensor'] = 'GMI'
-        attrib['scan_type'] = 'Conical'
-    if xarray_obj.source_name in ['amsub', 'amsu-b']:
-        attrib['sensor'] = 'AMSU-B'
-        attrib['scan_type'] = 'Crosstrack'
-    if xarray_obj.source_name == 'mhs':
-        attrib['sensor'] = 'MHS'
-        attrib['scan_type'] = 'Crosstrack'
-    if xarray_obj.source_name == 'atms':
-        attrib['sensor'] = 'ATMS'
-        attrib['scan_type'] = 'Crosstrack'
+    if xarray_obj.platform_name == "himawari-8":
+        attrib["sensor"] = "Imager"
+        attrib["scan_type"] = "Geo"
+        attrib["nadir_lon"] = 140.7
+    if xarray_obj.platform_name == "msg-4":
+        attrib["sensor"] = "Imager"
+        attrib["scan_type"] = "Geo"
+        attrib["nadir_lon"] = -0.3
+    if xarray_obj.platform_name == "msg-1":
+        attrib["sensor"] = "Imager"
+        attrib["scan_type"] = "Geo"
+        attrib["nadir_lon"] = 41.5
+    if xarray_obj.platform_name == "goes-16":
+        attrib["sensor"] = "Imager"
+        attrib["scan_type"] = "Geo"
+        attrib["nadir_lon"] = -75.2
+    if xarray_obj.platform_name == "goes-17":
+        attrib["sensor"] = "Imager"
+        attrib["scan_type"] = "Geo"
+        attrib["nadir_lon"] = 137.2
+    if xarray_obj.source_name == "ssmis":
+        attrib["sensor"] = "SSMIS"
+        attrib["scan_type"] = "Conical"
+    if xarray_obj.source_name == "ssmi":
+        attrib["sensor"] = "SSMI"
+        attrib["scan_type"] = "Conical"
+    if xarray_obj.source_name == "tmi":
+        attrib["sensor"] = "TMI"
+        attrib["scan_type"] = "Conical"
+    if xarray_obj.source_name in ["amsre", "amsr-e"]:
+        attrib["sensor"] = "AMSRE"
+        attrib["scan_type"] = "Conical"
+    if xarray_obj.source_name == "amsr2":
+        attrib["sensor"] = "AMSR2"
+        attrib["scan_type"] = "Conical"
+    if xarray_obj.source_name == "gmi":
+        attrib["sensor"] = "GMI"
+        attrib["scan_type"] = "Conical"
+    if xarray_obj.source_name in ["amsub", "amsu-b"]:
+        attrib["sensor"] = "AMSU-B"
+        attrib["scan_type"] = "Crosstrack"
+    if xarray_obj.source_name == "mhs":
+        attrib["sensor"] = "MHS"
+        attrib["scan_type"] = "Crosstrack"
+    if xarray_obj.source_name == "atms":
+        attrib["sensor"] = "ATMS"
+        attrib["scan_type"] = "Crosstrack"
 
     if "sensor" not in attrib:
         LOG.warning(
@@ -194,7 +196,7 @@ def run_archer(xarray_obj, varname):
             xarray_obj.source_name,
             varname,
         )
-        return {}, {}, {}, []
+        return {}, {}, {}, [], {}
 
     import calendar
 
@@ -227,10 +229,47 @@ def run_archer(xarray_obj, varname):
         with open(archer_fix_fname, "w") as fobj:
             fobj.write(out_dict["fdeck_string"])
         LOG.info("ARCHERSUCCESS Wrote ARCHER fdeck: %s", archer_fix_fname)
-    return in_dict, out_dict, score_dict, out_fnames
+
+    archer_info = {}
+    for field in [
+        "uses_target",
+        "archer_channel_type",
+        "ring_radius_deg",
+        "confidence_score",
+        "alpha_parameter",
+        "radius50percCertDeg",
+        "radius95percCertDeg",
+        "eye_prob",
+        "fdeck_string",
+        "weak_center_lon",
+        "weak_center_lat",
+        "center_lon",
+        "center_lat",
+    ]:
+        archer_info[field] = out_dict.get(field)
+        # Can't write numpy.float64 to yaml file
+        if type(archer_info[field]) == numpy.float64:
+            archer_info[field] = float(archer_info[field])
+        if field == "fdeck_string":
+            archer_info[field] == f"""{archer_info[field]}"""
+        LOG.info("ARCHER info %s: %s", field, out_dict.get(field))
+
+    # if archer_info.get("eye_prob") and archer_info.get("eye_prob") < 100:
+    #     LOG.info("NOT USING ARCHER CENTER: eye probability LESS THAN 100")
+    #     return {}, {}, {}, [], {}
+    # else:
+    #     LOG.info("USING ARCHER CENTER: eye probability EQUAL 100")
+    return in_dict, out_dict, score_dict, out_fnames, archer_info
 
 
-def recenter_tc(xobjs, area_def, variables, recenter_variables=None):
+def call(
+    xobjs,
+    area_def,
+    variables,
+    recenter_variables=None,
+    akima_only=False,
+    include_archer_info=False,
+):
     LOG.info(
         f"\n\n************************************************************************************"
         f"\n************************************************************************************"
@@ -257,7 +296,11 @@ def recenter_tc(xobjs, area_def, variables, recenter_variables=None):
         )
         if include_vars and curr_recenter_variables:
             curr_recentered_area_defs, curr_out_fnames = recenter_tc_area_def(
-                area_def, xobj, variables=curr_recenter_variables
+                area_def,
+                xobj,
+                variables=curr_recenter_variables,
+                akima_only=akima_only,
+                include_archer_info=include_archer_info,
             )
             out_fnames += curr_out_fnames
             for varname in curr_recentered_area_defs:
@@ -298,11 +341,9 @@ def recenter_tc(xobjs, area_def, variables, recenter_variables=None):
 
 def recenter_area_def(area_def, fields):
     from geoips.sector_utils.tc_tracks import get_tc_long_description
-    from geoips.interface_modules.area_def_generators.clat_clon_resolution_shape import (
-        clat_clon_resolution_shape,
-    )
+    from geoips.plugins.modules.sector_spec_generators import center_coordinates
 
-    new_area_def = clat_clon_resolution_shape(
+    new_area_def = center_coordinates.call(
         area_id=area_def.area_id,
         long_description=get_tc_long_description(area_def.area_id, fields),
         clat=fields["clat"],
@@ -320,7 +361,9 @@ def recenter_area_def(area_def, fields):
     return new_area_def
 
 
-def recenter_with_archer(sect_xarray, variables, area_def_to_recenter):
+def recenter_with_archer(
+    sect_xarray, variables, area_def_to_recenter, include_archer_info=False
+):
     recentered_area_defs = {}
     out_fnames = []
     if area_def_to_recenter.sector_info["vmax"] < ARCHER_REQUIRED_VMAX_KTS:
@@ -355,7 +398,7 @@ def recenter_with_archer(sect_xarray, variables, area_def_to_recenter):
     # Need full swath width for AMSU-B and MHS for ARCHER. Need a better solution for this.
     if sect_xarray.source_name in ["amsu-b", "mhs"]:
         lat_pad = 15
-        lon_pad = 25
+        lon_pad = 15
     archer_xarray = sector_xarray_spatial(
         sect_xarray,
         [minlon, minlat, maxlon, maxlat],
@@ -374,7 +417,7 @@ def recenter_with_archer(sect_xarray, variables, area_def_to_recenter):
             f"\n********Running ARCHER on {varname}...\n"
         )
 
-        in_dict, out_dict, score_dict, curr_out_fnames = run_archer(
+        in_dict, out_dict, score_dict, curr_out_fnames, archer_info = run_archer(
             archer_xarray, varname
         )
         out_fnames += curr_out_fnames
@@ -382,8 +425,10 @@ def recenter_with_archer(sect_xarray, variables, area_def_to_recenter):
         if out_dict and out_dict["center_lat"]:
             new_fields["clat"] = round(float(out_dict["center_lat"]), 2)
             new_fields["clon"] = round(float(out_dict["center_lon"]), 2)
-            new_fields["archer_fdeck"] = out_dict["fdeck_string"]
             new_fields["recenter_type"] = varname
+            if include_archer_info:
+                new_fields["archer_info"] = archer_info
+            new_fields["archer_fdeck"] = out_dict["fdeck_string"]
             # short ID used to identify which adjustment was used - to be used in filenames, etc
             new_fields["adjustment_id"] = "ar" + varname
             recentered_area_defs[varname] = recenter_area_def(
@@ -516,18 +561,25 @@ def recenter_with_akima(sect_xarray, area_def):
     return recentered_area_def
 
 
-def recenter_tc_area_def(area_def, sect_xarray, variables):
+def recenter_tc_area_def(
+    area_def, sect_xarray, variables, akima_only=False, include_archer_info=False
+):
     from geoips.sector_utils.utils import is_sector_type
 
     # Only recenter if this is a TC sector
     recentered_area_defs = {}
+    archer_recentered_area_defs = {}
     out_fnames = []
     if is_sector_type(area_def, "tc"):
         recentered_area_defs["akima"] = recenter_with_akima(sect_xarray, area_def)
 
-        archer_recentered_area_defs, out_fnames = recenter_with_archer(
-            sect_xarray, variables, recentered_area_defs["akima"]
-        )
+        if not akima_only:
+            archer_recentered_area_defs, out_fnames = recenter_with_archer(
+                sect_xarray,
+                variables,
+                recentered_area_defs["akima"],
+                include_archer_info=include_archer_info,
+            )
 
         print_area_def(area_def, "Original area def")
         for varname in archer_recentered_area_defs:
