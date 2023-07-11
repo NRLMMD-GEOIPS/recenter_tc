@@ -34,6 +34,9 @@ dependencies = [
     "akima86 @ git+https://github.com/NRLMMD-GEOIPS/akima86.git"
 ]
 
+[project.entry-points."geoips.plugin_packages"]
+"recenter_tc" = "recenter_tc"
+
 [project.entry-points."geoips.sector_adjusters"]
 "recenter_tc" = "recenter_tc.plugins.modules.sector_adjusters.recenter_tc"
 
