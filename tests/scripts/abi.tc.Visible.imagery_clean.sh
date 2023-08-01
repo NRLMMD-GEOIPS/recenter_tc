@@ -34,13 +34,13 @@ run_procflow \
     --resampled_read \
     --product_name Visible \
     --compare_path "$GEOIPS_PACKAGES_DIR/recenter_tc/tests/outputs/abi.tc.Visible.imagery_clean" \
-    --output_format imagery_clean \
-    --filename_format tc_clean_fname \
-    --adjust_area_def recenter_tc \
-    --metadata_filename_format metadata_default_fname \
-    --metadata_output_format metadata_default \
+    --output_formatter imagery_clean \
+    --filename_formatter tc_clean_fname \
+    --metadata_filename_formatter metadata_default_fname \
+    --metadata_output_formatter metadata_default \
     --trackfile_parser bdeck_parser \
-    --trackfiles $GEOIPS/tests/sectors/tc_bdecks/bal202020.dat
+    --trackfiles $GEOIPS_PACKAGES_DIR/geoips/tests/sectors/tc_bdecks/bal202020.dat \
+    --sector_adjuster recenter_tc
 ss_retval=$?
 
 exit $((ss_retval))
