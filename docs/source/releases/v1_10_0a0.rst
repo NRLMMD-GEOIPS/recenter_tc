@@ -22,7 +22,7 @@ Breaking Changes
 Update clat_clon_resolution_shape plugin name to center_coordinates
 -------------------------------------------------------------------
 
-*From GEOIPS/geoips#195: 2023-04-28, update sector_spec/metadata_generator*
+*From GEOIPS#195: 2023-04-28, update sector_spec/metadata_generator*
 
 When updating area_def_generators interface to sector_spec_generators, and
 trackfile_parsers interface to sector_metadata_generators, also generalized
@@ -37,7 +37,7 @@ clat_clon_resolution_shape now referred to as "center_coordinates"
 Update interface naming and move to plugins directory
 -----------------------------------------------------
 
-*From GEOIPS/recenter_tc#10: 2023-04-18*
+*From GEOIPS#10: 2023-04-18*
 
 * Moved interface_modules to plugins/modules
 

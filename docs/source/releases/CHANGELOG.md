@@ -449,7 +449,7 @@ modified: tests/outputs/viirs.tc.Infrared-Gray.imagery_clean/20210209_074210_SH1
         * SMAP
         * SMOS
         * SSMI/S
-    * Updated SMAP 
+    * Updated SMAP
         * tc_clean output
         * new test dataset
         * now produce both overpasses rather than one
@@ -482,7 +482,7 @@ modified: tests/outputs/viirs.tc.Infrared-Gray.imagery_clean/20210209_074210_SH1
         * SMAP
         * SMOS
         * SSMI/S
-    * Updated SMAP 
+    * Updated SMAP
         * tc_clean output
         * new test dataset
         * now produce both overpasses rather than one
