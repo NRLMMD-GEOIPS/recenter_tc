@@ -46,4 +46,3 @@ dependencies = [
 
 [project.entry-points."geoips.output_comparisons"]
 "compare_outputs_recenter_tc" = "recenter_tc.compare_outputs_recenter_tc:compare_outputs_recenter_tc"
-
