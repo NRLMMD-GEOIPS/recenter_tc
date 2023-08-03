@@ -19,13 +19,13 @@ deck_line: AL, 20, 2020091718,   , BEST,   0, 197N,  537W, 115,  948, HU,  34, N
 final_storm_name: TEDDY
 interpolated_time: 2020-09-17 17:14:30
 invest_number: 95
-original_source_filenames:
-- 3B-HHR-L.MS.MRG.3IMERG.20200917-S170000-E172959.1020.V06B.RT-H5
 parser_name: bdeck_parser
 pressure: 949.47
 product_filename: $GEOIPS_OUTDIRS/preprocessed/tcwww/tc2020/AL/AL202020/png_clean/Rain/GPM/20200917_170000_AL202020_imerg_GPM_Rain_113kts_36p43_res1p0-akima-clean.png
 recenter_type: akima
 sector_type: tc
+source_file_names:
+- 3B-HHR-L.MS.MRG.3IMERG.20200917-S170000-E172959.1020.V06B.RT-H5
 source_filename: $GEOIPS_PACKAGES_DIR/geoips/tests/sectors/tc_bdecks/bal202020.dat
 source_sector_file: $GEOIPS_PACKAGES_DIR/geoips/tests/sectors/tc_bdecks/bal202020.dat
 storm_basin: AL
