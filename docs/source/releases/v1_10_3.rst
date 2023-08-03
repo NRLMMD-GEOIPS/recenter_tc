@@ -16,6 +16,7 @@ Version 1.10.3 (2023-07-24)
 * Update original_source_filenames -> source_file_names in YAML metadata outputs
 * Bug Fix: Re-implement increased lon padding for AMSU-B
 * Bug Fix: Add try/except statement for AttributeError around recenter_tc_area_def call
+* Bug Fix: Update pyproject.toml/.gitignore to standard formatting.
 
 Breaking Changes
 ================
@@ -47,6 +48,17 @@ Update original_source_filenames -> source_file_names in YAML metadata outputs
 
 Bug Fixes
 =========
+
+Update pyproject.toml/.gitignore to standard formatting
+-------------------------------------------------------
+
+Finalize pyproject.toml and .gitignore formatting - include package-data,
+plugin-packages, and use _version.py vs version.py.
+
+::
+
+    pyproject.toml
+    .gitignore
 
 Re-implement increased lon padding for AMSU-B
 ---------------------------------------------
