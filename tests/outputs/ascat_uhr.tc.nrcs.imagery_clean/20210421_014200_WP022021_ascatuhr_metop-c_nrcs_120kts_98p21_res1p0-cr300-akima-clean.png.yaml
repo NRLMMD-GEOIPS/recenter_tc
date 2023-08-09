@@ -18,13 +18,13 @@ deck_line: WP, 02, 2021042100,   , BEST,   0, 175N, 1252E, 120,  935, TY,  34, N
 final_storm_name: SURIGAE
 interpolated_time: 2021-04-21 01:42:00
 invest_number: 94
-original_source_filenames:
-- 210421_0142_12730_SURIGAE_210421_0000.avewr.nc
 parser_name: bdeck_parser
 pressure: 934.8
 product_filename: $GEOIPS_OUTDIRS/preprocessed/tcwww/tc2021/WP/WP022021/png_clean/nrcs/metop-c/20210421_014200_WP022021_ascatuhr_metop-c_nrcs_120kts_98p21_res1p0-cr300-akima-clean.png
 recenter_type: akima
 sector_type: tc
+source_file_names:
+- 210421_0142_12730_SURIGAE_210421_0000.avewr.nc
 source_filename: $GEOIPS_PACKAGES_DIR/geoips/tests/sectors/tc_bdecks/bwp022021.dat
 source_sector_file: $GEOIPS_PACKAGES_DIR/geoips/tests/sectors/tc_bdecks/bwp022021.dat
 storm_basin: WP

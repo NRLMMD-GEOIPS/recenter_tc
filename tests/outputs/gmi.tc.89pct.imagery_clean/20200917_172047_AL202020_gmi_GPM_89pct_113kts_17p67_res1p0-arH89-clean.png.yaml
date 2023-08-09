@@ -23,7 +23,7 @@ deck_line: AL, 20, 2020091718,   , BEST,   0, 197N,  537W, 115,  948, HU,  34, N
 final_storm_name: TEDDY
 interpolated_time: 2020-09-17 17:22:51.500000
 invest_number: 95
-original_source_filenames:
+source_file_names:
 - 1B.GPM.GMI.TB2016.20200917-S171519-E172017.V05A.RT-H5
 - 1B.GPM.GMI.TB2016.20200917-S172019-E172517.V05A.RT-H5
 - 1B.GPM.GMI.TB2016.20200917-S172519-E173017.V05A.RT-H5

@@ -18,16 +18,16 @@ deck_line: SH, 19, 2021020906,   , BEST,   0, 140S,  835E, 130,  930, ST,  34, N
 final_storm_name: FARAJI
 interpolated_time: 2021-02-09 07:45:10.312834
 invest_number: 90
-original_source_filenames:
-- VJ102IMG.A2021040.0736.002.2021040145245.nc
-- VJ103IMG.A2021040.0736.002.2021040142228.nc
-- VJ102IMG.A2021040.0742.002.2021040143010.nc
-- VJ103IMG.A2021040.0742.002.2021040140938.nc
 parser_name: bdeck_parser
 pressure: 932.75
 product_filename: $GEOIPS_OUTDIRS/preprocessed/tcwww/tc2021/SH/SH192021/png_clean/Infrared-Gray/noaa-20/20210209_074210_SH192021_viirs_noaa-20_Infrared-Gray_127kts_100p00_res1p0-akima-clean.png
 recenter_type: akima
 sector_type: tc
+source_file_names:
+- VJ102IMG.A2021040.0736.002.2021040145245.nc
+- VJ103IMG.A2021040.0736.002.2021040142228.nc
+- VJ102IMG.A2021040.0742.002.2021040143010.nc
+- VJ103IMG.A2021040.0742.002.2021040140938.nc
 source_filename: $GEOIPS_PACKAGES_DIR/geoips/tests/sectors/tc_bdecks/bsh192021.dat
 source_sector_file: $GEOIPS_PACKAGES_DIR/geoips/tests/sectors/tc_bdecks/bsh192021.dat
 storm_basin: SH

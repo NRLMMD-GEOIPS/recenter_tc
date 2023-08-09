@@ -18,7 +18,7 @@ deck_line: SH, 16, 2020021612,   , BEST,   0, 202S,  750E,  75,  978, TY,  34, N
 final_storm_name: GABEKILE
 interpolated_time: 2020-02-16 12:45:00
 invest_number: 94
-original_source_filenames:
+source_file_names:
 - SM_OPER_MIR_SCNFSW_20200216T120839_20200216T135041_110_001_7.nc
 parser_name: bdeck_parser
 pressure: 977.82

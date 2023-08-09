@@ -295,13 +295,18 @@ def call(
             set(recenter_variables).intersection(set(xobj.variables.keys()))
         )
         if include_vars and curr_recenter_variables:
-            curr_recentered_area_defs, curr_out_fnames = recenter_tc_area_def(
-                area_def,
-                xobj,
-                variables=curr_recenter_variables,
-                akima_only=akima_only,
-                include_archer_info=include_archer_info,
-            )
+            try:
+                curr_recentered_area_defs, curr_out_fnames = recenter_tc_area_def(
+                    area_def,
+                    xobj,
+                    variables=curr_recenter_variables,
+                    akima_only=akima_only,
+                    include_archer_info=include_archer_info,
+                )
+            except AttributeError:
+                # If the archer spatial sectoring does not yield any data,
+                # it will result in an attribute error
+                continue
             out_fnames += curr_out_fnames
             for varname in curr_recentered_area_defs:
                 recentered_area_defs[varname] = curr_recentered_area_defs[varname]
@@ -398,7 +403,7 @@ def recenter_with_archer(
     # Need full swath width for AMSU-B and MHS for ARCHER. Need a better solution for this.
     if sect_xarray.source_name in ["amsu-b", "mhs"]:
         lat_pad = 15
-        lon_pad = 15
+        lon_pad = 25
     archer_xarray = sector_xarray_spatial(
         sect_xarray,
         [minlon, minlat, maxlon, maxlat],

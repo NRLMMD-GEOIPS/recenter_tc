@@ -17,7 +17,7 @@ deck_line: WP,02,2021042100,,BEST,0,17.5,125.2,120,935,TY,34,NEQ,155,170,140,160
 final_storm_name: SURIGAE
 interpolated_time: 2021-04-21 01:42:00
 invest_number: 94
-original_source_filenames:
+source_file_names:
 - 210421_0142_12730_SURIGAE_210421_0000.avewr.nc
 parser_name: gdeck_parser
 pressure: 934.8
