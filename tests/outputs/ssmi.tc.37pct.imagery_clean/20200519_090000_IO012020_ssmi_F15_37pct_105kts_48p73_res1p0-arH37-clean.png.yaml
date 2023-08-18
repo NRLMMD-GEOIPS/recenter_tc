@@ -1,6 +1,6 @@
 adjustment_id: arH37
 aid_type: BEST
-archer_fdeck: IO, 1, 2005190809,  70, SSMI,          C,  , 1720N,  8679E,      , 1,    ,  ,     ,  ,     ,    ,     ,     ,     ,     ,     ,  ,  ,  ,  ,  ,    ,    ,  ,  CIMS,
+archer_fdeck: IO, 1, 2005190900,  70, SSMI,          C,  , 1720N,  8679E,      , 1,    ,  ,     ,  ,     ,    ,     ,     ,     ,     ,     ,  ,  ,  ,  ,  ,    ,    ,  ,  CIMS,
   AUT,    ,             ,             ,    ,     ,                        m, irad=0.10
   | r50=0.14 | r95=0.40 | ep=-99 | src=ARCH
 bounding_box:
@@ -19,15 +19,15 @@ clon: 86.79
 deck_line: IO, 01, 2020051906,   , BEST,   0, 165N,  869E, 110,  941, TY,  34, NEQ,  175,  220,  145,  160,
   1000,  210,   5,   0,  10,   B,   0,    ,   0,   0,     AMPHAN, D,
 final_storm_name: AMPHAN
-interpolated_time: 2020-05-19 09:01:00
+interpolated_time: 2020-05-19 09:00:00
 invest_number: 91
-source_file_names:
-- US058SORB-DEFspp.sdrmi_f15_d20200519_s080800_e095300_r05633_cfnoc.def
 parser_name: bdeck_parser
-pressure: 946.03
-product_filename: $GEOIPS_OUTDIRS/preprocessed/tcwww/tc2020/IO/IO012020/png_clean/37pct/F15/20200519_080900_IO012020_ssmi_F15_37pct_105kts_48p73_res1p0-arH37-clean.png
+pressure: 946.0
+product_filename: $GEOIPS_OUTDIRS/preprocessed/tcwww/tc2020/IO/IO012020/png_clean/37pct/F15/20200519_090000_IO012020_ssmi_F15_37pct_105kts_48p73_res1p0-arH37-clean.png
 recenter_type: H37
 sector_type: tc
+source_file_names:
+- US058SORB-DEFspp.sdrmi_f15_d20200519_s080800_e095300_r05633_cfnoc.def
 source_filename: $GEOIPS_PACKAGES_DIR/geoips/tests/sectors/tc_bdecks/bio012020.dat
 source_sector_file: $GEOIPS_PACKAGES_DIR/geoips/tests/sectors/tc_bdecks/bio012020.dat
 storm_basin: IO
@@ -36,4 +36,4 @@ storm_num: 1
 storm_start_datetime: 2020-05-15 06:00:00
 storm_year: 2020
 synoptic_time: 2020-05-19 06:00:00
-vmax: 104.97
+vmax: 105.0

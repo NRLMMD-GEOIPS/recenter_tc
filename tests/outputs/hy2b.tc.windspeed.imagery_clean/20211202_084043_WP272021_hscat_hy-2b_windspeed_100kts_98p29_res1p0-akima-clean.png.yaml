@@ -18,13 +18,13 @@ deck_line: WP, 27, 2021120206,   , BEST,   0, 172N, 1358E,  95,  960, TY,  34, N
 final_storm_name: NYATOH
 interpolated_time: 2021-12-02 08:42:48.500000
 invest_number: 93
-source_file_names:
-- hscat_20211202_080644_hy_2b__15571_o_250_2204_ovw_l2.nc
 parser_name: bdeck_parser
 pressure: 955.85
 product_filename: $GEOIPS_OUTDIRS/preprocessed/tcwww/tc2021/WP/WP272021/png_clean/windspeed/hy-2b/20211202_084043_WP272021_hscat_hy-2b_windspeed_100kts_98p29_res1p0-akima-clean.png
 recenter_type: akima
 sector_type: tc
+source_file_names:
+- hscat_20211202_080644_hy_2b__15571_o_250_2204_ovw_l2.nc
 source_filename: $GEOIPS_PACKAGES_DIR/geoips/tests/sectors/tc_bdecks/bwp272021.dat
 source_sector_file: $GEOIPS_PACKAGES_DIR/geoips/tests/sectors/tc_bdecks/bwp272021.dat
 storm_basin: WP

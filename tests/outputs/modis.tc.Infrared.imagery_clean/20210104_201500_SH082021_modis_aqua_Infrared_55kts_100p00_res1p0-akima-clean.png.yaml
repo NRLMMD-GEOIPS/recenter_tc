@@ -18,6 +18,11 @@ deck_line: SH, 08, 2021010418,   , BEST,   0, 157S,  763E,  50,  993, TS,  34, N
 final_storm_name: DANILO
 interpolated_time: 2021-01-04 20:17:30
 invest_number: 96
+parser_name: bdeck_parser
+pressure: 990.32
+product_filename: $GEOIPS_OUTDIRS/preprocessed/tcwww/tc2021/SH/SH082021/png_clean/Infrared/aqua/20210104_201500_SH082021_modis_aqua_Infrared_55kts_100p00_res1p0-akima-clean.png
+recenter_type: akima
+sector_type: tc
 source_file_names:
 - MYD021KM.A2021004.2005.061.NRT.hdf
 - MYD03.A2021004.2005.061.NRT.hdf
@@ -25,11 +30,6 @@ source_file_names:
 - MYD03.A2021004.2010.061.NRT.hdf
 - MYD021KM.A2021004.2015.061.NRT.hdf
 - MYD03.A2021004.2015.061.NRT.hdf
-parser_name: bdeck_parser
-pressure: 990.32
-product_filename: $GEOIPS_OUTDIRS/preprocessed/tcwww/tc2021/SH/SH082021/png_clean/Infrared/aqua/20210104_201500_SH082021_modis_aqua_Infrared_55kts_100p00_res1p0-akima-clean.png
-recenter_type: akima
-sector_type: tc
 source_filename: $GEOIPS_PACKAGES_DIR/geoips/tests/sectors/tc_bdecks/bsh082021.dat
 source_sector_file: $GEOIPS_PACKAGES_DIR/geoips/tests/sectors/tc_bdecks/bsh082021.dat
 storm_basin: SH

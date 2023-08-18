@@ -44,7 +44,7 @@ classifiers = [
 dynamic = ["version"]
 
 dependencies = [
-    "archer @ git+https://github.com/ajwimmers/archer.git",
+    "archer @ git+https://github.com/mindyls/archer.git",
     "akima86 @ git+https://github.com/NRLMMD-GEOIPS/akima86.git"
 ]
 
