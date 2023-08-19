@@ -10,11 +10,10 @@
 # # # for more details. If you did not receive the license, for more information see:
 # # # https://github.com/U-S-NRL-Marine-Meteorology-Division/
 
-""" Test script for running representative products using data and comparison outputs from geoips_test_data_* """
+""" Test script for running representative products using data and comparison outputs from geoips_test_data\_\* """
 
 import subprocess
 import logging
-from shutil import which
 from os.path import splitext
 
 from geoips.compare_outputs import compare_outputs, test_product, text_match
@@ -29,7 +28,7 @@ def is_fdeck(fname):
         fname (str) : Name of file to check.
 
     Returns:
-        bool: True if it is an fdeck file (*_FIX), False otherwise.
+        bool: True if it is an fdeck file (\*_FIX), False otherwise.
     """
 
     if fname.split("_")[-1] in ["FIX"]:

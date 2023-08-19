@@ -1,0 +1,102 @@
+ | # # # Distribution Statement A. Approved for public release. Distribution unlimited.
+ | # # #
+ | # # # Author:
+ | # # # Naval Research Laboratory, Marine Meteorology Division
+ | # # #
+ | # # # This program is free software: you can redistribute it and/or modify it under
+ | # # # the terms of the NRLMMD License included with this program. This program is
+ | # # # distributed WITHOUT ANY WARRANTY; without even the implied warranty of
+ | # # # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the included license
+ | # # # for more details. If you did not receive the license, for more information see:
+ | # # # https://github.com/U-S-NRL-Marine-Meteorology-Division/
+
+Version 1.11.0 (2023-08-04)
+***************************
+
+* Updates supporting geoips build_docs and ghpages deploy scripts
+* Replace incorrect ssmi test output
+* Replace incorrect source_file_names locations in YAML metadata outputs
+* Update test_all.sh call to set/use repopath and pkgname variables.
+* TEMPORARY: Update archer dependency to point to mindyls git vs ajwimmers
+
+Bug Fixes
+=========
+
+TEMPORARY: Update archer dependency to point to mindyls git vs ajwimmers
+------------------------------------------------------------------------
+
+Until ajwimmers archer package is updated to allow package data, use
+the mindyls fork to ensure correct installation (without package data, missing
+etc files in the system install)
+
+::
+
+  pyproject.toml
+
+Documentation Updates
+=====================
+
+Updates supporting geoips build_docs and ghpages deploy scripts
+---------------------------------------------------------------
+
+*From GEOIPS#50 2023-08-01, support plugin for GitHub pages*
+
+* Add required RST files for building documentation from geoips build_docs script.
+* Correct RST formatting in docstrings to allow sphinx build
+* Support the geoips deploy_pages script to deploy the sphinx html docs to GitHub
+  pages for each plugin repository.
+* Added build_docs.sh call to test_all.sh
+
+::
+
+    modified: .gitignore
+    modified: tests/test_all.sh
+    added: docs/source/introduction/index.rst
+    added: docs/source/recenter_tc_api/index.rst
+    modified: docs/source/releases/index.rst
+    added: docs/source/userguide/index.rst
+    modified: recenter_tc/compare_outputs_recenter_tc.py
+
+Testing Updates
+===============
+
+Update test_all.sh call to set/use repopath and pkgname variables.
+------------------------------------------------------------------
+
+By default now, set repopath and pkgname variables in test_all.sh, and use those
+when calling test_all_pre.sh, check_code.sh, and build_docs.sh.
+
+This is to support build_docs.sh requirement to pass BOTH repopath and pkgname
+(rather than implicitly determining pkgname from repopath).
+
+::
+
+  modified: tests/test_all.sh
+
+Replace incorrect ssmi test output
+----------------------------------
+
+Updated SSMI test outputs from 0809 data time in filename to 0900.  Since data
+ran from 0809 to 0953, 0900 time is more valid than 0809.  Not sure what changed to
+cause this update, however, but it seems right now.
+
+::
+
+  renamed: tests/outputs/ssmi.tc.37pct.imagery_clean/20200519_080900_IO012020_ssmi_F15_37pct_105kts_48p73_res1p0-arH37-clean.png -> tests/outputs/ssmi.tc.37pct.imagery_clean/20200519_090000_IO012020_ssmi_F15_37pct_105kts_48p73_res1p0-arH37-clean.png
+  renamed: tests/outputs/ssmi.tc.37pct.imagery_clean/20200519_080900_IO012020_ssmi_F15_37pct_105kts_48p73_res1p0-arH37-clean.png.yaml -> tests/outputs/ssmi.tc.37pct.imagery_clean/20200519_090000_IO012020_ssmi_F15_37pct_105kts_48p73_res1p0-arH37-clean.png.yaml
+
+Replace incorrect source_file_names locations in YAML metadata outputs
+----------------------------------------------------------------------
+
+Originally did straight search and replace for
+original_source_filenames -> source_file_names.
+This resulted in incorrect alphabetical locations for source_file_names fields.
+Update test output to correct YAML metadata outputs.
+
+::
+
+  modified: tests/outputs/gmi.tc.89pct.imagery_clean/20200917_172047_AL202020_gmi_GPM_89pct_113kts_17p67_res1p0-arH89-clean.png.yaml
+  modified: tests/outputs/hy2b.tc.windspeed.imagery_clean/20211202_084043_WP272021_hscat_hy-2b_windspeed_100kts_98p29_res1p0-akima-clean.png.yaml
+  modified: tests/outputs/modis.tc.Infrared.imagery_clean/20210104_201500_SH082021_modis_aqua_Infrared_55kts_100p00_res1p0-akima-clean.png.yaml
+  modified: tests/outputs/smos.tc.windspeed.imagery_clean/20200216_124335_SH162020_smos-spd_smos_windspeed_75kts_38p89_res1p0-akima-clean.png.yaml
+

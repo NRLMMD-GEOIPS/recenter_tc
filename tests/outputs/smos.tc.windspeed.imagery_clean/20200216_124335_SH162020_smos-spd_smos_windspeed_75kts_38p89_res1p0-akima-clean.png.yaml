@@ -18,13 +18,13 @@ deck_line: SH, 16, 2020021612,   , BEST,   0, 202S,  750E,  75,  978, TY,  34, N
 final_storm_name: GABEKILE
 interpolated_time: 2020-02-16 12:45:00
 invest_number: 94
-source_file_names:
-- SM_OPER_MIR_SCNFSW_20200216T120839_20200216T135041_110_001_7.nc
 parser_name: bdeck_parser
 pressure: 977.82
 product_filename: $GEOIPS_OUTDIRS/preprocessed/tcwww/tc2020/SH/SH162020/png_clean/windspeed/smos/20200216_124335_SH162020_smos-spd_smos_windspeed_75kts_38p89_res1p0-akima-clean.png
 recenter_type: akima
 sector_type: tc
+source_file_names:
+- SM_OPER_MIR_SCNFSW_20200216T120839_20200216T135041_110_001_7.nc
 source_filename: $GEOIPS_PACKAGES_DIR/geoips/tests/sectors/tc_bdecks/bsh162020.dat
 source_sector_file: $GEOIPS_PACKAGES_DIR/geoips/tests/sectors/tc_bdecks/bsh162020.dat
 storm_basin: SH
