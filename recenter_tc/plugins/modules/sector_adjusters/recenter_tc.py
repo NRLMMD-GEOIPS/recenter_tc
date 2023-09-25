@@ -540,9 +540,17 @@ def recenter_with_akima(sect_xarray, area_def):
         times_arr[:-1][vmax_arr != -9999], vmax_arr[vmax_arr != -9999], ctime_arr
     )[0].astype(float)
     pres_arr = numpy.array(pressures[:-1])
-    recenter_pressure = interpolate(
-        times_arr[:-1][pres_arr != -9999], pres_arr[pres_arr != -9999], ctime_arr
-    )[0].astype(float)
+    try:
+        recenter_pressure = interpolate(
+            times_arr[:-1][pres_arr != -9999], pres_arr[pres_arr != -9999], ctime_arr
+        )[0].astype(float)
+    except ValueError:
+        # Sometimes we lack enough pressure data to interpolate.
+        # Rather than hardcoding logic that determines when we should attempt
+        # to interpolate pressure, always attempt interpolating.
+        # It does not add much overhead, and will raise a ValueError.
+        # If interpolation fails and raises a ValueError, set pressure to -9999
+        recenter_pressure = -9999
     new_fields = area_def.sector_info.copy()
     # YAML output fails on numpy.float64, so cast as float
     new_fields["clat"] = round(float(recenter_clat), 2)
