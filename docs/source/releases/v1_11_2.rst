@@ -10,55 +10,21 @@
  | # # # for more details. If you did not receive the license, for more information see:
  | # # # https://github.com/U-S-NRL-Marine-Meteorology-Division/
 
-.. _release_notes:
+Version 1.11.2 (2023-09-15)
+***************************
 
-*************
-Release Notes
-*************
+* Bug Fix: Akima recentering failing due to insufficient pressure data.
 
-Version 1.11
-------------
+Bug Fixes
+=========
 
-.. toctree::
-   :maxdepth: 1
+Akima recentering failing due to insufficient pressure data
+-----------------------------------------------------------
 
-   v1_11_2
-   v1_11_0
+*From GEOIPS#62: 2023-08-24, Akima pressure recentering failing*
 
-Version 1.10
-------------
+If pressure interpolation fails (raising a ValueError), set recenter_pressure to -9999.
 
-.. toctree::
-   :maxdepth: 1
+::
 
-   v1_10_3
-   v1_10_2
-   v1_10_0
-   v1_10_0a2
-   v1_10_0a1
-   v1_10_0a0
-
-Version 1.9
------------
-
-.. toctree::
-   :maxdepth: 1
-
-   v1_9_1
-
-Version 1.8
------------
-
-.. toctree::
-   :maxdepth: 1
-
-   v1_8_1
-   v1_8_0
-
-Version 1.7
------------
-
-.. toctree::
-   :maxdepth: 1
-
-   v1_7_0
+    modified: recenter_tc/plugins/modules/sector_adjusters/recenter_tc.py
