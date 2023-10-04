@@ -13,7 +13,6 @@
 """Test script for representative product comparisons."""
 
 import logging
-from geoips.plugins.modules.output_checkers.utils import compare_outputs as co
 
 LOG = logging.getLogger(__name__)
 
@@ -23,15 +22,16 @@ name = "fdeck_checker"
 
 
 def correct_type(fname):
-    """Check if fname is an fdeck file
+    """Check if fname is an fdeck file.
 
-    Args:
-        fname (str) : Name of file to check.
+    Parameters
+    ----------
+    fname (str) : Name of file to check.
 
-    Returns:
-        bool: True if it is an fdeck file (\*_FIX), False otherwise.
+    Returns
+    -------
+    bool: True if it is an fdeck file r(\*_FIX), False otherwise. # NOQA
     """
-
     if fname.split("_")[-1] in ["FIX"]:
         with open(fname) as f:
             line = f.readline()
@@ -41,16 +41,18 @@ def correct_type(fname):
 
 
 def test_product_recenter_tc(
-    output_product, compare_product, goodcomps, badcomps, compare_strings
+    plugin, output_product, compare_product, goodcomps, badcomps, compare_strings
 ):
     """Test output_product against "good" product stored in "compare_path".
 
-    Args:
-        output_product
+    Parameters
+    ----------
+    plugin: OutputCheckerPlugin
+        The corresponding geotiff OutputCheckerPlugin that has access to needed methods
     """
     matched_one = True
     try:
-        goodcomps, badcomps, compare_strings = co.test_product(
+        goodcomps, badcomps, compare_strings = plugin.test_product(
             output_product, compare_product, goodcomps, badcomps, compare_strings
         )
     except TypeError:
@@ -58,11 +60,11 @@ def test_product_recenter_tc(
 
     LOG.info("Using test_product_recenter_tc")
     if correct_type(output_product):
-        from geoips.plugins.modules.output_checkers.text_checker import text_match
+        from geoips.plugins.modules.output_checkers.text_checker import outputs_match
 
         matched_one = True
         compare_strings += ["FDECK "]
-        if text_match(output_product, compare_product):
+        if outputs_match(output_product, compare_product):
             goodcomps += [f"FDECK {output_product}"]
         else:
             badcomps += [f"FDECK {output_product}"]
@@ -73,22 +75,26 @@ def test_product_recenter_tc(
     return goodcomps, badcomps, compare_strings
 
 
-def call(compare_path, output_products, test_product_func=None):
+def call(plugin, compare_path, output_products, test_product_func=None):
     """Compare the "correct" imagery found in comparepath with list of output_products.
 
-    Args:
-        comparepath (str) :
-            - Path to directory of "correct" products - filenames must match
-              output_products
-        output_products (list) :
-            - List of strings of current output products, to compare with products in
-              compare_path
+    Parameters
+    ----------
+    plugin: OutputCheckerPlugin
+        The corresponding geotiff OutputCheckerPlugin that has access to needed methods
+    comparepath (str) :
+        - Path to directory of "correct" products - filenames must match
+          output_products
+    output_products (list) :
+        - List of strings of current output products, to compare with products in
+          compare_path
 
-    Returns:
-        int: Binary code: Good products, bad products, missing products
+    Returns
+    -------
+    int: Binary code: Good products, bad products, missing products
     """
     LOG.info("Using compare_outputs_recenter_tc")
-    retval = co.compare_outputs(
+    retval = plugin.compare_outputs(
         compare_path, output_products, test_product_func=test_product_recenter_tc
     )
     return retval
