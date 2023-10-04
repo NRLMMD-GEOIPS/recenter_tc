@@ -81,7 +81,7 @@ def call(plugin, compare_path, output_products, test_product_func=None):
     Parameters
     ----------
     plugin: OutputCheckerPlugin
-        The corresponding geotiff OutputCheckerPlugin that has access to needed methods
+        - The corresponding fdeck OutputCheckerPlugin that has access to needed methods
     comparepath (str) :
         - Path to directory of "correct" products - filenames must match
           output_products
