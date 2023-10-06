@@ -10,11 +10,11 @@
 # # # for more details. If you did not receive the license, for more information see:
 # # # https://github.com/U-S-NRL-Marine-Meteorology-Division/
 
-""" Test script for running representative products using data and comparison outputs from geoips_test_data\_\* """
+"""Test script for running representative products.
 
-import subprocess
+Uses data and comparison outputs from geoips_test_data/_/*
+"""
 import logging
-from os.path import splitext
 
 from geoips.compare_outputs import compare_outputs, test_product, text_match
 
@@ -22,15 +22,18 @@ LOG = logging.getLogger(__name__)
 
 
 def is_fdeck(fname):
-    """Check if fname is an fdeck file
+    r"""Check if fname is an fdeck file.
 
-    Args:
-        fname (str) : Name of file to check.
+    Parameters
+    ----------
+    fname: str
+        Name of file to check.
 
-    Returns:
-        bool: True if it is an fdeck file (\*_FIX), False otherwise.
+    Returns
+    -------
+    bool: boolean
+        True if it is an fdeck file (\*_FIX), False otherwise.
     """
-
     if fname.split("_")[-1] in ["FIX"]:
         with open(fname) as f:
             line = f.readline()
@@ -44,7 +47,8 @@ def test_product_recenter_tc(
 ):
     """Test output_product against "good" product stored in "compare_path".
 
-    Args:
+    Parameters
+    ----------
         output_product
     """
     matched_one = True
@@ -71,16 +75,23 @@ def test_product_recenter_tc(
 
 
 def compare_outputs_recenter_tc(compare_path, output_products):
-    """Compare the "correct" imagery found in comparepath with the list of current output_products
+    """Compare the "correct" imagery.
 
-    Args:
-        comparepath (str) : Path to directory of "correct" products - filenames must match output_products
-        output_products (list) : List of strings of current output products, to compare with products in compare_path
+    Correct imagery found in comparepath with the list of current output_products.
 
-    Returns:
-        int: Binary code: Good products, bad products, missing products
+    Parameters
+    ----------
+    comparepath: str
+        Path to directory of "correct" products - filenames must match output_products
+    output_products: list
+        List of strings of current output products,
+        to compare with products in compare_path
+
+    Returns
+    -------
+    int: Binary code
+        Good products, bad products, missing products
     """
-
     LOG.info("Using compare_outputs_recenter_tc")
     retval = compare_outputs(
         compare_path, output_products, test_product_func=test_product_recenter_tc
