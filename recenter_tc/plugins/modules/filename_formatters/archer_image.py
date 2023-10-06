@@ -14,14 +14,8 @@
 
 import logging
 
-from os.path import join as pathjoin, splitext as pathsplitext
-from os.path import dirname as pathdirname, basename as pathbasename
-from datetime import datetime, timedelta
-from glob import glob
-from os import unlink as osunlink
-
+from os.path import join as pathjoin
 from recenter_tc.filenames.base_paths import PATHS as gpaths
-from geoips.data_manipulations.merge import minrange
 
 interface = "filename_formatters"
 family = "xarray_metadata_to_filename"
@@ -70,33 +64,43 @@ def assemble_archer_fname(
 ):
     """Produce full output product path from product / sensor specifications.
 
-    Args:
-        basedir (str) :  base directory
-        tc_year (int) :  Full 4 digit storm year
-        tc_basin (str) :  2 character basin designation
-                               SH Southern Hemisphere
-                               WP West Pacific
-                               EP East Pacific
-                               CP Central Pacific
-                               IO Indian Ocean
-                               AL Atlantic
-        tc_stormnum (int) : 2 digit storm number
-                               90 through 99 for invests
-                               01 through 69 for named storms
-        platform_name (str) : Name of platform (satellite)
-        product_datetime (datetime) : Start time of data used to generate product
+    Parameters
+    ----------
+    basedir: string
+        base directory
+    tc_year: int
+        Full 4 digit storm year
+    tc_basin: string
+        2 character basin designation
+        SH Southern Hemisphere
+        WP West Pacific
+        EP East Pacific
+        CP Central Pacific
+        IO Indian Ocean
+        AL Atlantic
+    tc_stormnum: int
+        2 digit storm number
+        90 through 99 for invests
+        01 through 69 for named storms
+    platform_name: string
+        Name of platform (satellite)
+    product_datetime: datetime
+        Start time of data used to generate product
 
-    Returns:
-        str: to full path of output filename of the format:
-          <basedir>/tc<tc_year>/<tc_basin>/<tc_basin><tc_stormnum><tc_year>/txt/
-          <source_name>_<platform_name>_surface_winds_<data_provider>_<YYYYMMDDHHMN>
+    Returns
+    -------
+    str: to full path of output filename of the format:
+        <basedir>/tc<tc_year>/<tc_basin>/<tc_basin><tc_stormnum><tc_year>/txt/
+        <source_name>_<platform_name>_surface_winds_<data_provider>_<YYYYMMDDHHMN>
 
-    Usage:
+    Usage
+    -----
         >>> startdt = datetime.strptime('20200216T001412', '%Y%m%dT%H%M%S')
-        >>> assemble_windspeeds_text_tc_fname('/outdir', 2020, 'SH', 16, 'smap-spd', 'smap', startdt, 'remss')
-        '/outdir/tc2020/SH/SH162020/txt/archer
+        >>> assemble_windspeeds_text_tc_fname('/outdir', 2020, 'SH', 16,\
+            'smap-spd', 'smap', startdt, 'remss')
+        >>> '/outdir/tc2020/SH/SH162020/txt/\
+            archer_smap_surface_winds_remss_20200216001412.png'
     """
-
     from geoips.plugins.modules.filename_formatters.utils.tc_file_naming import (
         tc_storm_basedir,
     )
