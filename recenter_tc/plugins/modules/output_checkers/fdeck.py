@@ -18,7 +18,7 @@ LOG = logging.getLogger(__name__)
 
 interface = "output_checkers"
 family = "standard"
-name = "fdeck_checker"
+name = "fdeck"
 
 
 def correct_type(fname):
@@ -40,42 +40,30 @@ def correct_type(fname):
     return False
 
 
-def test_product_recenter_tc(
-    plugin, output_product, compare_product, goodcomps, badcomps, compare_strings
-):
-    """Test output_product against "good" product stored in "compare_path".
+def outputs_match(output_product, compare_product):
+    """Check if two fdeck files match.
 
     Parameters
     ----------
     plugin: OutputCheckerPlugin
         The corresponding geotiff OutputCheckerPlugin that has access to needed methods
+    output_product : str
+        Full path to current output product
+    compare_product : str
+        Full path to "good" comparison product
+
+    Returns
+    -------
+    bool
+        Return True if products match, False if they differ
     """
-    matched_one = True
-    try:
-        goodcomps, badcomps, compare_strings = plugin.test_product(
-            output_product, compare_product, goodcomps, badcomps, compare_strings
-        )
-    except TypeError:
-        matched_one = False
+    LOG.info("Comparing FDECK products.")
+    from geoips.plugins.modules.output_checkers.text import outputs_match
 
-    LOG.info("Using test_product_recenter_tc")
-    if correct_type(output_product):
-        from geoips.plugins.modules.output_checkers.text_checker import outputs_match
-
-        matched_one = True
-        compare_strings += ["FDECK "]
-        if outputs_match(output_product, compare_product):
-            goodcomps += [f"FDECK {output_product}"]
-        else:
-            badcomps += [f"FDECK {output_product}"]
-
-    if not matched_one:
-        raise TypeError(f"MISSING TEST for output product: {output_product}")
-
-    return goodcomps, badcomps, compare_strings
+    return outputs_match(output_product, compare_product)
 
 
-def call(plugin, compare_path, output_products, test_product_func=None):
+def call(plugin, compare_path, output_products):
     """Compare the "correct" imagery found in comparepath with list of output_products.
 
     Parameters
@@ -94,7 +82,5 @@ def call(plugin, compare_path, output_products, test_product_func=None):
     int: Binary code: Good products, bad products, missing products
     """
     LOG.info("Using compare_outputs_recenter_tc")
-    retval = plugin.compare_outputs(
-        compare_path, output_products, test_product_func=test_product_recenter_tc
-    )
+    retval = plugin.compare_outputs(compare_path, output_products)
     return retval

@@ -60,4 +60,4 @@ dependencies = [
 # "compare_outputs_recenter_tc" = "recenter_tc.compare_outputs_recenter_tc:compare_outputs_recenter_tc"
 
 [project.entry-points."geoips.output_checkers"]
-"fdeck_checker" = "recenter_tc.plugins.modules.output_checkers.fdeck_checker"
+"fdeck" = "recenter_tc.plugins.modules.output_checkers.fdeck"
