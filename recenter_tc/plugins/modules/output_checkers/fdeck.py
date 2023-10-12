@@ -22,7 +22,7 @@ family = "standard"
 name = "fdeck"
 
 
-def correct_type(fname):
+def correct_file_format(fname):
     """Check if fname is an fdeck file.
 
     Parameters
