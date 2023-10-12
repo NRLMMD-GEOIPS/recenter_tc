@@ -54,5 +54,3 @@ Located in recenter_tc/interface_modules/filename_formats/archer_image.py
 export ARCHER_FIX_FILENAME_FORMAT=archer_fix
 Located in recenter_tc/interface_modules/filename_formats/archer_fix.py
 """
-
-from ._version import __version__, __version_tuple__
