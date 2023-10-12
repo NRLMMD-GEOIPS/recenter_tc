@@ -359,7 +359,7 @@ def call(
 
 
 def recenter_area_def(area_def, fields):
-    """Finds sector information."""
+    """Recenter area placeholder."""
     from geoips.sector_utils.tc_tracks import get_tc_long_description
     from geoips.plugins.modules.sector_spec_generators import center_coordinates
 

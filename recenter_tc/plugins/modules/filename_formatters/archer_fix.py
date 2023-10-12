@@ -26,7 +26,7 @@ LOG = logging.getLogger(__name__)
 
 
 def get_basin_letter(tc_basin, tc_clon, tc_clat):
-    """Returns basin designation.
+    """Return basin designation.
 
     Parameters
     ----------
