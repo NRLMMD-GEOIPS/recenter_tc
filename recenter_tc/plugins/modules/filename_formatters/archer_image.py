@@ -31,7 +31,7 @@ def call(
     variable_name=None,
     archer_channel_type=None,
 ):
-    """Assembles the archer filename"""
+    """Assembles the archer filename."""
     area_def = xarray_obj.area_definition
     return assemble_archer_fname(
         basedir=basedir,

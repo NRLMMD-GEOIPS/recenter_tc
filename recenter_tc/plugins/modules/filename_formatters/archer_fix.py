@@ -26,7 +26,7 @@ LOG = logging.getLogger(__name__)
 
 
 def get_basin_letter(tc_basin, tc_clon, tc_clat):
-    """Gets corresponding basin designation
+    """Returns basin designation.
 
     Parameters
     ----------
@@ -85,7 +85,7 @@ def call(
     archer_channel_type=None,
     use_storm_subdirs=False,
 ):
-    """Given an xarray, creates the archer filename"""
+    """Given an xarray, creates the archer filename."""
     area_def = xarray_obj.area_definition
     basin_letter = get_basin_letter(
         area_def.sector_info["storm_basin"],
