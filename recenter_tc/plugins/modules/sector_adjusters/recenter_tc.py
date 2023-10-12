@@ -359,7 +359,7 @@ def call(
 
 
 def recenter_area_def(area_def, fields):
-    """Recenter area placeholder."""
+    """Recenter area definition."""
     from geoips.sector_utils.tc_tracks import get_tc_long_description
     from geoips.plugins.modules.sector_spec_generators import center_coordinates
 
@@ -384,7 +384,7 @@ def recenter_area_def(area_def, fields):
 def recenter_with_archer(
     sect_xarray, variables, area_def_to_recenter, include_archer_info=False
 ):
-    """Recenter placeholder."""
+    """Recenter with ARCHER."""
     recentered_area_defs = {}
     out_fnames = []
     if area_def_to_recenter.sector_info["vmax"] < ARCHER_REQUIRED_VMAX_KTS:
@@ -615,7 +615,7 @@ def recenter_with_akima(sect_xarray, area_def):
 def recenter_tc_area_def(
     area_def, sect_xarray, variables, akima_only=False, include_archer_info=False
 ):
-    """Recenter tc area."""
+    """Recenter tc area definition."""
     from geoips.sector_utils.utils import is_sector_type
 
     # Only recenter if this is a TC sector
