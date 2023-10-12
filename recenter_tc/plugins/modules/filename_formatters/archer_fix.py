@@ -26,6 +26,21 @@ LOG = logging.getLogger(__name__)
 
 
 def get_basin_letter(tc_basin, tc_clon, tc_clat):
+    """Gets corresponding basin designation
+
+    Parameters
+    ----------
+    tc_basin: string
+        basin letters
+    tc_clon: float
+        longitude
+    tc_clat: float
+        latitude
+
+    Returns
+    -------
+    str: basin letter designation
+    """
     # atcf/form_sectorfile.py has Q listed as both SL and LS, include both here.
     # Only IO and SH can have possibly multiple basin designators,
     # dependent on longitude.
@@ -70,6 +85,7 @@ def call(
     archer_channel_type=None,
     use_storm_subdirs=False,
 ):
+    """Given an xarray, creates the archer filename"""
     area_def = xarray_obj.area_definition
     basin_letter = get_basin_letter(
         area_def.sector_info["storm_basin"],
