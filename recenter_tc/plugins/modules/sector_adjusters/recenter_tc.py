@@ -78,8 +78,8 @@ def run_archer(xarray_obj, varname):
         archer_channel_type = "Vis"
     else:
         LOG.warning(
-            "Unsupported sensor %s / channel %s type for ARCHER,\
-            returning without recentering",
+            "Unsupported sensor %s / channel %s type for ARCHER,"
+            "returning without recentering",
             xarray_obj.source_name,
             varname,
         )
@@ -130,8 +130,8 @@ def run_archer(xarray_obj, varname):
     num_masked = numpy.ma.count_masked(image["data_grid"])
     if num_masked > 0:
         LOG.warning(
-            "There are %s masked values in array of size %s,\
-            not attempting to run ARCHER",
+            "There are %s masked values in array of size %s,"
+            "not attempting to run ARCHER",
             num_masked,
             image["data_grid"].size,
         )
@@ -195,8 +195,8 @@ def run_archer(xarray_obj, varname):
 
     if "sensor" not in attrib:
         LOG.warning(
-            "Unsupported sensor %s / channel %s type for ARCHER,\
-            returning without recentering",
+            "Unsupported sensor %s / channel %s type for ARCHER,"
+            "returning without recentering",
             xarray_obj.source_name,
             varname,
         )
@@ -277,14 +277,14 @@ def call(
 ):
     """Recenters the TC."""
     LOG.info(
-        "\n\n**************************************\
-        **********************************************"
-        "\n****************************************\
-        ********************************************"
-        "\n****************************************\
-        ********************************************"
-        "\n****************************************\
-        ********************************************"
+        "\n\n**************************************"
+        "**********************************************"
+        "\n****************************************"
+        "********************************************"
+        "\n****************************************"
+        "********************************************"
+        "\n****************************************"
+        "********************************************"
         "\n***Attempting to recenter TC sector...\n"
     )
     ret_area_def = area_def.copy()
@@ -344,14 +344,14 @@ def call(
 
     LOG.info(
         "\n\n********Done recentering TC sector"
-        "\n*************************************\
-        ***********************************************"
-        "\n*************************************\
-        ***********************************************"
-        "\n*************************************\
-        ***********************************************"
-        "\n*************************************\
-        ***********************************************"
+        "\n*************************************"
+        "***********************************************"
+        "\n*************************************"
+        "***********************************************"
+        "\n*************************************"
+        "***********************************************"
+        "\n*************************************"
+        "***********************************************"
     )
 
     # If nothing recentered, return the original area_def
@@ -389,8 +389,8 @@ def recenter_with_archer(
     out_fnames = []
     if area_def_to_recenter.sector_info["vmax"] < ARCHER_REQUIRED_VMAX_KTS:
         LOG.info(
-            "***SKIPPING not attempting to run archer,\
-            vmax of %s less than required %s kts",
+            "***SKIPPING not attempting to run archer,"
+            "vmax of %s less than required %s kts",
             area_def_to_recenter.sector_info["vmax"],
             ARCHER_REQUIRED_VMAX_KTS,
         )
@@ -406,10 +406,10 @@ def recenter_with_archer(
     # the ARCHER centered area_def. Ok, I'll just do that
     # really quickly.
     LOG.info(
-        "\n\n**********************************\
-        **************************************************"
-        "\n*************************************\
-        ***********************************************"
+        "\n\n**********************************"
+        "**************************************************"
+        "\n*************************************"
+        "***********************************************"
         "\n********Attempting to run ARCHER...\n"
     )
 
@@ -442,8 +442,8 @@ def recenter_with_archer(
 
     for varname in sorted(variables):
         LOG.info(
-            f"\n\n**************************************\
-            **********************************************"
+            f"\n\n**************************************"
+            "**********************************************"
             f"\n********Running ARCHER on {varname}...\n"
         )
 
@@ -468,21 +468,21 @@ def recenter_with_archer(
             # print_area_def(area_def_to_recenter, 'Final ARCHER recentered area def')
             LOG.info(
                 "\n\n********ARCHER run successful"
-                "\n************************************\
-                ************************************************\n"
+                "\n************************************"
+                "************************************************\n"
             )
         else:
             LOG.info(
                 "\n\n********ARCHER run unsuccessful"
-                "\n************************************\
-                ************************************************\n"
+                "\n************************************"
+                "************************************************\n"
             )
     LOG.info(
         "\n\n********Done running ARCHER"
-        "\n********************************************\
-        ****************************************"
-        "\n********************************************\
-        ****************************************"
+        "\n********************************************"
+        "****************************************"
+        "\n********************************************"
+        "****************************************"
     )
     return recentered_area_defs, out_fnames
 
@@ -490,10 +490,10 @@ def recenter_with_archer(
 def recenter_with_akima(sect_xarray, area_def):
     """Recenter with akima interpolation."""
     LOG.info(
-        "\n\n*********************************\
-        ***************************************************"
-        "\n***********************************\
-        *************************************************"
+        "\n\n*********************************"
+        "***************************************************"
+        "\n***********************************"
+        "*************************************************"
         "\n********Running AKIMA center interpolation...\n"
     )
     from geoips.sector_utils.tc_tracks import trackfile_to_area_defs
@@ -537,8 +537,8 @@ def recenter_with_akima(sect_xarray, area_def):
         for skey, val in sector_info.items():
             if isinstance(val, str) and skey in check_sector_info:
                 LOG.info(
-                    f"Missing {skey} sector information \
-                    for {sector_info['synoptic_time']}"
+                    f"Missing {skey} sector information "
+                    "for {sector_info['synoptic_time']}"
                 )
                 sector_info[skey] = -9999
         clats += [sector_info["clat"]]
@@ -555,8 +555,8 @@ def recenter_with_akima(sect_xarray, area_def):
         idx += 1
 
     LOG.info(
-        f"***Interpolating new center from {len(clats)} \
-        best track positions, closest position {closest_idx}..."
+        f"***Interpolating new center from {len(clats)} "
+        "best track positions, closest position {closest_idx}..."
     )
     from akima86.akima86 import interpolate
     import numpy
@@ -604,10 +604,10 @@ def recenter_with_akima(sect_xarray, area_def):
     # print_area_def(area_def, 'Original center')
     LOG.info(
         "\n\n********Akima interpolation successful"
-        "\n****************************************\
-        ********************************************"
-        "\n****************************************\
-        ********************************************"
+        "\n****************************************"
+        "********************************************"
+        "\n****************************************"
+        "********************************************"
     )
     return recentered_area_def
 
