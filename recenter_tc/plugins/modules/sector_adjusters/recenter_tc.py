@@ -538,7 +538,7 @@ def recenter_with_akima(sect_xarray, area_def):
             if isinstance(val, str) and skey in check_sector_info:
                 LOG.info(
                     f"Missing {skey} sector information "
-                    "for {sector_info['synoptic_time']}"
+                    f"for {sector_info['synoptic_time']}"
                 )
                 sector_info[skey] = -9999
         clats += [sector_info["clat"]]
@@ -556,7 +556,7 @@ def recenter_with_akima(sect_xarray, area_def):
 
     LOG.info(
         f"***Interpolating new center from {len(clats)} "
-        "best track positions, closest position {closest_idx}..."
+        f"best track positions, closest position {closest_idx}..."
     )
     from akima86.akima86 import interpolate
     import numpy
