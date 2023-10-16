@@ -32,7 +32,7 @@ def is_fdeck(fname):
     Returns
     -------
     bool: boolean
-        True if it is an fdeck file (\*_FIX), False otherwise.
+        True if it is an fdeck file (``*_FIX``), False otherwise.
     """
     if fname.split("_")[-1] in ["FIX"]:
         with open(fname) as f:
