@@ -10,6 +10,8 @@
 # # # for more details. If you did not receive the license, for more information see:
 # # # https://github.com/U-S-NRL-Marine-Meteorology-Division/
 
+from ._version import __version__, __version_tuple__
+
 """Recenter tropical cyclone imagery.
 
 The recenter_tc package provides the capability for identifying the most accurate
