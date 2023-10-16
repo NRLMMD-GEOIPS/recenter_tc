@@ -22,7 +22,7 @@ LOG = logging.getLogger(__name__)
 
 
 def is_fdeck(fname):
-    r"""Check if fname is an fdeck file.
+    """Check if fname is an fdeck file.
 
     Parameters
     ----------
