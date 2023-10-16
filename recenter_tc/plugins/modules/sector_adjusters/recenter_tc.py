@@ -78,7 +78,7 @@ def run_archer(xarray_obj, varname):
         archer_channel_type = "Vis"
     else:
         LOG.warning(
-            "Unsupported sensor %s / channel %s type for ARCHER,"
+            "Unsupported sensor %s / channel %s type for ARCHER, "
             "returning without recentering",
             xarray_obj.source_name,
             varname,
@@ -130,7 +130,7 @@ def run_archer(xarray_obj, varname):
     num_masked = numpy.ma.count_masked(image["data_grid"])
     if num_masked > 0:
         LOG.warning(
-            "There are %s masked values in array of size %s,"
+            "There are %s masked values in array of size %s, "
             "not attempting to run ARCHER",
             num_masked,
             image["data_grid"].size,
@@ -195,7 +195,7 @@ def run_archer(xarray_obj, varname):
 
     if "sensor" not in attrib:
         LOG.warning(
-            "Unsupported sensor %s / channel %s type for ARCHER,"
+            "Unsupported sensor %s / channel %s type for ARCHER, "
             "returning without recentering",
             xarray_obj.source_name,
             varname,
