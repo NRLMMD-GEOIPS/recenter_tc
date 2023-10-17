@@ -25,14 +25,13 @@ log_setup.setup_logging()
 class TestRecenterTCOutputCheckers:
     """TestRecenterTCOutputChecker class, defining methods as well."""
 
-    fdeck = output_checkers.get_plugin("fdeck")
     savedir = str(environ["GEOIPS_PACKAGES_DIR"]) + "/test_data/test_fdecks/pytest/"
     comp_path = savedir + "compare_fdeck._FIX"
     match_path = savedir + "matched_fdeck._FIX"
     close_path = savedir + "close_mismatch_fdeck._FIX"
     bad_path = savedir + "bad_mismatch_fdeck._FIX"
     available_output_checkers = {
-        "fdeck": (True, True),
+        "fdeck": True,
     }
 
     def clear_fdecks(self):
@@ -64,21 +63,31 @@ class TestRecenterTCOutputCheckers:
             bad_mismatch.close()
         return self.comp_path, [self.match_path, self.close_path, self.bad_path]
 
-    def fdeck_comparisons(self, compare_path, output_paths):
+    def yield_plugin_products(self, plugin):
+        """Return the appropriate compare/output paths for the corresponding plugin."""
+        if plugin.name == "fdeck":
+            return self.yield_fdecks()
+
+    def fdeck_comparisons(self, plugin, compare_path, output_paths):
         """Test the comparison of two Fdecks with the Fdeck Output Checker."""
         for path_idx in range(len(output_paths)):
-            self.fdeck.module.outputs_match(
-                self.fdeck,
+            plugin.module.outputs_match(
+                plugin,
                 output_paths[path_idx],
                 compare_path,
             )
+
+    def compare_plugin(self, plugin):
+        """Test the comparision of two products with the appropriate Output Checker."""
+        compare_paths, output_paths = self.yield_plugin_products(plugin)
+        if plugin.name == "fdeck":
+            self.fdeck_comparisons(plugin, compare_paths, output_paths)
 
     @pytest.mark.parametrize("checker_name", available_output_checkers)
     def test_plugins(self, checker_name):
         """Test all output_checkers that are ready for testing."""
         output_checker = self.available_output_checkers[checker_name]
-        if not output_checker[0] or not output_checker[1]:
+        if not output_checker or checker_name not in self.available_output_checkers:
             pytest.mark.xfail(checker_name + " is not ready to be tested yet.")
-        if checker_name == "fdeck":
-            compare_paths, output_paths = self.yield_fdecks()
-            self.fdeck_comparisons(compare_paths, output_paths)
+        plugin = output_checkers.get_plugin(checker_name)
+        self.compare_plugin(plugin)
