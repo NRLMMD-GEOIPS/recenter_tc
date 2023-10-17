@@ -14,6 +14,7 @@ Version 1.11.7a0 (2023-10-06)
 *****************************
 
 * Refactor: Update recenter-tc to use 'output_checkers' interface.
+* Testing: Added recenter-tc output_checker unit test
 
 Refactoring Updates
 ===================
@@ -30,3 +31,18 @@ can be directly used from the new geoips repo output_checkers interface.
 
     modified: recenter_tc/pyproject.toml
     added: recenter_tc/recenter_tc/plugins/modules/output_checkers/fdeck_checker.py
+
+Testing Updates
+===============
+
+Added Recenter TC output_checker unit test
+------------------------------------------
+
+GeoIPS is currently lacking unit tests for nearly every interface. The addition of unit
+tests would remove the need to run geoips/tests/integration_tests/full_test.sh each time
+you want to ensure the code works as expected. These unit tests will be a faster
+replacement to do just that.
+
+::
+
+    added: recenter_tc/tests/unit_tests/plugins/module/output_checker/test_output_checkers.py
