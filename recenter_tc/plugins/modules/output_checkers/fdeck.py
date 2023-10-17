@@ -27,11 +27,13 @@ def correct_file_format(fname):
 
     Parameters
     ----------
-    fname (str) : Name of file to check.
+    fname: str
+        Name of file to check.
 
     Returns
     -------
-    bool: True if it is an fdeck file r(\*_FIX), False otherwise. # NOQA
+    bool: boolean
+        True if it is an fdeck file (``*_FIX``), False otherwise.
     """
     if fname.split("_")[-1] in ["FIX"]:
         with open(fname) as f:

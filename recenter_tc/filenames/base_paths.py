@@ -10,22 +10,23 @@
 # # # for more details. If you did not receive the license, for more information see:
 # # # https://github.com/U-S-NRL-Marine-Meteorology-Division/
 
-""" Collection of base path names used throughout GeoIPS.  Everything defaults to subdirectories relative to
-    the REQUIRED environment variable GEOIPS_OUTDIRS.  Individual GEOIPS_OUTDIRS relative paths can be overridden
-    by setting appropriate environment variables. """
+"""Collection of base path names used throughout GeoIPS.
+
+Everything defaults to subdirectories relative to the REQUIRED
+environment variable GEOIPS_OUTDIRS.  Individual GEOIPS_OUTDIRS
+relative paths can be overridden by setting appropriate environment variables.
+"""
 
 
 # Python Standard Libraries
 import logging
-from os import getenv, listdir
-from os.path import exists, dirname, join as pathjoin, split as pathsplit
-import socket
+from os import getenv
+from os.path import join as pathjoin
+from geoips.filenames.base_paths import PATHS as GPATHS
 
 LOG = logging.getLogger(__name__)
 
 PATHS = {}
-from geoips.filenames.base_paths import PATHS as GPATHS
-
 
 if getenv("ARCHER_IMAGE_PATH"):
     PATHS["ARCHER_IMAGE_PATH"] = getenv("ARCHER_IMAGE_PATH").rstrip("/")

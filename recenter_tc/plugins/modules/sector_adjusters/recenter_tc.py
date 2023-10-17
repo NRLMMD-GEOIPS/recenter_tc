@@ -78,7 +78,8 @@ def run_archer(xarray_obj, varname):
         archer_channel_type = "Vis"
     else:
         LOG.warning(
-            "Unsupported sensor %s / channel %s type for ARCHER, returning without recentering",
+            "Unsupported sensor %s / channel %s type for ARCHER, "
+            "returning without recentering",
             xarray_obj.source_name,
             varname,
         )
@@ -87,9 +88,10 @@ def run_archer(xarray_obj, varname):
     attrib = {}
     first_guess = {}
     attrib["archer_channel_type"] = archer_channel_type
-    # This is currently unused in ARCHER, so just use GeoIPS platform names for attrib['sat']
+    # Currently unused in ARCHER, just use GeoIPS platform names for attrib['sat']
     attrib["sat"] = xarray_obj.platform_name
-    # out_fname = 'archer_test_{1}_{2}_{3}.png'.format(xarray_obj.platform_name, xarray_obj.source_name,
+    # out_fname = 'archer_test_{1}_{2}_{3}.png'.format(xarray_obj.platform_name,
+    #                                                  xarray_obj.source_name,
     #                                                  archer_channel_type)
 
     archer_image_fname = None
@@ -128,7 +130,8 @@ def run_archer(xarray_obj, varname):
     num_masked = numpy.ma.count_masked(image["data_grid"])
     if num_masked > 0:
         LOG.warning(
-            "There are %s masked values in array of size %s, not attempting to run ARCHER",
+            "There are %s masked values in array of size %s, "
+            "not attempting to run ARCHER",
             num_masked,
             image["data_grid"].size,
         )
@@ -192,7 +195,8 @@ def run_archer(xarray_obj, varname):
 
     if "sensor" not in attrib:
         LOG.warning(
-            "Unsupported sensor %s / channel %s type for ARCHER, returning without recentering",
+            "Unsupported sensor %s / channel %s type for ARCHER, "
+            "returning without recentering",
             xarray_obj.source_name,
             varname,
         )
@@ -200,7 +204,8 @@ def run_archer(xarray_obj, varname):
 
     import calendar
 
-    # This is currently unused by ARCHER - but it should probably be best track, not fx if using deck files ?
+    # This is currently unused by ARCHER but it should probably be best track
+    # not fx if using deck files ?
     first_guess["source"] = "fx"
     first_guess["time"] = calendar.timegm(xarray_obj.start_datetime.timetuple())
     first_guess["vmax"] = xarray_obj.area_definition.sector_info["vmax"]
@@ -248,7 +253,7 @@ def run_archer(xarray_obj, varname):
     ]:
         archer_info[field] = out_dict.get(field)
         # Can't write numpy.float64 to yaml file
-        if type(archer_info[field]) == numpy.float64:
+        if isinstance(archer_info[field], numpy.float64):
             archer_info[field] = float(archer_info[field])
         if field == "fdeck_string":
             archer_info[field] == f"""{archer_info[field]}"""
@@ -270,12 +275,17 @@ def call(
     akima_only=False,
     include_archer_info=False,
 ):
+    """Recenters the TC."""
     LOG.info(
-        f"\n\n************************************************************************************"
-        f"\n************************************************************************************"
-        f"\n************************************************************************************"
-        f"\n************************************************************************************"
-        f"\n***Attempting to recenter TC sector...\n"
+        "\n\n**************************************"
+        "**********************************************"
+        "\n****************************************"
+        "********************************************"
+        "\n****************************************"
+        "********************************************"
+        "\n****************************************"
+        "********************************************"
+        "\n***Attempting to recenter TC sector...\n"
     )
     ret_area_def = area_def.copy()
 
@@ -333,11 +343,15 @@ def call(
     LOG.info(f"\n\nout_fnames" f"\n{out_fnames}")
 
     LOG.info(
-        f"\n\n********Done recentering TC sector"
-        f"\n************************************************************************************"
-        f"\n************************************************************************************"
-        f"\n************************************************************************************"
-        f"\n************************************************************************************"
+        "\n\n********Done recentering TC sector"
+        "\n*************************************"
+        "***********************************************"
+        "\n*************************************"
+        "***********************************************"
+        "\n*************************************"
+        "***********************************************"
+        "\n*************************************"
+        "***********************************************"
     )
 
     # If nothing recentered, return the original area_def
@@ -345,6 +359,7 @@ def call(
 
 
 def recenter_area_def(area_def, fields):
+    """Recenter area definition."""
     from geoips.sector_utils.tc_tracks import get_tc_long_description
     from geoips.plugins.modules.sector_spec_generators import center_coordinates
 
@@ -369,25 +384,33 @@ def recenter_area_def(area_def, fields):
 def recenter_with_archer(
     sect_xarray, variables, area_def_to_recenter, include_archer_info=False
 ):
+    """Recenter with ARCHER."""
     recentered_area_defs = {}
     out_fnames = []
     if area_def_to_recenter.sector_info["vmax"] < ARCHER_REQUIRED_VMAX_KTS:
         LOG.info(
-            "***SKIPPING not attempting to run archer, vmax of %s less than required %s kts",
+            "***SKIPPING not attempting to run archer, "
+            "vmax of %s less than required %s kts",
             area_def_to_recenter.sector_info["vmax"],
             ARCHER_REQUIRED_VMAX_KTS,
         )
         return recentered_area_defs, out_fnames
-    # I believe ARCHER can not have any masked data within the data grid, so create a separate smaller sector for
-    # running archer.  The size of the "new" ARCHER sector could probably use some tweaking, though this worked
+    # I believe ARCHER can not have any masked data within the data grid,
+    # so create a separate smaller sector for
+    # running archer.  The size of the "new" ARCHER sector
+    # could probably use some tweaking, though this worked
     # "out of the box" for my test case.
-    # Probably in the end want to just run ARCHER first, get the new center, then create a new area_def with
-    # the ARCHER center. and sector / register based on the ARCHER centered area_def. Ok, I'll just do that
+    # Probably in the end want to just run ARCHER first,
+    # get the new center, then create a new area_def with
+    # the ARCHER center. and sector / register based on
+    # the ARCHER centered area_def. Ok, I'll just do that
     # really quickly.
     LOG.info(
-        f"\n\n************************************************************************************"
-        f"\n************************************************************************************"
-        f"\n********Attempting to run ARCHER...\n"
+        "\n\n**********************************"
+        "**************************************************"
+        "\n*************************************"
+        "***********************************************"
+        "\n********Attempting to run ARCHER...\n"
     )
 
     from geoips.xarray_utils.data import sector_xarray_spatial
@@ -400,7 +423,8 @@ def recenter_with_archer(
     maxlon = clon + 2  # 2
     lat_pad = 0
     lon_pad = 0
-    # Need full swath width for AMSU-B and MHS for ARCHER. Need a better solution for this.
+    # Need full swath width for AMSU-B and MHS for ARCHER.
+    # Need a better solution for this.
     if sect_xarray.source_name in ["amsu-b", "mhs"]:
         lat_pad = 15
         lon_pad = 25
@@ -418,7 +442,8 @@ def recenter_with_archer(
 
     for varname in sorted(variables):
         LOG.info(
-            f"\n\n************************************************************************************"
+            f"\n\n**************************************"
+            "**********************************************"
             f"\n********Running ARCHER on {varname}...\n"
         )
 
@@ -434,40 +459,49 @@ def recenter_with_archer(
             if include_archer_info:
                 new_fields["archer_info"] = archer_info
             new_fields["archer_fdeck"] = out_dict["fdeck_string"]
-            # short ID used to identify which adjustment was used - to be used in filenames, etc
+            # short ID used to identify which adjustment was used
+            # - to be used in filenames, etc
             new_fields["adjustment_id"] = "ar" + varname
             recentered_area_defs[varname] = recenter_area_def(
                 area_def_to_recenter, new_fields
             )
             # print_area_def(area_def_to_recenter, 'Final ARCHER recentered area def')
             LOG.info(
-                f"\n\n********ARCHER run successful"
-                f"\n************************************************************************************\n"
+                "\n\n********ARCHER run successful"
+                "\n************************************"
+                "************************************************\n"
             )
         else:
             LOG.info(
-                f"\n\n********ARCHER run unsuccessful"
-                f"\n************************************************************************************\n"
+                "\n\n********ARCHER run unsuccessful"
+                "\n************************************"
+                "************************************************\n"
             )
     LOG.info(
-        f"\n\n********Done running ARCHER"
-        f"\n************************************************************************************"
-        f"\n************************************************************************************"
+        "\n\n********Done running ARCHER"
+        "\n********************************************"
+        "****************************************"
+        "\n********************************************"
+        "****************************************"
     )
     return recentered_area_defs, out_fnames
 
 
 def recenter_with_akima(sect_xarray, area_def):
+    """Recenter with akima interpolation."""
     LOG.info(
-        f"\n\n************************************************************************************"
-        f"\n************************************************************************************"
-        f"\n********Running AKIMA center interpolation...\n"
+        "\n\n*********************************"
+        "***************************************************"
+        "\n***********************************"
+        "*************************************************"
+        "\n********Running AKIMA center interpolation...\n"
     )
     from geoips.sector_utils.tc_tracks import trackfile_to_area_defs
     from geoips.sector_utils.utils import remove_duplicate_storm_positions
     from os.path import expandvars
 
-    # Grab the center time of the actual TC sector, not the start_datetime or end_datetime
+    # Grab the center time of the actual TC sector,
+    # not the start_datetime or end_datetime
     center_time = (
         sect_xarray.start_datetime
         + (sect_xarray.end_datetime - sect_xarray.start_datetime) / 2
@@ -503,7 +537,8 @@ def recenter_with_akima(sect_xarray, area_def):
         for skey, val in sector_info.items():
             if isinstance(val, str) and skey in check_sector_info:
                 LOG.info(
-                    f"Missing {skey} sector information for {sector_info['synoptic_time']}"
+                    f"Missing {skey} sector information "
+                    f"for {sector_info['synoptic_time']}"
                 )
                 sector_info[skey] = -9999
         clats += [sector_info["clat"]]
@@ -520,7 +555,8 @@ def recenter_with_akima(sect_xarray, area_def):
         idx += 1
 
     LOG.info(
-        f"***Interpolating new center from {len(clats)} best track positions, closest position {closest_idx}..."
+        f"***Interpolating new center from {len(clats)} "
+        f"best track positions, closest position {closest_idx}..."
     )
     from akima86.akima86 import interpolate
     import numpy
@@ -567,9 +603,11 @@ def recenter_with_akima(sect_xarray, area_def):
     # print_area_def(recentered_area_def, 'New akima center')
     # print_area_def(area_def, 'Original center')
     LOG.info(
-        f"\n\n********Akima interpolation successful"
-        f"\n************************************************************************************"
-        f"\n************************************************************************************"
+        "\n\n********Akima interpolation successful"
+        "\n****************************************"
+        "********************************************"
+        "\n****************************************"
+        "********************************************"
     )
     return recentered_area_def
 
@@ -577,6 +615,7 @@ def recenter_with_akima(sect_xarray, area_def):
 def recenter_tc_area_def(
     area_def, sect_xarray, variables, akima_only=False, include_archer_info=False
 ):
+    """Recenter tc area definition."""
     from geoips.sector_utils.utils import is_sector_type
 
     # Only recenter if this is a TC sector
