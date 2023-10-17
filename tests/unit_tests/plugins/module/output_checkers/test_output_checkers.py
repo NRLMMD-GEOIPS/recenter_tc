@@ -51,7 +51,7 @@ class TestRecenterTCOutputCheckers:
             for line in comp_fdeck.readlines():
                 for version in range(3):
                     rand = np.random.rand()
-                    if version == 0:   # matched
+                    if version == 0:  # matched
                         match.write(line)
                     elif version == 1:  # Close but mismatched
                         if rand > 0.05:
