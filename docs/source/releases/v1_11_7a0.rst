@@ -10,56 +10,23 @@
  | # # # for more details. If you did not receive the license, for more information see:
  | # # # https://github.com/U-S-NRL-Marine-Meteorology-Division/
 
-.. _release_notes:
+Version 1.11.7a0 (2023-10-06)
+*****************************
 
-*************
-Release Notes
-*************
+* Refactor: Update recenter-tc to use 'output_checkers' interface.
 
-Version 1.11
-------------
+Refactoring Updates
+===================
 
-.. toctree::
-   :maxdepth: 1
+Update Recenter TC to use the 'output_checkers' interface
+---------------------------------------------------------
 
-   v1_11_2
-   v1_11_0
-   v1_11_7a0
+*From GEOIPS#293: 2023-08-24, Create interface for compare outputs*
 
-Version 1.10
-------------
+Update the fdeck output checker to be a full "output_checkers" plugin, so it
+can be directly used from the new geoips repo output_checkers interface.
 
-.. toctree::
-   :maxdepth: 1
+::
 
-   v1_10_3
-   v1_10_2
-   v1_10_0
-   v1_10_0a2
-   v1_10_0a1
-   v1_10_0a0
-
-Version 1.9
------------
-
-.. toctree::
-   :maxdepth: 1
-
-   v1_9_1
-
-Version 1.8
------------
-
-.. toctree::
-   :maxdepth: 1
-
-   v1_8_1
-   v1_8_0
-
-Version 1.7
------------
-
-.. toctree::
-   :maxdepth: 1
-
-   v1_7_0
+    modified: recenter_tc/pyproject.toml
+    added: recenter_tc/recenter_tc/plugins/modules/output_checkers/fdeck_checker.py

@@ -3,7 +3,7 @@ requires = ["setuptools>=61.2", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages]
-find = {namespaces = false}
+find = { namespaces = false }
 
 [tool.setuptools.package-dir]
 "" = "."
@@ -23,12 +23,12 @@ find = {namespaces = false}
 ]
 
 [tool.setuptools.dynamic]
-entry-points = {file = ["entry-points.ini"]}
+entry-points = { file = ["entry-points.ini"] }
 
 [tool.setuptools_scm]
-"version_scheme" = "post-release"  # Use current version .postN vs incrementing
-"local_scheme" = "no-local-version"  # Don't include hash, or date, just postN
-"write_to" = "recenter_tc/_version.py"  # Write an actual file
+"version_scheme" = "post-release"      # Use current version .postN vs incrementing
+"local_scheme" = "no-local-version"    # Don't include hash, or date, just postN
+"write_to" = "recenter_tc/_version.py" # Write an actual file
 
 [project]
 name = "recenter_tc"
@@ -37,15 +37,13 @@ description = "TC Recentering GeoIPS Plugin Package"
 readme = "README.md"
 requires-python = ">=3.9"
 keywords = []
-license = {file = "LICENSE"}
-classifiers = [
-    "Programming Language :: Python :: 3",
-]
+license = { file = "LICENSE" }
+classifiers = ["Programming Language :: Python :: 3"]
 dynamic = ["version"]
 
 dependencies = [
     "archer @ git+https://github.com/mindyls/archer.git",
-    "akima86 @ git+https://github.com/NRLMMD-GEOIPS/akima86.git"
+    "akima86 @ git+https://github.com/NRLMMD-GEOIPS/akima86.git",
 ]
 
 [project.entry-points."geoips.plugin_packages"]
@@ -58,6 +56,8 @@ dependencies = [
 "archer_fix" = "recenter_tc.plugins.modules.filename_formatters.archer_fix"
 "archer_image" = "recenter_tc.plugins.modules.filename_formatters.archer_image"
 
-[project.entry-points."geoips.output_comparisons"]
-"compare_outputs_recenter_tc" = "recenter_tc.compare_outputs_recenter_tc:compare_outputs_recenter_tc"
+# [project.entry-points."geoips.output_comparisons"]
+# "compare_outputs_recenter_tc" = "recenter_tc.compare_outputs_recenter_tc:compare_outputs_recenter_tc"
 
+[project.entry-points."geoips.output_checkers"]
+"fdeck" = "recenter_tc.plugins.modules.output_checkers.fdeck"
