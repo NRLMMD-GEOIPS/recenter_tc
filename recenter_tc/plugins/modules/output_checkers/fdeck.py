@@ -24,8 +24,6 @@ name = "fdeck"
 
 clear_text = text.clear_text
 
-copy_files = text.copy_files
-
 
 def get_test_files():
     """Return a series of varied fdeck files."""
@@ -37,16 +35,19 @@ def get_test_files():
     savedir = join(str(getenv("GEOIPS_OUTDIRS")), "scratch/unit_tests/test_fdecks/")
     if not exists(savedir):
         makedirs(savedir)
-    fdeck = "20200918.1950_tc2020al20teddy_archer_abi_B03Ref_Vis_noaa_goes-16_20L_FIX"
-    fdeck_path = join(
-        str(getenv("GEOIPS_OUTDIRS")),
-        "preprocessed",
-        "archer",
-        "fix",
-        fdeck,
+    # Sample fdeck - this is the output from the abi Visible test
+    fdeck_str = (
+        "AL, 20, 2009181950,  70, VISI,          C,  ,"
+        " 2289N,  5670W,      ,"
+        " 3,    ,  ,     ,  ,     ,    ,     ,     ,     ,     ,"
+        "     ,  ,  ,  ,  ,  ,    ,    ,  ,  CIMS,"
+        " AUT,    ,             ,             ,    ,"
+        "     ,                        v, "
+        "irad=0.15 | r50=0.48 | r95=1.36 | ep=-99 | src=ARCH"
     )
-    copy_files(fdeck_path, savedir, "_FIX")
     comp_path = join(savedir, "compare._FIX")
+    with open(comp_path, mode="w") as comp_txt:
+        comp_txt.writelines([fdeck_str])
     match_path = join(savedir, "matched._FIX")
     close_path = join(savedir, "close_mismatch._FIX")
     bad_path = join(savedir, "bad_mismatch._FIX")
