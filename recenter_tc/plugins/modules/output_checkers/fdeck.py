@@ -25,14 +25,14 @@ name = "fdeck"
 clear_text = text.clear_text
 
 
-def get_test_files():
+def get_test_files(output_path):
     """Return a series of varied fdeck files."""
     import numpy as np
     from shutil import copy
-    from os import makedirs, getenv
+    from os import makedirs
     from os.path import exists, join
 
-    savedir = join(str(getenv("GEOIPS_OUTDIRS")), "scratch/unit_tests/test_fdecks/")
+    savedir = join(output_path, "scratch/unit_tests/test_fdecks/")
     if not exists(savedir):
         makedirs(savedir)
     # Sample fdeck - this is the output from the abi Visible test
