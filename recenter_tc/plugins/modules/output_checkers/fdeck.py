@@ -24,35 +24,46 @@ name = "fdeck"
 
 clear_text = text.clear_text
 
+copy_files = text.copy_files
+
 
 def get_test_files():
     """Return a series of varied fdeck files."""
     import numpy as np
     from shutil import copy
-    from os import environ, mkdir
-    from os.path import exists
+    from os import makedirs, getenv
+    from os.path import exists, join
 
-    savedir = str(environ["GEOIPS_OUTDIRS"]) + "/scratch/unit_tests/test_fdecks/"
+    savedir = join(str(getenv("GEOIPS_OUTDIRS")), "scratch/unit_tests/test_fdecks/")
     if not exists(savedir):
-        mkdir(savedir)
-    comp_path = savedir + "compare._FIX"
-    match_path = savedir + "matched._FIX"
-    close_path = savedir + "close_mismatch._FIX"
-    bad_path = savedir + "bad_mismatch._FIX"
+        makedirs(savedir)
+    fdeck = "20200918.1950_tc2020al20teddy_archer_abi_B03Ref_Vis_noaa_goes-16_20L_FIX"
+    fdeck_path = join(
+        str(getenv("GEOIPS_OUTDIRS")),
+        "preprocessed",
+        "archer",
+        "fix",
+        fdeck,
+    )
+    copy_files(fdeck_path, savedir, "_FIX")
+    comp_path = join(savedir, "compare._FIX")
+    match_path = join(savedir, "matched._FIX")
+    close_path = join(savedir, "close_mismatch._FIX")
+    bad_path = join(savedir, "bad_mismatch._FIX")
     clear_text(match_path, close_path, bad_path)
     copy(comp_path, match_path)
     with open(comp_path, mode="r") as comp_txt:
         close_mismatch = open(close_path, "w")
         bad_mismatch = open(bad_path, "w")
-        for line in comp_txt.readlines():
+        for char in comp_txt.readline():
             for version in range(2):
                 rand = np.random.rand()
                 if version == 0:  # Close but mismatched
                     if rand > 0.05:
-                        close_mismatch.write(line)
+                        close_mismatch.write(char)
                 else:  # Mismatched -- not close
                     if rand > 0.25:
-                        bad_mismatch.write(line)
+                        bad_mismatch.write(char)
         close_mismatch.close()
         bad_mismatch.close()
     return comp_path, [match_path, close_path, bad_path]
