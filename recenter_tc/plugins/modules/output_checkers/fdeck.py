@@ -29,16 +29,16 @@ def get_test_files():
     """Return a series of varied fdeck files."""
     import numpy as np
     from shutil import copy
-    from os import environ, mkdir
-    from os.path import exists
+    from os import getenv, makedirs
+    from os.path import exists, join
 
-    savedir = str(environ["GEOIPS_OUTDIRS"]) + "/scratch/unit_tests/test_fdecks/"
+    savedir = join(getenv("GEOIPS_OUTDIRS"), "scratch", "unit_tests", "test_fdecks")
     if not exists(savedir):
-        mkdir(savedir)
-    comp_path = savedir + "compare._FIX"
-    match_path = savedir + "matched._FIX"
-    close_path = savedir + "close_mismatch._FIX"
-    bad_path = savedir + "bad_mismatch._FIX"
+        makedirs(savedir)
+    comp_path = join(savedir, "compare._FIX")
+    match_path = join(savedir, "matched._FIX")
+    close_path = join(savedir, "close_mismatch._FIX")
+    bad_path = join(savedir, "bad_mismatch._FIX")
     clear_text(match_path, close_path, bad_path)
     copy(comp_path, match_path)
     with open(comp_path, mode="r") as comp_txt:
