@@ -14,14 +14,9 @@
 
 import logging
 
-from os.path import join as pathjoin, splitext as pathsplitext
-from os.path import dirname as pathdirname, basename as pathbasename
-from datetime import datetime, timedelta
-from glob import glob
-from os import unlink as osunlink
-
+from os.path import join as pathjoin
 from recenter_tc.filenames.base_paths import PATHS as gpaths
-from geoips.data_manipulations.merge import minrange
+
 
 interface = "filename_formatters"
 family = "xarray_metadata_to_filename"
@@ -31,12 +26,30 @@ LOG = logging.getLogger(__name__)
 
 
 def get_basin_letter(tc_basin, tc_clon, tc_clat):
+    """Return basin designation.
+
+    Parameters
+    ----------
+    tc_basin: string
+        basin letters
+    tc_clon: float
+        longitude
+    tc_clat: float
+        latitude
+
+    Returns
+    -------
+    str: basin letter designation
+    """
     # atcf/form_sectorfile.py has Q listed as both SL and LS, include both here.
-    # Only IO and SH can have possibly multiple basin designators, dependent on longitude.
-    # Note we want to determine the basin designator at the start of the storm, and do not change if the storm
-    # happens to cross over the longitude line.  Thus, check for existing directory first, and if it doesn't exist,
-    # create based on current center lat/lon of storm.  Note this could potentially cause a problem if we run a
-    # storm for the first time in the middle of the storm, but I'm going to take that risk at this point.
+    # Only IO and SH can have possibly multiple basin designators,
+    # dependent on longitude.
+    # Note we want to determine the basin designator at the start of the storm,
+    # and do not change if the storm happens to cross over the longitude line.
+    # Thus, check for existing directory first, and if it doesn't exist,
+    # create based on current center lat/lon of storm.
+    # Potentially causes a problem if we run a storm for the first time in
+    # the middle of the storm, but I'm going to take that risk at this point.
     basin_letters = {
         "AL": ["L"],
         "SL": ["Q"],
@@ -72,6 +85,7 @@ def call(
     archer_channel_type=None,
     use_storm_subdirs=False,
 ):
+    """Given an xarray, creates the archer filename."""
     area_def = xarray_obj.area_definition
     basin_letter = get_basin_letter(
         area_def.sector_info["storm_basin"],
@@ -112,35 +126,45 @@ def assemble_archer_fname(
     extension=".txt",
     use_storm_subdirs=False,
 ):
-    """Produce full output product path from product / sensor specifications.
+    """Produce full output product path from product/sensor specifications.
 
-    Args:
-        basedir (str) :  base directory
-        tc_year (int) :  Full 4 digit storm year
-        tc_basin (str) :  2 character basin designation
-                               SH Southern Hemisphere
-                               WP West Pacific
-                               EP East Pacific
-                               CP Central Pacific
-                               IO Indian Ocean
-                               AL Atlantic
-        tc_stormnum (int) : 2 digit storm number
-                               90 through 99 for invests
-                               01 through 69 for named storms
-        platform_name (str) : Name of platform (satellite)
-        product_datetime (datetime) : Start time of data used to generate product
+    Parameters
+    ----------
+    basedir: string
+        base directory
+    tc_year: int
+        Full 4 digit storm year
+    tc_basin: str
+        2 character basin designation
+        SH Southern Hemisphere
+        WP West Pacific
+        EP East Pacific
+        CP Central Pacific
+        IO Indian Ocean
+        AL Atlantic
+    tc_stormnum: integer
+        2 digit storm number
+        90 through 99 for invests
+        01 through 69 for named storms
+    platform_name: string
+        Name of platform (satellite)
+    product_datetime: datetime
+        Start time of data used to generate product
 
-    Returns:
-        str: to full path of output filename of the format:
-          <basedir>/tc<tc_year>/<tc_basin>/<tc_basin><tc_stormnum><tc_year>/txt/
-          <source_name>_<platform_name>_surface_winds_<data_provider>_<YYYYMMDDHHMN>
+    Returns
+    -------
+    str: to full path of output filename of the format:
+        <basedir>/tc<tc_year>/<tc_basin>/<tc_basin><tc_stormnum><tc_year>/txt/
+        <source_name>_<platform_name>_surface_winds_<data_provider>_<YYYYMMDDHHMN>
 
-    Usage:
+    Usage
+    -----
         >>> startdt = datetime.strptime('20200216T001412', '%Y%m%dT%H%M%S')
-        >>> assemble_windspeeds_text_tc_fname('/outdir', 2020, 'SH', 16, 'smap-spd', 'smap', startdt, 'remss')
-        '/outdir/tc2020/SH/SH162020/txt/archer
+        >>> assemble_windspeeds_text_tc_fname('/outdir', 2020, 'SH', 16,\
+            'smap-spd', 'smap', startdt, 'remss')
+        >>> '/outdir/tc2020/SH/SH162020/txt/\
+             archer_smap_surface_winds_remss_20200216001412.txt
     """
-
     from geoips.plugins.modules.filename_formatters.utils.tc_file_naming import (
         tc_storm_basedir,
     )

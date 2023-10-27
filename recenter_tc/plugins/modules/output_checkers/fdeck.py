@@ -22,6 +22,45 @@ family = "standard"
 name = "fdeck"
 
 
+clear_text = text.clear_text
+
+
+def get_test_files():
+    """Return a series of varied fdeck files."""
+    import numpy as np
+    from shutil import copy
+    from os import environ, mkdir
+    from os.path import exists
+
+    savedir = str(environ["GEOIPS_OUTDIRS"]) + "/scratch/unit_tests/test_fdecks/"
+    if not exists(savedir):
+        mkdir(savedir)
+    comp_path = savedir + "compare._FIX"
+    match_path = savedir + "matched._FIX"
+    close_path = savedir + "close_mismatch._FIX"
+    bad_path = savedir + "bad_mismatch._FIX"
+    clear_text(match_path, close_path, bad_path)
+    copy(comp_path, match_path)
+    with open(comp_path, mode="r") as comp_txt:
+        close_mismatch = open(close_path, "w")
+        bad_mismatch = open(bad_path, "w")
+        for line in comp_txt.readlines():
+            for version in range(2):
+                rand = np.random.rand()
+                if version == 0:  # Close but mismatched
+                    if rand > 0.05:
+                        close_mismatch.write(line)
+                else:  # Mismatched -- not close
+                    if rand > 0.25:
+                        bad_mismatch.write(line)
+        close_mismatch.close()
+        bad_mismatch.close()
+    return comp_path, [match_path, close_path, bad_path]
+
+
+perform_test_comparisons = text.perform_test_comparisons
+
+
 def correct_file_format(fname):
     """Check if fname is an fdeck file.
 

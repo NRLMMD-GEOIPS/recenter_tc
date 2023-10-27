@@ -45,4 +45,4 @@ replacement to do just that.
 
 ::
 
-    added: recenter_tc/tests/unit_tests/plugins/module/output_checker/test_output_checkers.py
+    modified: recenter_tc/recenter_tc/plugins/modules/output_checkers/fdeck_checker.py
