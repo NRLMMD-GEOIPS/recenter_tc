@@ -25,14 +25,14 @@ name = "fdeck"
 clear_text = text.clear_text
 
 
-def get_test_files(output_path):
+def get_test_files(test_data_dir):
     """Return a series of varied fdeck files."""
     import numpy as np
     from shutil import copy
     from os import makedirs
     from os.path import exists, join
 
-    savedir = join(output_path, "scratch/unit_tests/test_fdecks/")
+    savedir = join(test_data_dir, "scratch", "unit_tests", "test_fdecks")
     if not exists(savedir):
         makedirs(savedir)
     # Sample fdeck - this is the output from the abi Visible test
@@ -45,17 +45,17 @@ def get_test_files(output_path):
         "     ,                        v, "
         "irad=0.15 | r50=0.48 | r95=1.36 | ep=-99 | src=ARCH"
     )
-    comp_path = join(savedir, "compare._FIX")
-    with open(comp_path, mode="w") as comp_txt:
+    comp_file = join(savedir, "compare._FIX")
+    with open(comp_file, mode="w") as comp_txt:
         comp_txt.writelines([fdeck_str])
-    match_path = join(savedir, "matched._FIX")
-    close_path = join(savedir, "close_mismatch._FIX")
-    bad_path = join(savedir, "bad_mismatch._FIX")
-    clear_text(match_path, close_path, bad_path)
-    copy(comp_path, match_path)
-    with open(comp_path, mode="r") as comp_txt:
-        close_mismatch = open(close_path, "w")
-        bad_mismatch = open(bad_path, "w")
+    match_file = join(savedir, "matched._FIX")
+    close_file = join(savedir, "close_mismatch._FIX")
+    bad_file = join(savedir, "bad_mismatch._FIX")
+    clear_text(match_file, close_file, bad_file)
+    copy(comp_file, match_file)
+    with open(comp_file, mode="r") as comp_txt:
+        close_mismatch = open(close_file, "w")
+        bad_mismatch = open(bad_file, "w")
         for char in comp_txt.readline():
             for version in range(2):
                 rand = np.random.rand()
@@ -67,7 +67,7 @@ def get_test_files(output_path):
                         bad_mismatch.write(char)
         close_mismatch.close()
         bad_mismatch.close()
-    return comp_path, [match_path, close_path, bad_path]
+    return comp_file, [match_file, close_file, bad_file]
 
 
 perform_test_comparisons = text.perform_test_comparisons
