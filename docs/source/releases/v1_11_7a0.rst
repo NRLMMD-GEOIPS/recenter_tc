@@ -14,6 +14,22 @@ Version 1.11.7a0 (2023-10-06)
 *****************************
 
 * Refactor: Update recenter-tc to use 'output_checkers' interface.
+* BugFix: Rename archer_image.py:name to 'archer_image'
+
+Bug Fixes
+=========
+
+Rename archer_image.py:name to 'archer_image'
+---------------------------------------------
+
+With the addition of 382 Raise Error For Duplicate Plugins PR on GeoIPS, we have tested
+for duplicate plugin names and found that archer_fix.py:name and archer_image.py:name
+were both named 'archer_fix'. We have changed the name in archer_image to 'archer_image'
+to fix this.
+
+::
+
+    modified: recenter_tc/recenter_tc/plugins/modules/filename_formatters/archer_image.py
 
 Refactoring Updates
 ===================
