@@ -19,7 +19,7 @@ from recenter_tc.filenames.base_paths import PATHS as gpaths
 
 interface = "filename_formatters"
 family = "xarray_metadata_to_filename"
-name = "archer_fix"
+name = "archer_image"
 
 LOG = logging.getLogger(__name__)
 
