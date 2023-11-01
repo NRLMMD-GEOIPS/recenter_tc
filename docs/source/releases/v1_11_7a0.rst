@@ -10,10 +10,11 @@
  | # # # for more details. If you did not receive the license, for more information see:
  | # # # https://github.com/U-S-NRL-Marine-Meteorology-Division/
 
-Version 1.11.7a0 (2023-10-06)
+Version 1.11.7a0 (2023-10-27)
 *****************************
 
 * Refactor: Update recenter-tc to use 'output_checkers' interface.
+* Testing: Added recenter-tc output_checker unit test
 * BugFix: Rename archer_image.py:name to 'archer_image'
 
 Bug Fixes
@@ -46,3 +47,18 @@ can be directly used from the new geoips repo output_checkers interface.
 
     modified: recenter_tc/pyproject.toml
     added: recenter_tc/recenter_tc/plugins/modules/output_checkers/fdeck_checker.py
+
+Testing Updates
+===============
+
+Added Recenter TC output_checker unit test
+------------------------------------------
+
+GeoIPS is currently lacking unit tests for nearly every interface. The addition of unit
+tests would remove the need to run geoips/tests/integration_tests/full_test.sh each time
+you want to ensure the code works as expected. These unit tests will be a faster
+replacement to do just that.
+
+::
+
+    modified: recenter_tc/recenter_tc/plugins/modules/output_checkers/fdeck_checker.py

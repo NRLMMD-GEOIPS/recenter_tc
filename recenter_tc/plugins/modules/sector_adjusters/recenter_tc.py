@@ -99,7 +99,7 @@ def run_archer(xarray_obj, varname):
 
     filenamer = filename_formatters.get_plugin(ARCHER_IMAGE_FILENAME_FORMAT)
     if filenamer.family != "xarray_metadata_to_filename":
-        LOG.warning(
+        LOG.error(
             "Unsupported filename type %s %s, not producing ARCHER IMAGE output",
             filenamer.family,
             ARCHER_IMAGE_FILENAME_FORMAT,
@@ -111,7 +111,7 @@ def run_archer(xarray_obj, varname):
 
     filenamer = filename_formatters.get_plugin(ARCHER_FIX_FILENAME_FORMAT)
     if filenamer.family != "xarray_metadata_to_filename":
-        LOG.warning(
+        LOG.error(
             "Unsupported filename type %s %s, not producing ARCHER FIX output",
             filenamer.family,
             ARCHER_FIX_FILENAME_FORMAT,
@@ -194,7 +194,7 @@ def run_archer(xarray_obj, varname):
         attrib["scan_type"] = "Crosstrack"
 
     if "sensor" not in attrib:
-        LOG.warning(
+        LOG.error(
             "Unsupported sensor %s / channel %s type for ARCHER, "
             "returning without recentering",
             xarray_obj.source_name,
@@ -216,7 +216,7 @@ def run_archer(xarray_obj, varname):
     if archer_image_fname is not None:
         make_dirs(dirname(archer_image_fname))
         out_fnames += [archer_image_fname]
-        LOG.info("ARCHERSUCCESS Writing ARCHER image: %s", archer_image_fname)
+        LOG.interactive("ARCHERSUCCESS Writing ARCHER image: %s", archer_image_fname)
     from archer.archer4 import archer4
 
     in_dict, out_dict, score_dict = archer4(
@@ -233,7 +233,7 @@ def run_archer(xarray_obj, varname):
         out_fnames += [archer_fix_fname]
         with open(archer_fix_fname, "w") as fobj:
             fobj.write(out_dict["fdeck_string"])
-        LOG.info("ARCHERSUCCESS Wrote ARCHER fdeck: %s", archer_fix_fname)
+        LOG.interactive("ARCHERSUCCESS Wrote ARCHER fdeck: %s", archer_fix_fname)
 
     archer_info = {}
     for field in [
