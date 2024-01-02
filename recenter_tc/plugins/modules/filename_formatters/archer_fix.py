@@ -17,7 +17,6 @@ import logging
 from os.path import join as pathjoin
 from recenter_tc.filenames.base_paths import PATHS as gpaths
 
-
 interface = "filename_formatters"
 family = "xarray_metadata_to_filename"
 name = "archer_fix"

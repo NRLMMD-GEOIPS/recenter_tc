@@ -10,19 +10,47 @@
  | # # # for more details. If you did not receive the license, for more information see:
  | # # # https://github.com/U-S-NRL-Marine-Meteorology-Division/
 
-Version 1.10.0 (2023-05-17)
+Version 1.11.7 (2023-11-17)
 ***************************
+
+* Add registered_plugins.json to .gitignore
+* Remove no_flake8 from check_code call in test_all.sh
+* Add 1.11.7 release note
+
+Bug Fixes
+=========
+
+Add registered_plugins.json to .gitignore
+-----------------------------------------
+
+*From GEOIPS#393: 2023-11-17, bug fixes*
+
+::
+
+  .gitignore
+
+Testing Updates
+===============
+
+Remove no_flake8 from check_code call in test_all.sh
+----------------------------------------------------
+
+*From GEOIPS#393: 2023-11-17, bug fixes*
+
+::
+
+  tests/test_all.sh
 
 Release Updates
 ===============
 
-Add 1.10.0 release note
+Add 1.11.7 release note
 -----------------------
 
-*From issue GEOIPS#251: 2023-05-17, version update*
+*From GEOIPS#393: 2023-11-09, version update*
 
 ::
 
     modified: CHANGELOG.rst
-    new file: docs/source/releases/v1_10_0.rst
+    new file: docs/source/releases/v1_11_7.rst
     modified: docs/source/releases/index.rst
