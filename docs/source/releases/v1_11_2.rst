@@ -29,7 +29,6 @@ If pressure interpolation fails (raising a ValueError), set recenter_pressure to
 
     modified: recenter_tc/plugins/modules/sector_adjusters/recenter_tc.py
 
-
 Formatting Fixes
 ================
 
@@ -47,3 +46,10 @@ Modified all files to conform to GEOIPS formatting styles.
     modified: recenter_tc/plugins/modules/__init__.py
     modified: recenter_tc/plugins/__init__.py
     modified: recenter_tc/__init__.py
+
+Add release note to index.rst so build_docs.sh passes.
+------------------------------------------------------
+
+::
+
+  modified: docs/source/releases/v1_11_2.rst

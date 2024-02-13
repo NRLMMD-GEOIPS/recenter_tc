@@ -99,7 +99,7 @@ def run_archer(xarray_obj, varname):
 
     filenamer = filename_formatters.get_plugin(ARCHER_IMAGE_FILENAME_FORMAT)
     if filenamer.family != "xarray_metadata_to_filename":
-        LOG.error(
+        LOG.warning(
             "Unsupported filename type %s %s, not producing ARCHER IMAGE output",
             filenamer.family,
             ARCHER_IMAGE_FILENAME_FORMAT,
@@ -111,7 +111,7 @@ def run_archer(xarray_obj, varname):
 
     filenamer = filename_formatters.get_plugin(ARCHER_FIX_FILENAME_FORMAT)
     if filenamer.family != "xarray_metadata_to_filename":
-        LOG.error(
+        LOG.warning(
             "Unsupported filename type %s %s, not producing ARCHER FIX output",
             filenamer.family,
             ARCHER_FIX_FILENAME_FORMAT,

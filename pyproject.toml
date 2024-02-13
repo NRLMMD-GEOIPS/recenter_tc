@@ -56,8 +56,5 @@ dependencies = [
 "archer_fix" = "recenter_tc.plugins.modules.filename_formatters.archer_fix"
 "archer_image" = "recenter_tc.plugins.modules.filename_formatters.archer_image"
 
-# [project.entry-points."geoips.output_comparisons"]
-# "compare_outputs_recenter_tc" = "recenter_tc.compare_outputs_recenter_tc:compare_outputs_recenter_tc"
-
 [project.entry-points."geoips.output_checkers"]
 "fdeck" = "recenter_tc.plugins.modules.output_checkers.fdeck"
