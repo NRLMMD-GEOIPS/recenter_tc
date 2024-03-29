@@ -1,0 +1,33 @@
+ | # # # Distribution Statement A. Approved for public release. Distribution unlimited.
+ | # # #
+ | # # # Author:
+ | # # # Naval Research Laboratory, Marine Meteorology Division
+ | # # #
+ | # # # This program is free software: you can redistribute it and/or modify it under
+ | # # # the terms of the NRLMMD License included with this program. This program is
+ | # # # distributed WITHOUT ANY WARRANTY; without even the implied warranty of
+ | # # # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the included license
+ | # # # for more details. If you did not receive the license, for more information see:
+ | # # # https://github.com/U-S-NRL-Marine-Meteorology-Division/
+
+Version 1.12.2a0 (2024-29-03)
+*****************************
+
+* Update: Update logging functions to use ``log_with_emphasis`` in ``geoips`` 
+
+
+Updates
+=======
+
+Update logging functions to use ``log_with_emphasis`` in ``geoips`` 
+--------------------------------------------------------------------
+
+Removed manual logging with lots of "********************" string literals and 
+replaces it with a built in logging function implemented in geoips. 
+
+This update does not change any functionality, but some logged out statements 
+will now have slightly different formatting.
+
+::
+
+    modified: recenter_tc/plugins/modules/sector_adjusters/recenter_tc.py

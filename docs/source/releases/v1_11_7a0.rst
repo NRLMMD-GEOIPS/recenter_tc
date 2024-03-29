@@ -16,24 +16,6 @@ Version 1.11.7a0 (2023-10-27)
 * Refactor: Update recenter-tc to use 'output_checkers' interface.
 * Testing: Added recenter-tc output_checker unit test
 * BugFix: Rename archer_image.py:name to 'archer_image'
-* Update: Update logging functions to use ``log_with_emphasis`` in ``geoips`` 
-
-
-Updates
-=======
-
-Update logging functions to use ``log_with_emphasis`` in ``geoips`` 
---------------------------------------------------------------------
-
-Removed manual logging with lots of "********************" string literals and 
-replaces it with a built in logging function implemented in geoips. 
-
-This update does not change any functionality, but some logged out statements 
-will now have slightly different formatting.
-
-::
-
-    modified: recenter_tc/plugins/modules/sector_adjusters/recenter_tc.py
 
 Bug Fixes
 =========
