@@ -371,7 +371,7 @@ def recenter_with_archer(
     out_fnames = []
     if area_def_to_recenter.sector_info["vmax"] < ARCHER_REQUIRED_VMAX_KTS:
         log_with_emphasis(LOG.info,
-            ["SKIPPING not attempting to run archer, "
+            *["SKIPPING not attempting to run archer, "
             "vmax of %s less than required %s kts",
             area_def_to_recenter.sector_info["vmax"],
             ARCHER_REQUIRED_VMAX_KTS,
