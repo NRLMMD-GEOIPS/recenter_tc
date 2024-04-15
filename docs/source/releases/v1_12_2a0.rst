@@ -10,65 +10,24 @@
  | # # # for more details. If you did not receive the license, for more information see:
  | # # # https://github.com/U-S-NRL-Marine-Meteorology-Division/
 
-.. _release_notes:
+Version 1.12.2a0 (2024-29-03)
+*****************************
 
-*************
-Release Notes
-*************
+* Update: Update logging functions to use ``log_with_emphasis`` in ``geoips`` 
 
-Version 1.12
-------------
 
-.. toctree::
-   :maxdepth: 1
+Updates
+=======
 
-   v1_12_2a0
+Update logging functions to use ``log_with_emphasis`` in ``geoips`` 
+--------------------------------------------------------------------
 
-Version 1.11
-------------
+Removed manual logging with lots of "********************" string literals and 
+replaces it with a built in logging function implemented in geoips. 
 
-.. toctree::
-   :maxdepth: 1
+This update does not change any functionality, but some logged out statements 
+will now have slightly different formatting.
 
-   v1_11_7
-   v1_11_7a0
-   v1_11_2
-   v1_11_0
+::
 
-Version 1.10
-------------
-
-.. toctree::
-   :maxdepth: 1
-
-   v1_10_3
-   v1_10_2
-   v1_10_0
-   v1_10_0a2
-   v1_10_0a1
-   v1_10_0a0
-
-Version 1.9
------------
-
-.. toctree::
-   :maxdepth: 1
-
-   v1_9_1
-
-Version 1.8
------------
-
-.. toctree::
-   :maxdepth: 1
-
-   v1_8_1
-   v1_8_0
-
-Version 1.7
------------
-
-.. toctree::
-   :maxdepth: 1
-
-   v1_7_0
+    modified: recenter_tc/plugins/modules/sector_adjusters/recenter_tc.py
