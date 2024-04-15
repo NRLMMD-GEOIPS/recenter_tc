@@ -370,12 +370,14 @@ def recenter_with_archer(
     recentered_area_defs = {}
     out_fnames = []
     if area_def_to_recenter.sector_info["vmax"] < ARCHER_REQUIRED_VMAX_KTS:
-        log_with_emphasis(LOG.info,
-            *["SKIPPING not attempting to run archer, "
-            "vmax of %s less than required %s kts",
-            area_def_to_recenter.sector_info["vmax"],
-            ARCHER_REQUIRED_VMAX_KTS,
-            ]
+        log_with_emphasis(
+            LOG.info,
+            *[
+                "SKIPPING not attempting to run archer, "
+                "vmax of %s less than required %s kts",
+                area_def_to_recenter.sector_info["vmax"],
+                ARCHER_REQUIRED_VMAX_KTS,
+            ],
         )
         return recentered_area_defs, out_fnames
     # I believe ARCHER can not have any masked data within the data grid,
@@ -508,8 +510,11 @@ def recenter_with_akima(sect_xarray, area_def):
             closest_idx = idx
         idx += 1
 
-    log_with_emphasis(LOG.info, f"Interpolating new center from {len(clats)}" + 
-                      f"best track positions, closest position {closest_idx}...")
+    log_with_emphasis(
+        LOG.info,
+        f"Interpolating new center from {len(clats)}"
+        + f"best track positions, closest position {closest_idx}...",
+    )
     from akima86.akima86 import interpolate
     import numpy
 
