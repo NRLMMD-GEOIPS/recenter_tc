@@ -35,7 +35,7 @@ name = "recenter_tc"
 
 def print_area_def(area_def, print_str):
     """Print the supplied pyresample area definition using log with emphasis."""
-    messages = [print_str, area_def]
+    messages = [print_str, str(area_def)]
     for key, value in area_def.sector_info.items():
         messages.append(f"{key}: {value}")
     log_with_emphasis(LOG.info, *messages)
