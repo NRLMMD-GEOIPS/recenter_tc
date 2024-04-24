@@ -13,20 +13,39 @@
 Version 1.12.2a0 (2024-29-03)
 *****************************
 
-* Update: Update logging functions to use ``log_with_emphasis`` in ``geoips`` 
-
+* Update: Update logging functions to use ``log_with_emphasis`` in ``geoips``
+* Bug Fix: Re-added GeoIPS ``single_source:print_area_def`` to ``recenter_tc.py``
 
 Updates
 =======
 
-Update logging functions to use ``log_with_emphasis`` in ``geoips`` 
+Update logging functions to use ``log_with_emphasis`` in ``geoips``
 --------------------------------------------------------------------
 
-Removed manual logging with lots of "********************" string literals and 
-replaces it with a built in logging function implemented in geoips. 
+Removed manual logging with lots of "********************" string literals and
+replaces it with a built in logging function implemented in geoips.
 
-This update does not change any functionality, but some logged out statements 
+This update does not change any functionality, but some logged out statements
 will now have slightly different formatting.
+
+::
+
+    modified: recenter_tc/plugins/modules/sector_adjusters/recenter_tc.py
+
+Bug Fix
+=======
+
+Re-added GeoIPS ``single_source:print_area_def`` to ``recenter_tc.py``
+----------------------------------------------------------------------
+
+*Stems from GEOIPS#464, 2024-04-15: Finish Log with Emphasis Function*
+
+The PR mentioned above improved the log with emphasis function but ended up removing
+``geoips/plugins/modules/procflows/single_source.py:print_area_def`` function as it was
+not used within GeoIPS. However, when running ``create_plugin_registries``, we get an
+error within ``recenter_tc/plugins/modules/sector_adjusters/recenter_tc.py`` as that
+module uses the aforementioned function. This Bug Fix re-implements ``print_area_def``
+and refactors that function to use the ``log_with_emphasis`` function instead.
 
 ::
 

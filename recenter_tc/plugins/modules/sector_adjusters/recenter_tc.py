@@ -16,7 +16,6 @@ from os.path import dirname
 
 import logging
 
-from geoips.plugins.modules.procflows.single_source import print_area_def
 from geoips.filenames.base_paths import make_dirs
 from geoips.interfaces import filename_formatters
 from geoips.commandline.log_setup import log_with_emphasis
@@ -32,6 +31,14 @@ LOG = logging.getLogger(__name__)
 interface = "sector_adjusters"
 family = "list_xarray_list_variables_to_area_def_out_fnames"
 name = "recenter_tc"
+
+
+def print_area_def(area_def, print_str):
+    """Print the supplied pyresample area definition using log with emphasis."""
+    messages = [print_str, str(area_def)]
+    for key, value in area_def.sector_info.items():
+        messages.append(f"{key}: {value}")
+    log_with_emphasis(LOG.info, *messages)
 
 
 def run_archer(xarray_obj, varname):
