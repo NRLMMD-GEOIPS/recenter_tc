@@ -1,0 +1,67 @@
+.. dropdown:: Distribution Statement
+
+ | # # # Distribution Statement A. Approved for public release. Distribution is unlimited.
+ | # # #
+ | # # # Author:
+ | # # # Naval Research Laboratory, Marine Meteorology Division
+ | # # #
+ | # # # This program is free software: you can redistribute it and/or modify it under
+ | # # # the terms of the NRLMMD License included with this program. This program is
+ | # # # distributed WITHOUT ANY WARRANTY; without even the implied warranty of
+ | # # # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the included license
+ | # # # for more details. If you did not receive the license, for more information see:
+ | # # # https://github.com/U-S-NRL-Marine-Meteorology-Division/
+
+Version 1.13.0 (2024-06-10)
+***************************
+
+* Bug Fixes
+
+  * Remove CHANGELOG.md from the docs/source directory
+* Release Updates
+
+  * Add 1.13.0 release note
+* Testing Updates
+
+  * Update ascat UHR windbarb test output for matplotlib update
+
+Bug Fixes
+=========
+
+Remove CHANGELOG.md from the docs/source directory
+--------------------------------------------------
+
+*From issue GEOIPS#513: 2024-06-10, version update*
+
+Now that md files are allowed in the docs directory, must remove CHANGELOG.md
+from docs/source/releases since it is not properly formatted.
+
+::
+
+  renamed:    docs/source/releases/CHANGELOG.md -> docs/archive/CHANGELOG.md
+
+Testing Updates
+===============
+
+Update ascat UHR windbarb test output for matplotlib update
+-----------------------------------------------------------
+
+Minor changes at edge of image with matplotlib 3.9. Note this image looks horrific,
+but it is similarly horrific.  Fixing the image itself is a separate issue.
+
+::
+
+  modified: tests/outputs/ascat_uhr.tc.windbarbs.imagery_clean/20210421_014200_WP022021_ascatuhr_metop-c_windbarbs_120kts_100p00_res0p1-akima-clean.png
+
+Release Updates
+===============
+
+Add 1.13.0 release note
+-----------------------
+
+*From issue GEOIPS#513: 2024-06-10, version update*
+
+::
+
+    new file: docs/source/releases/v1_13_0.rst
+    modified: docs/source/releases/index.rst
