@@ -1,4 +1,4 @@
-# # # Distribution Statement A. Approved for public release. Distribution unlimited.
+# # # Distribution Statement A. Approved for public release. Distribution is unlimited.
 # # #
 # # # Author:
 # # # Naval Research Laboratory, Marine Meteorology Division
@@ -16,10 +16,14 @@ from os.path import dirname
 
 import logging
 
+import pyresample
+
 from geoips.filenames.base_paths import make_dirs
 from geoips.interfaces import filename_formatters
+from geoips.errors import CoverageError
 from geoips.commandline.log_setup import log_with_emphasis
-
+from geoips.xarray_utils.data import sector_xarray_spatial
+from geoips.sector_utils.estimate_area_extent import estimate_area_extent
 from recenter_tc.filenames.base_paths import PATHS as GPATHS
 
 ARCHER_REQUIRED_VMAX_KTS = 50
@@ -285,7 +289,7 @@ def call(
     include_archer_info=False,
 ):
     """Recenters the TC."""
-    log_with_emphasis(LOG.info, "Attempting to recenter TC sector...")
+    log_with_emphasis(LOG.interactive, "Attempting to recenter TC sector...")
     ret_area_def = area_def.copy()
 
     # If recenter_variables is not defined, produce ARCHER output from all variables,
@@ -312,9 +316,10 @@ def call(
                     akima_only=akima_only,
                     include_archer_info=include_archer_info,
                 )
-            except AttributeError:
+            except CoverageError:
                 # If the archer spatial sectoring does not yield any data,
                 # it will result in an attribute error
+                LOG.exception("SKIPPING: recenter_area_def raised CoverageError")
                 continue
             out_fnames += curr_out_fnames
             for varname in curr_recentered_area_defs:
@@ -341,7 +346,7 @@ def call(
 
     LOG.info(f"\n\nout_fnames" f"\n{out_fnames}")
 
-    log_with_emphasis(LOG.info, "Done recentering TC sector")
+    log_with_emphasis(LOG.interactive, "Done recentering TC sector")
 
     # If nothing recentered, return the original area_def
     return ret_area_def, out_fnames
@@ -378,12 +383,12 @@ def recenter_with_archer(
     out_fnames = []
     if area_def_to_recenter.sector_info["vmax"] < ARCHER_REQUIRED_VMAX_KTS:
         log_with_emphasis(
-            LOG.info,
+            LOG.interactive,
             *[
                 "SKIPPING not attempting to run archer, "
                 "vmax of %s less than required %s kts",
-                area_def_to_recenter.sector_info["vmax"],
-                ARCHER_REQUIRED_VMAX_KTS,
+                str(area_def_to_recenter.sector_info["vmax"]),
+                str(ARCHER_REQUIRED_VMAX_KTS),
             ],
         )
         return recentered_area_defs, out_fnames
@@ -397,16 +402,38 @@ def recenter_with_archer(
     # the ARCHER center. and sector / register based on
     # the ARCHER centered area_def. Ok, I'll just do that
     # really quickly.
-    log_with_emphasis(LOG.info, "Attempting to run ARCHER...")
+    log_with_emphasis(LOG.interactive, "Attempting to run ARCHER...")
 
-    from geoips.xarray_utils.data import sector_xarray_spatial
-
+    # We use a box 2 degrees x 2 degrees around the center for ARCHER
     clat = area_def_to_recenter.sector_info["clat"]
     clon = area_def_to_recenter.sector_info["clon"]
     minlat = clat - 2  # 2
     maxlat = clat + 2  # 2
     minlon = clon - 2  # 2
     maxlon = clon + 2  # 2
+    # Estimate the area extent to build the small center sector to pass to
+    # sector_xarray_spatial.
+    area_extent_dict = estimate_area_extent(
+        minlat, minlon, maxlat, maxlon, min(area_def_to_recenter.resolution)
+    )
+    area_extent = area_extent_dict["lower_left_xy"] + area_extent_dict["upper_right_xy"]
+    shape = (area_extent_dict["height"], area_extent_dict["width"])
+
+    # Create the small center area definition to use in resectoring
+    area_def_for_sector = pyresample.create_area_def(
+        area_def_to_recenter.area_id,
+        description=area_def_to_recenter.description,
+        projection=area_def_to_recenter.proj_dict,
+        resolution=area_def_to_recenter.resolution,
+        shape=shape,
+        area_extent=area_extent,
+    )
+    # Force to exact min/max lat/lon (estimate area extent is not exact - this
+    # ensures the tests match exactly.  Eventually we may want to remove this
+    # and update the test outputs, will be good to track how much this very minor
+    # change impacts the outputs).
+    area_def_for_sector.area_extent_ll = (minlon, minlat, maxlon, maxlat)
+
     lat_pad = 0
     lon_pad = 0
     # Need full swath width for AMSU-B and MHS for ARCHER.
@@ -414,9 +441,13 @@ def recenter_with_archer(
     if sect_xarray.source_name in ["amsu-b", "mhs"]:
         lat_pad = 15
         lon_pad = 25
+    # Now use the area_def we assembled to sector the xarray.
+    # All of that assembly was required because sector_xarray_spatial was updated
+    # to take area_def vs extent_ll, and we needed the exact min/max lat/lon we
+    # had before to get the exact same results.
     archer_xarray = sector_xarray_spatial(
         sect_xarray,
-        [minlon, minlat, maxlon, maxlat],
+        area_def_for_sector,
         variables + ["latitude", "longitude"],
         lon_pad=lon_pad,
         lat_pad=lat_pad,
@@ -427,7 +458,7 @@ def recenter_with_archer(
     new_fields = area_def_to_recenter.sector_info.copy()
 
     for varname in sorted(variables):
-        log_with_emphasis(LOG.info, f"Running ARCHER on {varname}...")
+        log_with_emphasis(LOG.interactive, f"Running ARCHER on {varname}...")
 
         in_dict, out_dict, score_dict, curr_out_fnames, archer_info = run_archer(
             archer_xarray, varname
@@ -448,10 +479,10 @@ def recenter_with_archer(
                 area_def_to_recenter, new_fields
             )
             # print_area_def(area_def_to_recenter, 'Final ARCHER recentered area def')
-            log_with_emphasis(LOG.info, "ARCHER run successful")
+            log_with_emphasis(LOG.interactive, "ARCHER run successful")
         else:
-            log_with_emphasis(LOG.info, "ARCHER run unsuccessful")
-    log_with_emphasis(LOG.info, "Done running ARCHER")
+            log_with_emphasis(LOG.interactive, "ARCHER run unsuccessful")
+    log_with_emphasis(LOG.interactive, "Done running ARCHER")
     return recentered_area_defs, out_fnames
 
 
@@ -461,7 +492,7 @@ def recenter_with_akima(sect_xarray, area_def):
     from geoips.sector_utils.utils import remove_duplicate_storm_positions
     from os.path import expandvars
 
-    log_with_emphasis(LOG.info, "Running AKIMA center interpolation...")
+    log_with_emphasis(LOG.interactive, "Running AKIMA center interpolation...")
 
     # Grab the center time of the actual TC sector,
     # not the start_datetime or end_datetime
@@ -518,7 +549,7 @@ def recenter_with_akima(sect_xarray, area_def):
         idx += 1
 
     log_with_emphasis(
-        LOG.info,
+        LOG.interactive,
         f"Interpolating new center from {len(clats)}"
         + f"best track positions, closest position {closest_idx}...",
     )
@@ -566,7 +597,7 @@ def recenter_with_akima(sect_xarray, area_def):
 
     # print_area_def(recentered_area_def, 'New akima center')
     # print_area_def(area_def, 'Original center')
-    log_with_emphasis(LOG.info, "Akima interpolation successful")
+    log_with_emphasis(LOG.interactive, "Akima interpolation successful")
     return recentered_area_def
 
 

@@ -1,4 +1,6 @@
- | # # # Distribution Statement A. Approved for public release. Distribution unlimited.
+.. dropdown:: Distribution Statement
+
+ | # # # Distribution Statement A. Approved for public release. Distribution is unlimited.
  | # # #
  | # # # Author:
  | # # # Naval Research Laboratory, Marine Meteorology Division
@@ -16,12 +18,22 @@
 Release Notes
 *************
 
+Version 1.13
+------------
+
+.. toctree::
+   :maxdepth: 1
+
+   v1_13_0
+
 Version 1.12
 ------------
 
 .. toctree::
    :maxdepth: 1
 
+   v1_12_3
+   v1_12_2
    v1_12_2a0
 
 Version 1.11
@@ -29,6 +41,7 @@ Version 1.11
 
 .. toctree::
    :maxdepth: 1
+
 
    v1_11_7
    v1_11_7a0
