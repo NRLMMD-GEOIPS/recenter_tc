@@ -1,4 +1,5 @@
 installation:
+<<<<<<< HEAD
 - description: 'Point at pypi for akima86'
   files:
     added:
@@ -103,3 +104,14 @@ removal:
     number: 0
     repo_url: ''
   title: ''
+=======
+- description: |
+    Update akima86 dependency to pull from pypi rather than direct github.com
+  files:
+    modified:
+    - 'pyproject.toml'
+  related-issue:
+    number: 666
+    repo_url: 'https://github.com/NRLMMD-GEOIPS/geoips'
+  title: 'Update akima86 dependency to pull from pypi rather than direct github.com'
+>>>>>>> d1ab8f7d946dd1db19f0e9f8a7251d3a7e5a63ab
