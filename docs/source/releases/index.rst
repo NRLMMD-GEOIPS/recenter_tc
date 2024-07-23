@@ -18,14 +18,6 @@
 Release Notes
 *************
 
-Latest (cutting-edge from GitHub)
-------
-
-.. toctree::
-   :maxdepth: 1
-
-   latest
-
 Version 1.13
 ------------
 
