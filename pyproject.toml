@@ -39,7 +39,7 @@ build-backend = "poetry_dynamic_versioning.backend"                          # o
 [tool.poetry.dependencies] # must download to run
 python = ">=3.10"       # mandatory to declare the required python version
 archer = { git = "https://github.com/mindyls/archer.git" }
-akima86 = { git = "https://github.com/NRLMMD-GEOIPS/akima86.git" }
+akima86 = "*"
 
 [tool.poetry.plugins."geoips.plugin_packages"]
 "recenter_tc" = "recenter_tc"
