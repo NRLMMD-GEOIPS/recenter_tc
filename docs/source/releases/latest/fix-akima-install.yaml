@@ -1,0 +1,105 @@
+installation:
+- description: 'Point at pypi for akima86'
+  files:
+    added:
+    - ''
+    deleted:
+    - ''
+    modified:
+    - 'pyproject.toml'
+    moved:
+    - ''
+  related-issue:
+    number: 39
+    repo_url: ''
+  title: ''
+continuous integration:
+- description: 'Update for brassy'
+  files:
+    added:
+    - 'docs/source/releases/latest/'
+    deleted:
+    - ''
+    modified:
+    - 'docs/source/releases/index.rst'
+    moved:
+    - ''
+  related-issue:
+    number: 39
+    repo_url: ''
+  title: ''
+deprecation:
+- description: ''
+  files:
+    added:
+    - ''
+    deleted:
+    - ''
+    modified:
+    - ''
+    moved:
+    - ''
+  related-issue:
+    number: 0
+    repo_url: ''
+  title: ''
+documentation:
+- description: ''
+  files:
+    added:
+    - ''
+    deleted:
+    - ''
+    modified:
+    - ''
+    moved:
+    - ''
+  related-issue:
+    number: 0
+    repo_url: ''
+  title: ''
+enhancement:
+- description: ''
+  files:
+    added:
+    - ''
+    deleted:
+    - ''
+    modified:
+    - ''
+    moved:
+    - ''
+  related-issue:
+    number: 0
+    repo_url: ''
+  title: ''
+performance:
+- description: ''
+  files:
+    added:
+    - ''
+    deleted:
+    - ''
+    modified:
+    - ''
+    moved:
+    - ''
+  related-issue:
+    number: 0
+    repo_url: ''
+  title: ''
+removal:
+- description: ''
+  files:
+    added:
+    - ''
+    deleted:
+    - ''
+    modified:
+    - ''
+    moved:
+    - ''
+  related-issue:
+    number: 0
+    repo_url: ''
+  title: ''
