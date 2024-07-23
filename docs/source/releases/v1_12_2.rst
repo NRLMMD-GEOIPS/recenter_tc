@@ -1,4 +1,6 @@
- | # # # Distribution Statement A. Approved for public release. Distribution unlimited.
+.. dropdown:: Distribution Statement
+
+ | # # # Distribution Statement A. Approved for public release. Distribution is unlimited.
  | # # #
  | # # # Author:
  | # # # Naval Research Laboratory, Marine Meteorology Division
@@ -12,6 +14,54 @@
 
 Version 1.12.2 (2024-04-24)
 **************************************
+
+* Bug fixes
+
+  * Fix sector_xarray_spatial arguments in recenter_tc sector adjuster
+  * Catch CoverageError rather than AttributeError on recenter_tc_area_def
+* Release updates
+
+  * Add v1.12.2 release note
+
+Bug fixes
+=========
+
+Catch CoverageError rather than AttributeError on recenter_tc_area_def
+----------------------------------------------------------------------
+
+Previously was catching any "AttributeError" within recenter_tc_area_def and
+skipping the current variable for recentering. Update so "CoverageError" is caught,
+since we are specifically attempting to skip sectors that do not have coverage.
+Catching and skipping the AttributeError was hiding legitimate errors in
+processing (ie, the incorrect arguments getting passed to sector_xarray_spatial).
+
+::
+
+  recenter_tc/plugins/modules/sector_adjusters/recenter_tc.py
+
+
+Fix sector_xarray_spatial arguments in recenter_tc sector adjuster
+------------------------------------------------------------------
+
+When fixing the polar imagery plotting bug, the arguments to "sector_xarray_spatial"
+changed, causing the call within recenter_tc sector adjuster to fail.  Update
+to pass correct argument (area_def vs list of extent).
+
+Note this update required explicitly building an area_def that contained the
+correct area_extent_ll.  Note this explicitly sets area_def_for_sector.area_extent_ll
+to the calculated min/max lat/lon (+- 2 degrees from center), since
+"estimate_area_extent" does not return the exact min/max lat/lon as requested.
+
+A very slight variation in min/max lat/lon of the sectored xarray caused
+a very slight variation in the output of ARCHER.  In the interest of maintaining
+the exact same results, force it to use the exact same min/max lat/lon.
+
+Also updated more of the log statements to interactive, vs info to provide more
+feedback.
+
+::
+
+        modified:   recenter_tc/plugins/modules/sector_adjusters/recenter_tc.py
 
 Release Updates
 ===============

@@ -1,4 +1,6 @@
- | # # # Distribution Statement A. Approved for public release. Distribution unlimited.
+.. dropdown:: Distribution Statement
+
+ | # # # Distribution Statement A. Approved for public release. Distribution is unlimited.
  | # # #
  | # # # Author:
  | # # # Naval Research Laboratory, Marine Meteorology Division
@@ -13,6 +15,9 @@
 Version 1.12.3 (2024-03-02)
 ***************************
 
+* Bug fixes
+
+  * Ensure strings are passed to log_with_emphasis, not floats.
 * Installation Updates
 
   * Update to poetry pyproject.toml
@@ -20,6 +25,17 @@ Version 1.12.3 (2024-03-02)
 
   * Add release note for v1.12.3
 
+Bug fixes
+=========
+
+Ensure strings are passed to log_with_emphasis, not floats.
+-----------------------------------------------------------
+
+Convert floats to str to ensure log_with_emphasis successfully completes.
+
+::
+
+  modified: recenter_tc/plugins/modules/sector_adjusters/recenter_tc.py
 
 Installation Updates
 ====================
