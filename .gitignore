@@ -1,12 +1,27 @@
 ####################################################
 # recenter_tc package specific .gitignore options:
 
-# archer test outputs
-archer_test*                                                                            
+# ARCHER test outputs
+archer_test*
 
 ####################################################
 # GeoIPS Environment specific .gitignore options:
 
+# auto-downloaded test datasets
+tests/data/**
+
+# directory for profiling outputs
+profiling/
+*.pstats
+
+# auto-generated command instructions file
+geoips/commandline/ancillary_info/cmd_instructions.json
+# auto-generated alias mapping file for the cli
+geoips/commandline/ancillary_info/alias_mapping.json
+# auto-generated release note files, all release note information
+# is stored in .yaml format and the rst files auto-generated.
+# index.rst, latest.rst, v*.rst
+docs/source/releases/*.rst
 # auto-generated plugin registry file
 registered_plugins.json
 # auto-generated version file, created at run-time
