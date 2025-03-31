@@ -4,7 +4,7 @@ testing:
     we made to certain readers affected the yaml output of
     abi.tc.Visible.imagery_clean.sh. This was a very simple PR and was just an update
     to the aforementioned output. There are two lines added to the yaml file which stem
-    from new metadata added to our xarray object.
+    from new metadata added to our xarray object, adding the source_filenames field.
   files:
     modified:
       - tests/outputs/abi.tc.Visible.imagery_clean/20200918_195020_AL202020_abi_goes-16_Visible_110kts_100p00_res1p0-arB03Ref-clean.png.yaml
