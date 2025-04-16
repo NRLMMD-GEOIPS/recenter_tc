@@ -1,0 +1,14 @@
+bug fix:
+- title: 'Use mindyls archer depedency'
+  description: |
+    mindyls version of archer has some bug fixes - use that.
+  files:
+    modified:
+    - 'pyproject.toml'
+  related-issue:
+    number: 753
+    repo_url: 'GEOIPS/geoips'
+  date:
+    start: 2025-04-08
+    finish: 2025-04-08
+

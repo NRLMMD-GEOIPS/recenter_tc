@@ -51,8 +51,8 @@ python = ">=3.10"       # mandatory to declare the required python version
 # worked.  We need to remember to remove the setuptools<70 dependency in
 # geoips pyproject.toml as soon as we resolve the meson builds for all the
 # fortran-based plugins.
-akima86 = { git = "https://github.com/NRLMMD-GEOIPS/akima86.git" }
 archer = { git = "https://github.com/mindyls/archer.git" }
+akima86 = { git = "https://github.com/NRLMMD-GEOIPS/akima86.git" }
 
 [tool.poetry.plugins."geoips.plugin_packages"]
 "recenter_tc" = "recenter_tc"

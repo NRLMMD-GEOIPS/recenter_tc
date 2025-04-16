@@ -1,10 +1,4 @@
 ####################################################
-# recenter_tc package specific .gitignore options:
-
-# ARCHER test outputs
-archer_test*
-
-####################################################
 # geoips package specific .gitignore options:
 
 # auto-downloaded test datasets
