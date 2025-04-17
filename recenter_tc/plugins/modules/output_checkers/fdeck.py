@@ -17,7 +17,6 @@ name = "fdeck"
 
 def get_test_files(test_data_dir):
     """Return a series of varied fdeck files."""
-    import numpy as np
     from shutil import copy
     from os import makedirs
     from os.path import exists, join
@@ -49,7 +48,7 @@ def get_test_files(test_data_dir):
         predictable_random = get_numpy_seeded_random_generator()
         for char in comp_txt.readline():
             for version in range(2):
-                rand = predictable_random.random((0,100))
+                rand = predictable_random.random((0, 100))
                 if version == 0:  # Close but mismatched
                     if rand > 5:
                         close_mismatch.write(char)
