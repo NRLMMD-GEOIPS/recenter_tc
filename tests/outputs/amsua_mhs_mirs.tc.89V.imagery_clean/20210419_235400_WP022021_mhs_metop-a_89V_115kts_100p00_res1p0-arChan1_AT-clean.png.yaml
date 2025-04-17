@@ -1,6 +1,6 @@
 adjustment_id: arChan1_AT
 aid_type: BEST
-archer_fdeck: WP, 2, 2104192354,  70, UNKN,          C,  , 1540N, 12620E,      , 1,    ,  ,     ,  ,     ,    ,     ,     ,     ,     ,     ,  ,  ,  ,  ,  ,    ,    ,  ,  CIMS,
+archer_fdeck: WP, 2, 2104192353,  70, UNKN,          C,  , 1540N, 12620E,      , 1,    ,  ,     ,  ,     ,    ,     ,     ,     ,     ,     ,  ,  ,  ,  ,  ,    ,    ,  ,  CIMS,
   AUT,    ,             ,             ,    ,     ,                        x, irad=0.55
   | r50=0.09 | r95=0.27 | ep=100 | src=ARCH
 bounding_box:
@@ -23,7 +23,7 @@ interpolated_time: 2021-04-19 23:56:00
 invest_number: 94
 parser_name: bdeck_parser
 pressure: 938.99
-product_filename: $GEOIPS_OUTDIRS/preprocessed/tcwww/tc2021/WP/WP022021/png_clean/89V/metop-a/20210419_235400_WP022021_amsu-b_metop-a_89V_115kts_100p00_res1p0-arChan1_AT-clean.png
+product_filename: $GEOIPS_OUTDIRS/preprocessed/tcwww/tc2021/WP/WP022021/png_clean/89V/metop-a/20210419_235400_WP022021_mhs_metop-a_89V_115kts_100p00_res1p0-arChan1_AT-clean.png
 recenter_type: Chan1_AT
 sector_type: tc
 source_filename: $GEOIPS_PACKAGES_DIR/geoips/tests/sectors/tc_bdecks/bwp022021.dat
