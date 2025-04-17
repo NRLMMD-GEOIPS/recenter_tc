@@ -6,6 +6,7 @@
 import logging
 
 from geoips.plugins.modules.output_checkers import text
+from geoips.geoips_utils import get_numpy_seeded_random_generator
 
 LOG = logging.getLogger(__name__)
 
@@ -45,14 +46,15 @@ def get_test_files(test_data_dir):
     with open(comp_file, mode="r") as comp_txt:
         close_mismatch = open(close_file, "w")
         bad_mismatch = open(bad_file, "w")
+        predictable_random = get_numpy_seeded_random_generator()
         for char in comp_txt.readline():
             for version in range(2):
-                rand = np.random.rand()
+                rand = predictable_random.random((0,100))
                 if version == 0:  # Close but mismatched
-                    if rand > 0.05:
+                    if rand > 5:
                         close_mismatch.write(char)
                 else:  # Mismatched -- not close
-                    if rand > 0.25:
+                    if rand > 25:
                         bad_mismatch.write(char)
         close_mismatch.close()
         bad_mismatch.close()
