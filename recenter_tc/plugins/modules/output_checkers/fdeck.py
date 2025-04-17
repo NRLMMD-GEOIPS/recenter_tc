@@ -5,6 +5,8 @@
 
 import logging
 
+from geoips.plugins.modules.output_checkers import text
+
 LOG = logging.getLogger(__name__)
 
 interface = "output_checkers"
