@@ -1,0 +1,12 @@
+bug fix:
+- title: 'Re-add missing clear_text function to fdeck.py'
+  description: 'The clear_text function was previously removed from the output_checkers.text module, causing an AttributeError during plugin registration. This fix re-implements the function directly in fdeck.py to restore functionality.'
+  files:
+    modified:
+    - recenter_tc/plugins/modules/output_checkers/fdeck.py
+  related-issue:
+    number: null
+    repo_url: ''
+  date:
+    start: null
+    finish: null
