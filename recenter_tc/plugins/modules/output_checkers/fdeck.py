@@ -4,17 +4,12 @@
 """Test script for representative product comparisons."""
 
 import logging
-from geoips.plugins.modules.output_checkers import text
 
 LOG = logging.getLogger(__name__)
 
 interface = "output_checkers"
 family = "standard"
 name = "fdeck"
-
-
-clear_text = text.clear_text
-
 
 def get_test_files(test_data_dir):
     """Return a series of varied fdeck files."""
@@ -63,6 +58,11 @@ def get_test_files(test_data_dir):
 
 perform_test_comparisons = text.perform_test_comparisons
 
+def clear_text(match_path, close_path, bad_path):
+    """Clear output text files so they can be written again."""
+    open(match_path, "w").close()
+    open(close_path, "w").close()
+    open(bad_path, "w").close()
 
 def correct_file_format(fname):
     """Check if fname is an fdeck file.
