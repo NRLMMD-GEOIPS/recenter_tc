@@ -4,13 +4,10 @@ import os
 import pytest
 
 from tests.integration_tests.test_integration import (
-    full_setup,
+    full_setup, # noqa: F401
     run_script_with_bash,
     setup_environment as setup_geoips_environment,
 )
-
-# Ensure full_setup is not unused for flake8 compliance.
-print(full_setup)
 
 # Full test running just geoips on existing CLAVR-x outputs
 full_integ_test_calls = [

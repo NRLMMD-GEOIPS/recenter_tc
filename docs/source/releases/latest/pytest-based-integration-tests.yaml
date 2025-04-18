@@ -10,7 +10,7 @@ testing:
     moved:
     - ''
     added:
-    - 'tests/integration_tests/test_[package_name].py'
+    - 'tests/integration_tests/test_recenter_tc.py'
     modified:
     - ''
   related-issue:
