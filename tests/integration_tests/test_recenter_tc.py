@@ -9,7 +9,8 @@ from tests.integration_tests.test_integration import (
     setup_environment as setup_geoips_environment,
 )
 
-# Full test running just geoips on existing CLAVR-x outputs
+# Full test of all functionality in this repo
+# using available datasets.
 full_integ_test_calls = [
     "$geoips_repopath/tests/utils/check_code.sh all $repopath",
     "$geoips_repopath/docs/build_docs.sh $repopath $pkgname html_only",
@@ -27,7 +28,7 @@ full_integ_test_calls = [
     "$repopath/tests/scripts/smap.tc.windspeed.imagery_clean.sh",
     "$repopath/tests/scripts/viirs.tc.Infrared-Gray.imagery_clean.sh",
 ]
-# Extra test of running CLAVR-x and GeoIPS on output of clavrx.
+# Extra tests requiring additional datasets.
 extra_integ_test_calls = [
     "$repopath/tests/scripts/amsub_hdf.tc.157V.imagery_clean.sh",
     "$repopath/tests/scripts/amsua_mhs_mirs.tc.89V.imagery_clean.sh",
@@ -44,15 +45,12 @@ def setup_environment():
     """
     Set up necessary environment variables for integration tests.
 
-    Configures paths and package names for the GeoIPS core and its plugins by
-    setting environment variables required for the integration tests. Assumes
-    that 'GEOIPS_PACKAGES_DIR' is already set in the environment.
+    Configures paths and package names for the current GeoIPS plugin by
+    setting environment variables required for the integration tests.
 
     Notes
     -----
     The following environment variables are set:
-    - geoips_repopath
-    - geoips_pkgname
     - repopath
     - pkgname
     """
@@ -63,8 +61,7 @@ def setup_environment():
     os.environ["pkgname"] = "recenter_tc"
 
 
-# This still needs the "full_setup" because full indicates non-geoips repos in the
-# main test_integration.py.  Might want different naming / marking.
+# Integration tests of full functionality within this repo
 @pytest.mark.full
 @pytest.mark.integration
 @pytest.mark.parametrize("script", full_integ_test_calls)
@@ -87,6 +84,7 @@ def test_integ_full_test_script(full_setup: None, script: str):
     run_script_with_bash(script)
 
 
+# Extra integration tests requiring additional datasets
 @pytest.mark.extra
 @pytest.mark.integration
 @pytest.mark.parametrize("script", extra_integ_test_calls)
