@@ -3,8 +3,9 @@
 import os
 import pytest
 
+from tests.integration_tests.test_integration import full_setup  # noqa: F401
+
 from tests.integration_tests.test_integration import (
-    full_setup, # noqa: F401
     run_script_with_bash,
     setup_environment as setup_geoips_environment,
 )
@@ -65,7 +66,7 @@ def setup_environment():
 @pytest.mark.full
 @pytest.mark.integration
 @pytest.mark.parametrize("script", full_integ_test_calls)
-def test_integ_full_test_script(full_setup: None, script: str):
+def test_integ_full_test_script(full_setup: None, script: str):  # noqa: F811
     """
     Run integration test scripts by executing specified shell commands.
 
