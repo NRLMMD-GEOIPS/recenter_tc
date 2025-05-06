@@ -89,7 +89,7 @@ def test_integ_full_test_script(full_setup: None, script: str):  # noqa: F811
 @pytest.mark.extra
 @pytest.mark.integration
 @pytest.mark.parametrize("script", extra_integ_test_calls)
-def test_integ_extra_test_script(full_setup: None, script: str):
+def test_integ_extra_test_script(full_setup: None, script: str):  # noqa: F811
     """
     Run integration test scripts by executing specified shell commands.
 
