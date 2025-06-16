@@ -676,6 +676,9 @@
         "yyyyjjjhhmn",
         "yyyymmdd",
         "zzz",
+        "amsua",
+        "amsub",
+        "mirs",
     ],
     // --- Global Ignore Patterns ---
     // Regular expressions for patterns to ignore globally
