@@ -504,6 +504,9 @@
         "yaml",
         "yml",
         "ypadding",
+        "AMSU-A",
+        "AMSU-B",
+        "MIRS",
     ],
     // --- File/Folder Exclusions ---
     // Glob patterns for files and folders to ignore globally
