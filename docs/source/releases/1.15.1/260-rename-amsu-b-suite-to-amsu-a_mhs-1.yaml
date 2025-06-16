@@ -15,8 +15,7 @@ bug fix:
     - 'tests/outputs/amsua_mhs_mirs.tc.89V.imagery_clean/20210419_235400_WP022021_mhs_metop-a_89V_115kts_100p00_res1p0-arChan1_AT-clean.png.yaml'
     - 'tests/scripts/amsua_mhs_mirs.tc.89V.imagery_clean.sh'
   related-issue:
-    number: 260
-    repo_url: 'GEOIPS'
+    internal: GEOIPS#260
   date:
     start: 2025-03-11
     finish: 2025-03-11

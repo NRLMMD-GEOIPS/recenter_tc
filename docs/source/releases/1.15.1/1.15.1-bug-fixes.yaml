@@ -6,8 +6,7 @@ bug fix:
     modified:
     - 'pyproject.toml'
   related-issue:
-    number: 753
-    repo_url: 'GEOIPS/geoips'
+    internal: GEOIPS#753
   date:
     start: 2025-04-08
     finish: 2025-04-08

@@ -16,7 +16,7 @@ clon: 75.01
 deck_line: SH, 16, 2020021612,   , BEST,   0, 202S,  750E,  75,  978, TY,  34, NEQ,   85,   80,   60,   60,
   1005,  165,  20,   0,   0,   S,   0,    ,   0,   0,   GABEKILE, D,
 final_storm_name: GABEKILE
-interpolated_time: 2020-02-16 12:45:00
+interpolated_time: 2020-02-16 12:44:59.500000
 invest_number: 94
 parser_name: bdeck_parser
 pressure: 977.82
