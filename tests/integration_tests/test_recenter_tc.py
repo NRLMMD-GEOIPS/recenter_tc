@@ -1,3 +1,6 @@
+# # # This source code is subject to the license referenced at
+# # # https://github.com/NRLMMD-GEOIPS.
+
 """Pytest file for calling integration bash scripts."""
 
 import os
@@ -10,8 +13,7 @@ from tests.integration_tests.test_integration import (
     setup_environment as setup_geoips_environment,
 )
 
-# Full test of all functionality in this repo
-# using available datasets.
+# 'full' set of integration tests in the current repo.
 full_integ_test_calls = [
     "$geoips_repopath/tests/utils/check_code.sh all $repopath",
     "$geoips_repopath/docs/build_docs.sh $repopath $pkgname html_only",
@@ -29,8 +31,8 @@ full_integ_test_calls = [
     "$repopath/tests/scripts/smap.tc.windspeed.imagery_clean.sh",
     "$repopath/tests/scripts/viirs.tc.Infrared-Gray.imagery_clean.sh",
 ]
-# Extra tests requiring additional datasets.
-extra_integ_test_calls = [
+# Test scripts that require test datasets with limited availability.
+limited_data_integ_test_calls = [
     "$repopath/tests/scripts/amsub_hdf.tc.157V.imagery_clean.sh",
     "$repopath/tests/scripts/amsua_mhs_mirs.tc.89V.imagery_clean.sh",
     "$repopath/tests/scripts/hy2b.tc.windspeed.imagery_clean.sh",
@@ -46,12 +48,15 @@ def setup_environment():
     """
     Set up necessary environment variables for integration tests.
 
-    Configures paths and package names for the current GeoIPS plugin by
-    setting environment variables required for the integration tests.
+    Configures paths and package names for the GeoIPS core and its plugins by
+    setting environment variables required for the integration tests. Assumes
+    that 'GEOIPS_PACKAGES_DIR' is already set in the environment.
 
     Notes
     -----
     The following environment variables are set:
+    - geoips_repopath
+    - geoips_pkgname
     - repopath
     - pkgname
     """
@@ -62,7 +67,6 @@ def setup_environment():
     os.environ["pkgname"] = "recenter_tc"
 
 
-# Integration tests of full functionality within this repo
 @pytest.mark.full
 @pytest.mark.integration
 @pytest.mark.parametrize("script", full_integ_test_calls)
@@ -85,11 +89,12 @@ def test_integ_full_test_script(full_setup: None, script: str):  # noqa: F811
     run_script_with_bash(script)
 
 
-# Extra integration tests requiring additional datasets
-@pytest.mark.extra
+# These are required to test the full functionality of this repo, but have limited
+# test dataset availability.
+@pytest.mark.limited_test_dataset_availability
 @pytest.mark.integration
-@pytest.mark.parametrize("script", extra_integ_test_calls)
-def test_integ_extra_test_script(full_setup: None, script: str):  # noqa: F811
+@pytest.mark.parametrize("script", limited_data_integ_test_calls)
+def test_integ_limited_data_script(full_setup: None, script: str):  # noqa: F811
     """
     Run integration test scripts by executing specified shell commands.
 
