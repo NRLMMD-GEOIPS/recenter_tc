@@ -36,6 +36,12 @@ profiling/
 *.pstats
 
 ####################################################
+# recenter_tc package specific .gitignore options:
+
+# ARCHER test outputs
+archer_test*
+
+####################################################
 # Fortran specific .gitignore options:
 
 *.mod
