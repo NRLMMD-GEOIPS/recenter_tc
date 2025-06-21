@@ -2,7 +2,7 @@ bug fix:
 - title: 'Switch to akima86 from pypi rather than git'
   description: |
     Updated the version of akima86 in pyproject.toml from pointing to
-    a branch on the git repository to, instead, use \"*\" and pull from
+    a branch on the git repository to, instead, use * and pull from
     pypi. Akima86 recently became buildable using meson and has been
     uploaded to pypi.
   files:
