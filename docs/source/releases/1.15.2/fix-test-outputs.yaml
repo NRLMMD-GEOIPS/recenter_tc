@@ -1,0 +1,22 @@
+bug fix:
+- title: 'Add source_file_names to ahi test output, correct script name for amsua_mhs'
+  description: |
+    * ahi.tc not currently included in the geoips repo "full" test, so did not get
+      updated for source_file_names in YAML metadata
+    * amsub_mirs -> amsua_mhs_mirs
+  files:
+    deleted:
+    - ''
+    moved:
+    - ''
+    added:
+    - ''
+    modified:
+    - tests/outputs/ahi.tc.IR-BD.imagery_clean/20200405_000000_SH252020_ahi_himawari-8_IR-BD_100kts_100p00_res1p0-arB13BT-clean.png.yaml
+    - tests/test_all.sh
+  related-issue:
+    number: 753
+    repo_url: "GEOIPS/geoips"
+  date:
+    start: 2025-04-14
+    finish: 2025-04-14
