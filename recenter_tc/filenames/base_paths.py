@@ -8,7 +8,6 @@ environment variable GEOIPS_OUTDIRS.  Individual GEOIPS_OUTDIRS
 relative paths can be overridden by setting appropriate environment variables.
 """
 
-
 # Python Standard Libraries
 import logging
 from os import getenv
