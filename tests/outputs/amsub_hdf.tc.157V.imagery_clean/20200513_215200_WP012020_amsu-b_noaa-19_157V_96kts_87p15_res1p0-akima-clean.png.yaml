@@ -9,8 +9,8 @@ bounding_box:
   minlon: 120.18497403967373
   pixel_height_m: 1000.0
   pixel_width_m: 1000.0
-  proj4_string: +proj=eqc +lat_ts=0 +lat_0=12.08 +lon_0=126.48 +x_0=0 +y_0=0 +R=6371228
-    +units=m +no_defs +type=crs
+  proj4_string: +R=6371228 +lat_0=12.08 +lat_ts=0 +lon_0=126.48 +no_defs +proj=eqc
+    +type=crs +units=m +x_0=0 +y_0=0
 clat: 12.08
 clon: 126.48
 deck_line: WP, 01, 2020051400,   , BEST,   0, 121N, 1262E,  95,  966, TY,  34, NEQ,   65,   60,   45,   60,
