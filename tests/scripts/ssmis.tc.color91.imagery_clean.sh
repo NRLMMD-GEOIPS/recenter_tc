@@ -3,7 +3,7 @@
 
 #!/bin/bash
 
-run_procflow \
+geoips run single_source \
     $GEOIPS_TESTDATA_DIR/test_data_ssmis/data/US058SORB-RAWspp.sdris_f16_d20200519_s084400_e102900_r85579_cfnoc.raw \
     --procflow single_source \
     --reader_name  ssmis_binary \

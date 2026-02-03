@@ -3,7 +3,7 @@
 
 #!/bin/bash
 
-run_procflow \
+geoips run single_source \
     $GEOIPS_TESTDATA_DIR/test_data_sar/data/STAR_SAR_20181025203206_WP312018_31W_FIX_3km.nc \
     --procflow single_source \
     --reader_name sar_winds_netcdf \
