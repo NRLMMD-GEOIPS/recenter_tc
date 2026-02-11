@@ -40,19 +40,8 @@ build-backend = "poetry_dynamic_versioning.backend"                          # o
 
 [tool.poetry.dependencies] # must download to run
 python = ">=3.10"       # mandatory to declare the required python version
-# Once meson build is working, use pypi akima86
-# akima86 = "*"
-# NOTE: setuptools<70 required for distutils.core import in akima86.
-# When akima is updated to use meson build, this will no longer be an issue,
-# but for now we are requiring setuptools<70 in the main geoips dependencies,
-# which ensures we have setuptools<70 at this point.  Requiring setuptools<70
-# in recenter_tc dependencies didn't even work (still was using v74 from the
-# geoips install in akima86), but requiring setuptools<70 in geoips and nowhere else
-# worked.  We need to remember to remove the setuptools<70 dependency in
-# geoips pyproject.toml as soon as we resolve the meson builds for all the
-# fortran-based plugins.
+akima86 = "*"
 archer = { git = "https://github.com/mindyls/archer.git" }
-akima86 = { git = "https://github.com/NRLMMD-GEOIPS/akima86.git" }
 
 [tool.poetry.plugins."geoips.plugin_packages"]
 "recenter_tc" = "recenter_tc"
