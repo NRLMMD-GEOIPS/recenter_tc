@@ -4,8 +4,8 @@
 #!/bin/bash
 
 # 160 files - 10 per channel
-run_procflow \
-    $GEOIPS_TESTDATA_DIR/test_data_ahi_day/data/20200405_0000/HS_H08_20200405_0000_B*_FLDK_R*_S*.DAT \
+geoips run single_source \
+    $GEOIPS_TESTDATA_DIR/test_data_ahi/data/20200405_0000/HS_H08_20200405_0000_B*_FLDK_R*_S*.DAT \
     --procflow single_source \
     --reader_name ahi_hsd \
     --product_name IR-BD \

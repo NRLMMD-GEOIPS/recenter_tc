@@ -480,7 +480,9 @@ def recenter_with_archer(
 def recenter_with_akima(sect_xarray, area_def):
     """Recenter with akima interpolation."""
     from geoips.sector_utils.tc_tracks import trackfile_to_area_defs
-    from geoips.sector_utils.utils import remove_duplicate_storm_positions
+    from geoips.sector_utils.utils import (
+        remove_duplicate_storm_positions_and_unsupported_aid_types,
+    )
     from os.path import expandvars
 
     log_with_emphasis(LOG.interactive, "Running AKIMA center interpolation...")
@@ -497,7 +499,9 @@ def recenter_with_akima(sect_xarray, area_def):
         trackfile_parser = area_def.sector_info["parser_name"]
 
         log_with_emphasis(LOG.info, f"Obtaining all area_defs from {trackfile_name}...")
-        area_defs = trackfile_to_area_defs(trackfile_name, trackfile_parser)
+        area_defs, allowed_aid_types = trackfile_to_area_defs(
+            trackfile_name, trackfile_parser
+        )
     else:
         return area_def
     clats = []
@@ -507,7 +511,9 @@ def recenter_with_akima(sect_xarray, area_def):
     times = []
     aid_types = []
     idx = 0
-    area_defs = remove_duplicate_storm_positions(area_defs)
+    area_defs = remove_duplicate_storm_positions_and_unsupported_aid_types(
+        area_defs, allowed_aid_types
+    )
     for curr_area_def in area_defs:
         # Only include one forecast
         if (

@@ -3,7 +3,7 @@
 
 #!/bin/bash
 
-run_procflow \
+geoips run single_source \
     $GEOIPS_TESTDATA_DIR/test_data_modis/data/aqua/20210104/200500/MYD021KM.A2021004.2005.061.NRT.hdf \
     $GEOIPS_TESTDATA_DIR/test_data_modis/data/aqua/20210104/200500/MYD03.A2021004.2005.061.NRT.hdf \
     $GEOIPS_TESTDATA_DIR/test_data_modis/data/aqua/20210104/200500/MYD14.A2021004.2005.006.NRT.hdf \
