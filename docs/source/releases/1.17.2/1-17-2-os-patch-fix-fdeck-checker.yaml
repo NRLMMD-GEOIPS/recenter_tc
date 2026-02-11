@@ -1,0 +1,15 @@
+bug fix:
+- title: 'Fix recentered TC fdeck output checker'
+  description: 'Moved a required function from the main GeoIPS text output checker into the recentered TC fdeck output checker. This function was removed from the main GeoIPS repository, causing the recentered TC functionality to break. The fix also updates imports for clarity and correctness.'
+  files:
+    deleted:
+    - ''
+    moved:
+    - 'Function `perform_test_comparisons` from geoips.plugins.modules.output_checkers.text to recenter_tc/plugins/modules/output_checkers/fdeck.py'
+    added:
+    - ''
+    modified:
+    - 'recenter_tc/plugins/modules/output_checkers/fdeck.py'
+  related-issue:
+    number: null
+    repo_url: ''
