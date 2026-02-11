@@ -91,3 +91,6 @@ class FdeckOutputCheckerPlugin(BaseOutputCheckerPlugin):
     outputs_match = TextOutputCheckerPlugin.outputs_match
 
     call = TextOutputCheckerPlugin.call
+
+
+PLUGIN_CLASS = FdeckOutputCheckerPlugin
