@@ -99,5 +99,3 @@ def correct_file_format(fname):
         if isinstance(line, str):
             return True
     return False
-
-
