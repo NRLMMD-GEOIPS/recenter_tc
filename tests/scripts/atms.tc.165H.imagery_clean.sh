@@ -4,7 +4,7 @@
 #!/bin/bash
 
 # This one doesn't work!!!
-run_procflow \
+geoips run single_source \
     $GEOIPS_TESTDATA_DIR/test_data_atms/data/j01/20210809_0838/* \
     --procflow single_source \
     --reader_name  atms_hdf5 \

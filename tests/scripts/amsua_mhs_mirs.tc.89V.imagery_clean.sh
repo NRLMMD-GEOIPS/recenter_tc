@@ -2,7 +2,7 @@
 # # # https://github.com/NRLMMD-GEOIPS.
 
 #!/bin/bash
-run_procflow \
+geoips run single_source \
     $GEOIPS_TESTDATA_DIR/test_data_amsub/data/NPR-MIRS-IMG_v11r4_ma2_s202104192335000_e202104190118000_c202104200206490.nc \
     --procflow single_source \
     --reader_name amsua_mhs_mirs \
