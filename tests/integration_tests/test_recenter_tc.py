@@ -76,8 +76,8 @@ def setup_environment():
 @pytest.mark.integration
 @pytest.mark.parametrize("script", base_integ_test_calls)
 def test_integ_base_test_script(
-    base_setup: None, script: str, fail_on_missing_data: bool
-):  # noqa: F811
+    base_setup: None, script: str, fail_on_missing_data: bool  # noqa: F811
+):
     """
     Run integration test scripts by executing specified shell commands.
 
@@ -100,8 +100,8 @@ def test_integ_base_test_script(
 @pytest.mark.integration
 @pytest.mark.parametrize("script", full_integ_test_calls)
 def test_integ_full_test_script(
-    base_setup: None, script: str, fail_on_missing_data: bool
-):  # noqa: F811
+    base_setup: None, script: str, fail_on_missing_data: bool  # noqa: F811
+):
     """
     Run integration test scripts by executing specified shell commands.
 
@@ -126,8 +126,8 @@ def test_integ_full_test_script(
 @pytest.mark.integration
 @pytest.mark.parametrize("script", limited_data_integ_test_calls)
 def test_integ_limited_data_script(
-    base_setup: None, script: str, fail_on_missing_data: bool
-):  # noqa: F811
+    base_setup: None, script: str, fail_on_missing_data: bool  # noqa: F811
+):
     """
     Run integration test scripts by executing specified shell commands.
 
