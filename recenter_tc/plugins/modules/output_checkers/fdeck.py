@@ -5,7 +5,7 @@
 
 import logging
 
-from geoips.plugins.modules.output_checkers.text import outputs_match, call
+from geoips.plugins.modules.output_checkers.text import outputs_match, call # noqa: F401
 from geoips.geoips_utils import get_numpy_seeded_random_generator
 
 LOG = logging.getLogger(__name__)
