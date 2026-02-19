@@ -4,7 +4,7 @@
 #!/bin/bash
 
 # This one has no output!!
-run_procflow \
+geoips run single_source \
     $GEOIPS_TESTDATA_DIR/test_data_saphir/data/MT1SAPSL1A__1.09_000_1_19_I_2021_02_09_00_30_03_2021_02_09_01_11_16_48144_48144_497_33_33_KUX_00.h5 \
     --procflow single_source \
     --reader_name  saphir_hdf5 \
