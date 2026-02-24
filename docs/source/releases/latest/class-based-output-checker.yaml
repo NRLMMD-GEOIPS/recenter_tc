@@ -1,0 +1,23 @@
+enhancement:
+- title: 'Convert fdeck output_checker from module-based to class-based'
+  description: |
+    Converts the module-based 'fdeck' output_checker from module-based to class-based.
+    This change was necessary as we've completely refactored all GeoIPS output_checker
+    plugins from module-based to class-based, in order to make better use of shared
+    functionality. This is the only interface which has been fully converted to
+    class-based, as we wanted to remove any reference to the ``plugin.module``
+    attribute.
+
+    This should NOT be merged until https://github.com/NRLMMD-GEOIPS/geoips/pull/1238
+    has been merged into GeoIPS' main branch.
+  files:
+    deleted:
+      - recenter_tc/plugins/modules/output_checkers/*
+    added:
+      - recenter_tc/plugins/classes/output_checkers/fdeck.py
+  related-issue:
+    number: null
+    repo_url: ''
+  date:
+    start: null
+    finish: null
