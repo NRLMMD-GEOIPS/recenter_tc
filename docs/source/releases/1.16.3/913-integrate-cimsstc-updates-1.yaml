@@ -1,0 +1,19 @@
+enhancement:
+- title: 'Pass allowed_aid_types to remove_duplicate_storm_positions_and_aid_types'
+  description: |
+    The trackfile_to_area_defs function now returns a tuple of 2, where values are a
+    list of area_defs and a list of allowed_aid_types, respectively.
+    Renamed remove_duplicate_storm_positions to
+    remove_duplicate_storm_positions_and_aid_types.
+  files:
+    deleted:
+    - ''
+    moved:
+    - ''
+    added:
+    - ''
+    modified:
+    - 'recenter_tc/plugins/modules/sector_adjusters/recenter_tc.py'
+  date:
+    start: 2025-07-21
+    finish: 2025-07-21

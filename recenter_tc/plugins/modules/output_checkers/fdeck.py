@@ -5,7 +5,8 @@
 
 import logging
 
-from geoips.plugins.modules.output_checkers import text
+from geoips.plugins.modules.output_checkers.text import outputs_match  # noqa: F401
+from geoips.plugins.modules.output_checkers.text import call  # noqa: F401
 from geoips.geoips_utils import get_numpy_seeded_random_generator
 
 LOG = logging.getLogger(__name__)
@@ -60,7 +61,18 @@ def get_test_files(test_data_dir):
     return comp_file, [match_file, close_file, bad_file]
 
 
-perform_test_comparisons = text.perform_test_comparisons
+def perform_test_comparisons(plugin, compare_file, test_files):
+    """Test the comparison of two text files with the Text Output Checker."""
+    for path_idx in range(len(test_files)):
+        retval = outputs_match(
+            plugin,
+            test_files[path_idx],
+            compare_file,
+        )
+        if path_idx == 0:
+            assert retval is True
+        else:
+            assert retval is False
 
 
 def clear_text(match_path, close_path, bad_path):
@@ -87,8 +99,3 @@ def correct_file_format(fname):
         if isinstance(line, str):
             return True
     return False
-
-
-outputs_match = text.outputs_match
-
-call = text.call

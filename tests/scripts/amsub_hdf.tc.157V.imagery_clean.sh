@@ -3,7 +3,7 @@
 
 #!/bin/bash
 
-run_procflow \
+geoips run single_source \
     $GEOIPS_TESTDATA_DIR/test_data_amsub/data/NPR.MHOP.NP.D20134.S2106.E2252.B5805153.NS \
     --procflow single_source \
     --reader_name amsub_hdf \
