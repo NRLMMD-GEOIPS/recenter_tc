@@ -8,7 +8,7 @@ from os import makedirs
 from os.path import exists, join
 from shutil import copy
 
-from geoips.base_class_plugins import BaseOutputCheckerPlugin
+from geoips.interfaces.class_based.output_checkers import BaseOutputCheckerPlugin
 from geoips.plugins.classes.output_checkers.text import TextOutputCheckerPlugin
 from geoips.geoips_utils import get_numpy_seeded_random_generator
 

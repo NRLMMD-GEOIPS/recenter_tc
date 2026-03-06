@@ -13,8 +13,8 @@ bounding_box:
   minlon: 159.30497403967374
   pixel_height_m: 1000.0
   pixel_width_m: 1000.0
-  proj4_string: +proj=eqc +lat_ts=0 +lat_0=-15.4 +lon_0=165.6 +x_0=0 +y_0=0 +R=6371228
-    +units=m +no_defs +type=crs
+  proj4_string: +R=6371228 +lat_0=-15.4 +lat_ts=0 +lon_0=165.6 +no_defs +proj=eqc
+    +type=crs +units=m +x_0=0 +y_0=0
 clat: -15.4
 clon: 165.6
 deck_line: SH, 25, 2020040500,   , BEST,   0, 154S, 1656E, 100,  956, TY,  34, NEQ,   85,  110,   95,   70,
