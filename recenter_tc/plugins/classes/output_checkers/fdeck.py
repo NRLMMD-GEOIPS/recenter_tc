@@ -62,7 +62,7 @@ class FdeckOutputCheckerPlugin(BaseOutputCheckerPlugin):
             bad_mismatch.close()
         return comp_file, [match_file, close_file, bad_file]
 
-    perform_test_comparisons = TextOutputCheckerPlugin.perform_test_comparisons
+    perform_test_comparisons = TextOutputCheckerPlugin.perform_comparisons
 
     def clear_text(self, match_path, close_path, bad_path):
         """Clear output text files so they can be written again."""
