@@ -181,7 +181,7 @@ modified: tests/outputs/viirs.tc.Infrared-Gray.imagery_clean/20210209_074210_SH1
     * ssmis
     * viirs
 * **YAML outputs**
-    * Update from gdeck to bdeck parser
+    * Update from deck to bdeck parser
     * Update source\_filename to $GEOIPS bdeck file
     * Update source\_sector\_file to $GEOIPS bdeck file
     * Subset of data types impacted

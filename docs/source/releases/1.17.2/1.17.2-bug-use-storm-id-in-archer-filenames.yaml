@@ -1,0 +1,15 @@
+bug fix:
+- title: Use storm_id in archer_fix and archer_image filename formatters rather than area_id.
+  description: |
+    To avoid including the synoptic time in the archer filename outputs, use the
+    sector_info storm_id rather than the area_def area_id.
+  files:
+    modified:
+    - "recenter_tc/plugins/modules/filename_formatters/archer_fix.py"
+    - "recenter_tc/plugins/modules/filename_formatters/archer_image.py"
+  date:
+    start: 2025-11-19
+    finish: 2025-11-19
+  related-issue:
+    internal: geoips#959 - 1.17.2 updates
+
