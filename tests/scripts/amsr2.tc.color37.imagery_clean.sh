@@ -12,10 +12,11 @@ geoips run single_source \
     --output_formatter imagery_clean \
     --filename_formatter tc_clean_fname \
     --metadata_filename_formatter metadata_default_fname \
-    --metadata_output_formatter metadata_default \
+    --metadata_output_formatter metadata_tc \
     --trackfile_parser bdeck_parser \
     --trackfiles $GEOIPS_PACKAGES_DIR/geoips/tests/sectors/tc_bdecks/bio012020.dat \
-    --sector_adjuster recenter_tc
+    --sector_adjuster recenter_tc \
+    --sector_adjuster_kwargs '{"include_archer_info": True}'
 ss_retval=$?
 
 exit $((ss_retval))

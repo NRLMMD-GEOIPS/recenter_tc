@@ -28,14 +28,11 @@ def call(
         basedir=basedir,
         variable_name=variable_name,
         archer_channel_type=archer_channel_type,
-        tc_area_id=area_def.area_id,
-        tc_year=int(area_def.sector_info["storm_year"]),
-        tc_basin=area_def.sector_info["storm_basin"],
-        tc_stormnum=int(area_def.sector_info["storm_num"]),
         source_name=xarray_obj.source_name,
         platform_name=xarray_obj.platform_name,
         product_datetime=xarray_obj.start_datetime,
         data_provider=xarray_obj.data_provider,
+        sector_info=area_def.sector_info,
         extension=extension,
     )
 
@@ -44,14 +41,11 @@ def assemble_archer_fname(
     basedir,
     variable_name,
     archer_channel_type,
-    tc_area_id,
-    tc_year,
-    tc_basin,
-    tc_stormnum,
     source_name,
     platform_name,
     product_datetime,
     data_provider,
+    sector_info,
     extension=".png",
 ):
     """Produce full output product path from product / sensor specifications.
@@ -60,24 +54,22 @@ def assemble_archer_fname(
     ----------
     basedir: string
         base directory
-    tc_year: int
-        Full 4 digit storm year
-    tc_basin: string
-        2 character basin designation
-        SH Southern Hemisphere
-        WP West Pacific
-        EP East Pacific
-        CP Central Pacific
-        IO Indian Ocean
-        AL Atlantic
-    tc_stormnum: int
-        2 digit storm number
-        90 through 99 for invests
-        01 through 69 for named storms
     platform_name: string
         Name of platform (satellite)
     product_datetime: datetime
         Start time of data used to generate product
+    sector_info: dict
+        Dictionary of TC sector info, including storm_year, storm_basin, storm_id, etc.
+    data_provider: string
+        Name of data provider (e.g., 'remss', 'ospo', etc)
+    source_name: string
+        Name of data source (e.g., 'amsr2', 'smap', etc)
+    variable_name: string
+        Name of variable (e.g., 'B09BT')
+    archer_channel_type: string
+        Type of archer channel (e.g., 'pmw', 'ir', 'vis')
+    extension: string
+        File extension (including leading period), default '.png'
 
     Returns
     -------
@@ -97,13 +89,16 @@ def assemble_archer_fname(
         tc_storm_basedir,
     )
 
-    path = pathjoin(
-        tc_storm_basedir(basedir, tc_year, tc_basin, tc_stormnum), "png", "archer"
-    )
+    # Use the standard tc storm basedir, as defined in geoips repo.
+    path = pathjoin(tc_storm_basedir(basedir, sector_info), "png", "archer")
+    # Upper case for storm_id in filenames, lower case internally.
+    # Note since we are using storm_id explicitly, this will include
+    # storm start datetime for invests and will NOT include storm
+    # start datetime for numbered storms.
     fname = "_".join(
         [
             product_datetime.strftime("%Y%m%d.%H%M"),
-            tc_area_id,
+            sector_info["storm_id"].upper(),
             "archer",
             source_name,
             variable_name,

@@ -1,0 +1,49 @@
+refactor:
+  - title: "Remove hard coded tc_year, tc_basin, tc_stormnum, and output_dict from tc_storm_basedir calls"
+    description: |
+      * Use information in the sector_info dictionary to populate the tc_storm_basedir.
+      * No longer explicitly pass tc_year/basin/stormnum.
+      * Note output_dict was previously used within tc_file_naming get_storm_subdir to
+        ONLY get the file_path_modifiations (existing_invest_dirs_allowable_time_diff,
+        and unique_invest_dirs). These are no longer supported
+    files:
+      deleted:
+        - ""
+      moved:
+        - ""
+      added:
+        - ""
+      modified:
+        - "recenter_tc/plugins/modules/filename_formatters/archer_fix.py"
+        - "recenter_tc/plugins/modules/filename_formatters/archer_image.py"
+    date:
+      start: 2026-01-05
+      finish: 2026-01-08
+  - title: "Produce one metadata_tc output, and add archer fix and image fnames to archer_info output"
+    description: |
+      * Update to use metadata_tc vs metadata_default (all other tests use metadata_default in recenter_tc)
+      * Add include_archer_info true to recenter_tc_kwargs in amsr2 test script
+      * Add archer_fix_fname and archer_image_fname to archer_info in recenter_tc
+      * Update amsr2 YAML output to include all sector_info fields, archer_info field,
+        including the new archer_fix_fname and archer_image_fname entries.
+      * This tests the archer fname outputs and the full archer output for at least one
+        data type - previously these were not tested at all. The ARCHER fix line is
+        tested in all recenter_tc metadata_default outputs (since archer_fdeck is
+        included in metadata_default), but the filenames, full output, etc is now only
+        tested for amsr2.
+    files:
+      deleted:
+        - ""
+      moved:
+        - ""
+      added:
+        - ""
+      modified:
+        - "recenter_tc/plugins/modules/sector_adjusters/recenter_tc.py"
+        - "tests/outputs/amsr2.tc.color37.imagery_clean/20200518_073604_IO012020_amsr2_gcom-w1_color37_142kts_99p86_res1p0-artb36h-clean.png.yaml"
+        - "tests/scripts/amsr2.tc.color37.imagery_clean.sh"
+        - "recenter_tc/plugins/modules/filename_formatters/archer_fix.py"
+        - "recenter_tc/plugins/modules/filename_formatters/archer_image.py"
+    date:
+      start: 2026-01-12
+      finish: 2026-01-12
