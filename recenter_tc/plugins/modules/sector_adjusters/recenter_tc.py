@@ -10,6 +10,7 @@ import logging
 import pyresample
 
 from geoips.filenames.base_paths import make_dirs
+from geoips.geoips_utils import replace_geoips_paths
 from geoips.interfaces import filename_formatters
 from geoips.errors import CoverageError
 from geoips.commandline.log_setup import log_with_emphasis
@@ -216,10 +217,12 @@ def run_archer(xarray_obj, varname):
     first_guess["lat"] = xarray_obj.area_definition.sector_info["clat"]
     first_guess["lon"] = xarray_obj.area_definition.sector_info["clon"]
 
+    archer_info = {}
     out_fnames = []
     if archer_image_fname is not None:
         make_dirs(dirname(archer_image_fname))
         out_fnames += [archer_image_fname]
+        archer_info["archer_image_fname"] = replace_geoips_paths(archer_image_fname)
         LOG.interactive("ARCHERSUCCESS Writing ARCHER image: %s", archer_image_fname)
     from archer.archer4 import archer4
 
@@ -235,11 +238,11 @@ def run_archer(xarray_obj, varname):
     if archer_fix_fname is not None:
         make_dirs(dirname(archer_fix_fname))
         out_fnames += [archer_fix_fname]
+        archer_info["archer_fix_fname"] = replace_geoips_paths(archer_fix_fname)
         with open(archer_fix_fname, "w") as fobj:
             fobj.write(out_dict["fdeck_string"])
         LOG.interactive("ARCHERSUCCESS Wrote ARCHER fdeck: %s", archer_fix_fname)
 
-    archer_info = {}
     for field in [
         "uses_target",
         "archer_channel_type",

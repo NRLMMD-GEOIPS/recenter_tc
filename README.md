@@ -74,7 +74,7 @@ Install recenter_tc package
     source $GEOIPS_CONFIG_FILE
     git clone https://github.com/NRLMMD-GEOIPS/recenter_tc $GEOIPS_PACKAGES_DIR/recenter_tc
     pip install -e $GEOIPS_PACKAGES_DIR/recenter_tc
-    create_plugin_registries
+    geoips config create-registries
 ```
 
 Test recenter_tc installation
@@ -84,9 +84,12 @@ Test recenter_tc installation
     # Ensure GeoIPS Python environment is enabled.
 
     # If you have the full ABI and AMSR2 test datasets:
+    geoips config install test_data_abi
+    geoips config install test_data_amsr2
     $GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/abi.tc.Visible.imagery_clean.sh
     $GEOIPS_PACKAGES_DIR/recenter_tc/tests/scripts/amsr2.tc.color37.imagery_clean.sh
 
     # If you have all test data repos available:
-    $GEOIPS_PACKAGES_DIR/recenter_tc/tests/test_all.sh
+    cd $GEOIPS_PACKAGES_DIR/recenter_tc
+    pytest
 ```

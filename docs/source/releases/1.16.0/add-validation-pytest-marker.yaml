@@ -1,0 +1,25 @@
+testing:
+- title: 'Import validation and lint test lists from geoips repo, and add validation pytest markers'
+  description: |
+    Rather than only having interfaces and plugin validation in the main geoips repo
+    (spanning all packages), include these tests in every repos integration tests,
+    to ensure they are regularly called.  Mark them with validation marker.
+
+    Import both the lint and validation test lists from the geoips repo test_integration.py,
+    since these tests are consistent for every plugin repo.
+
+    Also, mark sections in the integration test script for copy as-is, and update
+    per repo.
+  files:
+    deleted:
+    - ''
+    moved:
+    - ''
+    added:
+    - ''
+    modified:
+    - 'pytest.ini'
+    - 'tests/integration_tests/test_reponame.py'
+  date:
+    start: 2026-02-26
+    finish: 2026-02-26

@@ -12,4 +12,4 @@ release updates:
     start: 2025-06-04
     finish: 2025-06-09
   related-issue:
-      internal: GEOIPS#861
+      internal: geoips#861 - 1.16.1 bug fixes

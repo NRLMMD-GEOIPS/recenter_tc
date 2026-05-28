@@ -3,6 +3,27 @@ aid_type: BEST
 archer_fdeck: IO, 1, 2005180736,  70, AMS2,          C,  , 1353N,  8620E,      , 1,    ,  ,     ,  ,     ,    ,     ,     ,     ,     ,     ,  ,  ,  ,  ,  ,    ,    ,  ,  CIMS,
   AUT,    ,             ,             ,    ,     ,                        x, irad=0.40
   | r50=0.11 | r95=0.31 | ep=-99 | src=ARCH
+archer_info:
+  alpha_parameter: 15.325279511465972
+  archer_channel_type: 37GHz
+  archer_fix_fname: $GEOIPS_OUTDIRS/preprocessed/archer/fix/20200518.0736_IO012020_archer_amsr2_tb36h_37GHz_star_gcom-w1_01B_FIX
+  archer_image_fname: $GEOIPS_OUTDIRS/preprocessed/archer/image/tc2020/IO/IO012020/png/archer/20200518.0736_IO012020_archer_amsr2_tb36h_37GHz_star_gcom-w1.png
+  center_lat: 13.530000000000001
+  center_lon: 86.19999999999999
+  confidence_score: 3.5684965909726536
+  eye_prob: null
+  fdeck_string: IO, 1, 2005180736,  70, AMS2,          C,  , 1353N,  8620E,      ,
+    1,    ,  ,     ,  ,     ,    ,     ,     ,     ,     ,     ,  ,  ,  ,  ,  ,    ,    ,  ,  CIMS,
+    AUT,    ,             ,             ,    ,     ,                        x, irad=0.40
+    | r50=0.11 | r95=0.31 | ep=-99 | src=ARCH
+  radius50percCertDeg: 0.11
+  radius95percCertDeg: 0.31
+  ring_radius_deg: 0.4
+  uses_target: true
+  weak_center_lat: null
+  weak_center_lon: null
+area_description: io012020-2020051806 AMPHAN interpolated_time 2020-05-18 07:38:42.500000
+area_id: io012020-2020051806
 bounding_box:
   image_height: 1400
   image_width: 1400
@@ -16,11 +37,27 @@ bounding_box:
     +units=m +x_0=0 +y_0=0
 clat: 13.53
 clon: 86.2
+covg_info:
+  fname_covg: 99.86321428571429
+  fname_covg_args: {}
+  fname_covg_func: rgba
+  full_covg: 99.86321428571429
+  full_covg_args: {}
+  full_covg_func: rgba
+  image_production_covg: 99.86321428571429
+  image_production_covg_args: {}
+  image_production_covg_func: rgba
+data_provider: star
+data_times:
+  end: 2020-05-18 07:41:27
+  mid: 2020-05-18 07:38:45.500000
+  start: 2020-05-18 07:36:04
 deck_line: IO, 01, 2020051806,   , BEST,   0, 134N,  862E, 140,  911, ST,  34, NEQ,  155,  125,  160,  145,  999,  200,   5,   0,  10,   B,   0,    ,   0,   0,     AMPHAN,
   D,
 final_storm_name: AMPHAN
 interpolated_time: 2020-05-18 07:38:42.500000
 invest_number: 91
+invest_storm_id: io9120202020051506
 parser_name: bdeck_parser
 pressure: 908.28
 product_filename: $GEOIPS_OUTDIRS/preprocessed/tcwww/tc2020/IO/IO012020/png_clean/color37/gcom-w1/20200518_073604_IO012020_amsr2_gcom-w1_color37_142kts_99p86_res1p0-artb36h-clean.png
@@ -31,9 +68,12 @@ source_file_names:
 source_filename: $GEOIPS_PACKAGES_DIR/geoips/tests/sectors/tc_bdecks/bio012020.dat
 source_sector_file: $GEOIPS_PACKAGES_DIR/geoips/tests/sectors/tc_bdecks/bio012020.dat
 storm_basin: IO
+storm_id: io012020
 storm_name: AMPHAN
 storm_num: 1
-storm_start_datetime: 2020-05-15 06:00:00
+storm_start_datetime: &id001 2020-05-15 06:00:00
+storm_start_datetime_from_filename_of_current_deck_file: null
+storm_start_datetime_from_first_line_of_current_deck_file: *id001
 storm_year: 2020
 synoptic_time: 2020-05-18 06:00:00
 vmax: 141.53

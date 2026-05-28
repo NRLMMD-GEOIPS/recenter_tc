@@ -6,7 +6,7 @@ bug fix:
     modified:
     - 'pyproject.toml'
   related-issue:
-    internal: GEOIPS#753
+    internal: geoips#753
   date:
     start: 2025-04-08
     finish: 2025-04-08

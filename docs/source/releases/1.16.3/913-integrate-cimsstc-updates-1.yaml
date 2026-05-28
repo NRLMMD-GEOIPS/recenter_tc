@@ -14,6 +14,8 @@ enhancement:
     - ''
     modified:
     - 'recenter_tc/plugins/modules/sector_adjusters/recenter_tc.py'
+  related-issue:
+    internal: geoips#913
   date:
     start: 2025-07-21
     finish: 2025-07-21
