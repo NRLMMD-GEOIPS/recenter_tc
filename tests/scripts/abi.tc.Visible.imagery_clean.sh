@@ -31,6 +31,7 @@ geoips run single_source \
     --metadata_output_formatter metadata_default \
     --trackfile_parser bdeck_parser \
     --trackfiles $GEOIPS_PACKAGES_DIR/geoips/tests/sectors/tc_bdecks/bal202020.dat \
+    --sector_adjuster recenter_tc \
     --sector_adjuster_kwargs '{
         "archer_config": {
             "include_archer_metadata_in_sector_info": True,
