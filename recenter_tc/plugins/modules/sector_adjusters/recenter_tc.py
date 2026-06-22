@@ -3,19 +3,24 @@
 
 """Functionality for recentering TC sectors, based on akima and archer algorithms."""
 
+from os.path import dirname
+
 import logging
 
 import pyresample
-import xarray
 
+from geoips.filenames.base_paths import make_dirs
 from geoips.geoips_utils import replace_geoips_paths
-from geoips.interfaces import filename_formatters, output_formatters
+from geoips.interfaces import filename_formatters
 from geoips.errors import CoverageError
 from geoips.commandline.log_setup import log_with_emphasis
 from geoips.xarray_utils.data import sector_xarray_spatial
 from geoips.sector_utils.estimate_area_extent import estimate_area_extent
+from recenter_tc.filenames.base_paths import PATHS as GPATHS
 
-DEFAULT_ARCHER_REQUIRED_VMAX_KTS = 50
+ARCHER_REQUIRED_VMAX_KTS = 50
+ARCHER_IMAGE_FILENAME_FORMAT = GPATHS["ARCHER_IMAGE_FILENAME_FORMAT"]
+ARCHER_FIX_FILENAME_FORMAT = GPATHS["ARCHER_FIX_FILENAME_FORMAT"]
 
 LOG = logging.getLogger(__name__)
 
@@ -32,29 +37,7 @@ def print_area_def(area_def, print_str):
     log_with_emphasis(LOG.info, *messages)
 
 
-def convert_archer_dict_to_xarray_dataset(archer_dict):
-    """Convert a dictionary used by ARCHER to an xarray.Dataset.
-
-    This is done to make sure we're compliant with the required input format to the
-    output_formatter interface modules.
-
-    Parameters
-    ----------
-    archer_dict : dict
-        ARCHER related input/output (e.g. image, attrib, in_dict, out_dict, score_dict).
-
-    Returns
-    -------
-    xarray.Dataset
-        Converted dictionary to xarray.Dataset
-    """
-    dset = xarray.Dataset()
-    for key, val in archer_dict.items():
-        dset[key] = xarray.DataArray(val)
-    return dset
-
-
-def run_archer(xarray_obj, varname, archer_config=None):
+def run_archer(xarray_obj, varname):
     """Run archer on the variable varname found in the xarray_obj."""
     KtoC_conversion = -273.15
     if varname in [
@@ -115,7 +98,33 @@ def run_archer(xarray_obj, varname, archer_config=None):
     # out_fname = 'archer_test_{1}_{2}_{3}.png'.format(xarray_obj.platform_name,
     #                                                  xarray_obj.source_name,
     #                                                  archer_channel_type)
-    output_products_dict = archer_config.get("output_products_dict")
+
+    archer_image_fname = None
+    archer_fix_fname = None
+
+    filenamer = filename_formatters.get_plugin(ARCHER_IMAGE_FILENAME_FORMAT)
+    if filenamer.family != "xarray_metadata_to_filename":
+        LOG.warning(
+            "Unsupported filename type %s %s, not producing ARCHER IMAGE output",
+            filenamer.family,
+            ARCHER_IMAGE_FILENAME_FORMAT,
+        )
+    else:
+        archer_image_fname = filenamer(
+            xarray_obj, variable_name=varname, archer_channel_type=archer_channel_type
+        )
+
+    filenamer = filename_formatters.get_plugin(ARCHER_FIX_FILENAME_FORMAT)
+    if filenamer.family != "xarray_metadata_to_filename":
+        LOG.warning(
+            "Unsupported filename type %s %s, not producing ARCHER FIX output",
+            filenamer.family,
+            ARCHER_FIX_FILENAME_FORMAT,
+        )
+    else:
+        archer_fix_fname = filenamer(
+            xarray_obj, variable_name=varname, archer_channel_type=archer_channel_type
+        )
 
     image["lat_grid"] = xarray_obj["latitude"].to_masked_array()
     image["lon_grid"] = xarray_obj["longitude"].to_masked_array()
@@ -145,10 +154,6 @@ def run_archer(xarray_obj, varname, archer_config=None):
         attrib["sensor"] = "Imager"
         attrib["scan_type"] = "Geo"
         attrib["nadir_lon"] = 140.7
-    if xarray_obj.platform_name == "himawari-9":
-        attrib["sensor"] = "Imager"
-        attrib["scan_type"] = "Geo"
-        attrib["nadir_lon"] = 140.7
     if xarray_obj.platform_name == "msg-4":
         attrib["sensor"] = "Imager"
         attrib["scan_type"] = "Geo"
@@ -165,14 +170,6 @@ def run_archer(xarray_obj, varname, archer_config=None):
         attrib["sensor"] = "Imager"
         attrib["scan_type"] = "Geo"
         attrib["nadir_lon"] = 137.2
-    if xarray_obj.platform_name == "goes-18":
-        attrib["sensor"] = "Imager"
-        attrib["scan_type"] = "Geo"
-        attrib["nadir_lon"] = 137.2
-    if xarray_obj.platform_name == "goes-19":
-        attrib["sensor"] = "Imager"
-        attrib["scan_type"] = "Geo"
-        attrib["nadir_lon"] = -75.2
     if xarray_obj.source_name == "ssmis":
         attrib["sensor"] = "SSMIS"
         attrib["scan_type"] = "Conical"
@@ -221,7 +218,12 @@ def run_archer(xarray_obj, varname, archer_config=None):
     first_guess["lon"] = xarray_obj.area_definition.sector_info["clon"]
 
     archer_info = {}
-    out_meta_dicts = []
+    out_fnames = []
+    if archer_image_fname is not None:
+        make_dirs(dirname(archer_image_fname))
+        out_fnames += [archer_image_fname]
+        archer_info["archer_image_fname"] = replace_geoips_paths(archer_image_fname)
+        LOG.interactive("ARCHERSUCCESS Writing ARCHER image: %s", archer_image_fname)
     from archer.archer4 import archer4
 
     in_dict, out_dict, score_dict = archer4(
@@ -229,43 +231,17 @@ def run_archer(xarray_obj, varname, archer_config=None):
         attrib,
         first_guess,
         para_fix=True,
+        display_filename=archer_image_fname,
         sector_info=xarray_obj.area_definition.sector_info,
     )
 
-    if output_products_dict:
-        # This is where we will output any products that stem from ARCHER.
-        archer_xarrays = {
-            "image": convert_archer_dict_to_xarray_dataset(image),
-            "attrib": convert_archer_dict_to_xarray_dataset(attrib),
-            "in_dict": convert_archer_dict_to_xarray_dataset(in_dict),
-            "out_dict": convert_archer_dict_to_xarray_dataset(out_dict),
-            "score_dict": convert_archer_dict_to_xarray_dataset(score_dict),
-        }
-        for output, formatter_kwargs in output_products_dict.items():
-            output_formatter_plugin_name = formatter_kwargs["output_formatter"]
-            filename_formatter_plugin_name = formatter_kwargs["filename_formatter"]
-            filenamer = filename_formatters.get_plugin(filename_formatter_plugin_name)
-            outputter = output_formatters.get_plugin(output_formatter_plugin_name)
-            output_fname = filenamer(
-                xarray_obj,
-                variable_name=varname,
-                archer_channel_type=archer_channel_type,
-            )
-            LOG.info("Producing ARCHER output for: %s", output)
-            LOG.info(
-                "Using output_formatter: '%s' and filename_formatter: '%s'",
-                output_formatter_plugin_name,
-                filename_formatter_plugin_name,
-            )
-            output_list = outputter(archer_xarrays, output_filename=output_fname)
-            output_meta = {
-                "product": f"{output}_{varname}",
-                "output_formatter": output_formatter_plugin_name,
-                "sect_adj_output_file": output_list[0],
-            }
-            out_meta_dicts += [output_meta]
-            archer_info[f"{output}_fname"] = replace_geoips_paths(output_list[0])
-            LOG.interactive("ARCHERSUCCESS Wrote %s: %s", output, output_list[0])
+    if archer_fix_fname is not None:
+        make_dirs(dirname(archer_fix_fname))
+        out_fnames += [archer_fix_fname]
+        archer_info["archer_fix_fname"] = replace_geoips_paths(archer_fix_fname)
+        with open(archer_fix_fname, "w") as fobj:
+            fobj.write(out_dict["fdeck_string"])
+        LOG.interactive("ARCHERSUCCESS Wrote ARCHER fdeck: %s", archer_fix_fname)
 
     for field in [
         "uses_target",
@@ -295,7 +271,7 @@ def run_archer(xarray_obj, varname, archer_config=None):
     #     return {}, {}, {}, [], {}
     # else:
     #     LOG.info("USING ARCHER CENTER: eye probability EQUAL 100")
-    return in_dict, out_dict, score_dict, out_meta_dicts, archer_info
+    return in_dict, out_dict, score_dict, out_fnames, archer_info
 
 
 def call(
@@ -304,45 +280,9 @@ def call(
     variables,
     recenter_variables=None,
     akima_only=False,
-    archer_config=None,
+    include_archer_info=False,
 ):
-    """Use archer (if enabled) and/or akima to recenter an area_def over a given TC.
-
-    Parameters
-    ----------
-    xobjs : list
-        Consists of xarray.Dataset objects
-    area_def : pyresample.geometry.AreaDefinition
-        Padded area_def around active TC.
-    variables : list
-        All variables in xobjs to recenter.
-    recenter_variables : list, optional
-        Only run archer for subset of variables, by default None
-    akima_only : bool, optional
-        Only use akima to recenter the area_def, by default False
-    archer_config : dict, optional
-        Dictionary holding archer config options, by default None
-        The recenter_tc plugin currently supports the following options:
-        * required_vmax_kts : int
-        - min windspeed threshold for running archer
-        * include_archer_metadata_in_sector_info : bool
-        - add high level archer results to area_def.sector_info, which will then be
-        added to the YAML metadata output file.
-        * output_products_dict : dict
-        - requested intermediate archer outputs and which output_formatter and
-        filename_formatter should be used for each output. If output_products_dict is
-        None (not specified at command line or YAML output_config), archer will still
-        run be used to recenter the area_def, but it will not output any intermediate
-        products (such as archer_image or archer_fix).
-
-        For backwards compatibility with existing test scripts, if archer_config is
-        None, it will default to
-
-    Returns
-    -------
-    list
-        recentered area def, list of dicts with meta information and output file names
-    """
+    """Recenters the TC."""
     log_with_emphasis(LOG.interactive, "Attempting to recenter TC sector...")
     ret_area_def = area_def.copy()
 
@@ -351,26 +291,6 @@ def call(
     if recenter_variables is None:
         recenter_variables = sorted(variables)
         recenter_variables += ["akima"]
-
-    if archer_config is None:
-        # NOTE - I'm adding in this logic to maintain existing behavior without the need
-        # to update all the test scripts. If we do not update the test scripts, the
-        # metadata yaml file will not contain the paths genereated by the archer_image
-        # and archer_fix outputs.
-        archer_config = {
-            "required_vmax_kts": DEFAULT_ARCHER_REQUIRED_VMAX_KTS,
-            "include_archer_metadata_in_sector_info": False,
-            "output_products_dict": {
-                "archer_image": {
-                    "output_formatter": "archer_image",
-                    "filename_formatter": "archer_image",
-                },
-                "archer_fix": {
-                    "output_formatter": "archer_fix",
-                    "filename_formatter": "archer_fix",
-                },
-            },
-        }
 
     recentered_area_defs = {}
     curr_recenter_variables = []
@@ -388,7 +308,7 @@ def call(
                     xobj,
                     variables=curr_recenter_variables,
                     akima_only=akima_only,
-                    archer_config=archer_config,
+                    include_archer_info=include_archer_info,
                 )
             except CoverageError:
                 # If the archer spatial sectoring does not yield any data,
@@ -450,28 +370,19 @@ def recenter_area_def(area_def, fields):
 
 
 def recenter_with_archer(
-    sect_xarray,
-    variables,
-    area_def_to_recenter,
-    archer_config,
+    sect_xarray, variables, area_def_to_recenter, include_archer_info=False
 ):
     """Recenter with ARCHER."""
     recentered_area_defs = {}
     out_fnames = []
-    required_vmax_kts = archer_config.get(
-        "required_vmax_kts", DEFAULT_ARCHER_REQUIRED_VMAX_KTS
-    )
-    include_archer_metadata_in_sector_info = archer_config.get(
-        "include_archer_metadata_in_sector_info", False
-    )
-    if area_def_to_recenter.sector_info["vmax"] < required_vmax_kts:
+    if area_def_to_recenter.sector_info["vmax"] < ARCHER_REQUIRED_VMAX_KTS:
         log_with_emphasis(
             LOG.interactive,
             *[
                 "SKIPPING not attempting to run archer, "
                 "vmax of %s less than required %s kts",
                 str(area_def_to_recenter.sector_info["vmax"]),
-                str(required_vmax_kts),
+                str(ARCHER_REQUIRED_VMAX_KTS),
             ],
         )
         return recentered_area_defs, out_fnames
@@ -544,9 +455,7 @@ def recenter_with_archer(
         log_with_emphasis(LOG.interactive, f"Running ARCHER on {varname}...")
 
         in_dict, out_dict, score_dict, curr_out_fnames, archer_info = run_archer(
-            archer_xarray,
-            varname,
-            archer_config=archer_config,
+            archer_xarray, varname
         )
         out_fnames += curr_out_fnames
         # YAML output fails on numpy.float64, so cast as float
@@ -554,7 +463,7 @@ def recenter_with_archer(
             new_fields["clat"] = round(float(out_dict["center_lat"]), 2)
             new_fields["clon"] = round(float(out_dict["center_lon"]), 2)
             new_fields["recenter_type"] = varname
-            if include_archer_metadata_in_sector_info:
+            if include_archer_info:
                 new_fields["archer_info"] = archer_info
             new_fields["archer_fdeck"] = out_dict["fdeck_string"]
             # short ID used to identify which adjustment was used
@@ -693,11 +602,7 @@ def recenter_with_akima(sect_xarray, area_def):
 
 
 def recenter_tc_area_def(
-    area_def,
-    sect_xarray,
-    variables,
-    akima_only=False,
-    archer_config=None,
+    area_def, sect_xarray, variables, akima_only=False, include_archer_info=False
 ):
     """Recenter tc area definition."""
     from geoips.sector_utils.utils import is_sector_type
@@ -714,7 +619,7 @@ def recenter_tc_area_def(
                 sect_xarray,
                 variables,
                 recentered_area_defs["akima"],
-                archer_config=archer_config,
+                include_archer_info=include_archer_info,
             )
 
         print_area_def(area_def, "Original area def")
