@@ -1,5 +1,6 @@
 # # # This source code is subject to the license referenced at
 # # # https://github.com/NRLMMD-GEOIPS.
+# # # This is the only test script that writes archer_info into the metadata yaml.  
 
 #!/bin/bash
 
