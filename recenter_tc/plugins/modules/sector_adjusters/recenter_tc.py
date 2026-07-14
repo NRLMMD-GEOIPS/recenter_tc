@@ -54,7 +54,7 @@ def convert_archer_dict_to_xarray_dataset(archer_dict):
     return dset
 
 
-def run_archer(xarray_obj, varname, archer_config=None):
+def run_archer(xarray_obj, varname, archer_config=None): 
     """Run archer on the variable varname found in the xarray_obj."""
     KtoC_conversion = -273.15
     if varname in [
@@ -287,7 +287,7 @@ def run_archer(xarray_obj, varname, archer_config=None):
         if isinstance(archer_info[field], numpy.float64):
             archer_info[field] = float(archer_info[field])
         if field == "fdeck_string":
-            archer_info[field] == f"""{archer_info[field]}"""
+            archer_info[field] == f'"""{archer_info[field]}"""'
         LOG.info("ARCHER info %s: %s", field, out_dict.get(field))
 
     # if archer_info.get("eye_prob") and archer_info.get("eye_prob") < 100:
@@ -304,7 +304,7 @@ def call(
     variables,
     recenter_variables=None,
     akima_only=False,
-    archer_config=None,
+    recenter_tc_config=None,
 ):
     """Use archer (if enabled) and/or akima to recenter an area_def over a given TC.
 
@@ -321,7 +321,7 @@ def call(
     akima_only : bool, optional
         Only use akima to recenter the area_def, by default False
     archer_config : dict, optional
-        Dictionary holding archer config options, by default None
+        Dictionary holding recenter_tc config options, by default None.
         The recenter_tc plugin currently supports the following options:
         * required_vmax_kts : int
         - min windspeed threshold for running archer
@@ -352,6 +352,12 @@ def call(
         recenter_variables = sorted(variables)
         recenter_variables += ["akima"]
 
+    recenter_alg = "archer"  # Default behavior
+    archer_config = None
+    if recenter_tc_config:
+        recenter_alg = recenter_tc_config.get("recenter_alg", "archer")
+        archer_config = recenter_tc_config.get("archer_config", {})
+
     if archer_config is None:
         # NOTE - I'm adding in this logic to maintain existing behavior without the need
         # to update all the test scripts. If we do not update the test scripts, the
@@ -371,6 +377,9 @@ def call(
                 },
             },
         }
+
+    if recenter_alg == "akima":
+        akima_only = True
 
     recentered_area_defs = {}
     curr_recenter_variables = []
@@ -418,7 +427,7 @@ def call(
             ret_area_def = recentered_area_defs[recenter_varname]
             break
 
-    LOG.info(f"\n\nout_fnames" f"\n{out_fnames}")
+    LOG.info(f"\n\nout_fnames\n{out_fnames}")
 
     log_with_emphasis(LOG.interactive, "Done recentering TC sector")
 
