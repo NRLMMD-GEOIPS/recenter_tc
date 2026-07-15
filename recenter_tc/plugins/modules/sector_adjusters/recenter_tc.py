@@ -358,26 +358,6 @@ def call(
         recenter_alg = recenter_tc_config.get("recenter_alg", "archer")
         archer_config = recenter_tc_config.get("archer_config", {})
 
-    if archer_config is None:
-        # NOTE - I'm adding in this logic to maintain existing behavior without the need
-        # to update all the test scripts. If we do not update the test scripts, the
-        # metadata yaml file will not contain the paths genereated by the archer_image
-        # and archer_fix outputs.
-        archer_config = {
-            "required_vmax_kts": DEFAULT_ARCHER_REQUIRED_VMAX_KTS,
-            "include_archer_metadata_in_sector_info": False,
-            "output_products_dict": {
-                "archer_image": {
-                    "output_formatter": "archer_image",
-                    "filename_formatter": "archer_image",
-                },
-                "archer_fix": {
-                    "output_formatter": "archer_fix",
-                    "filename_formatter": "archer_fix",
-                },
-            },
-        }
-
     if recenter_alg == "akima":
         akima_only = True
 
