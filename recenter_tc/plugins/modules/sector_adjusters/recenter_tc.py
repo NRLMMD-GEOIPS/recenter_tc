@@ -54,7 +54,7 @@ def convert_archer_dict_to_xarray_dataset(archer_dict):
     return dset
 
 
-def run_archer(xarray_obj, varname, archer_config=None): 
+def run_archer(xarray_obj, varname, archer_config=None):
     """Run archer on the variable varname found in the xarray_obj."""
     KtoC_conversion = -273.15
     if varname in [
@@ -346,20 +346,21 @@ def call(
     log_with_emphasis(LOG.interactive, "Attempting to recenter TC sector...")
     ret_area_def = area_def.copy()
 
-    # If recenter_variables is not defined, produce ARCHER output from all variables,
-    # and use the first variable alphabetically by default as the primary.
-    if recenter_variables is None:
-        recenter_variables = sorted(variables)
-        recenter_variables += ["akima"]
+    if not recenter_tc_config:
+        raise KeyError("recenter_tc_config must be specified in the script.")
 
-    recenter_alg = "archer"  # Default behavior
-    archer_config = None
-    if recenter_tc_config:
-        recenter_alg = recenter_tc_config.get("recenter_alg", "archer")
-        archer_config = recenter_tc_config.get("archer_config", {})
+    if "recenter_variables" not in recenter_tc_config:
+        raise KeyError("There needs to be variables specified in recenter_tc_config.")
+    recenter_variables = recenter_tc_config["recenter_variables"]
 
-    if recenter_alg == "akima":
-        akima_only = True
+    recenter_algs = recenter_tc_config.get("recenter_algs", ["archer", "akima"])
+    if not any(alg in recenter_algs for alg in ["akima", "archer"]):
+        raise KeyError("recenter_algs must contain 'akima' or 'archer'.")
+
+    archer_config = recenter_tc_config.get("archer_config", {})
+    if "archer" in recenter_algs and not akima_only:
+        if "archer_config" not in recenter_tc_config:
+            raise KeyError("archer_config must be present when 'archer' is in recenter_algs.")
 
     recentered_area_defs = {}
     curr_recenter_variables = []
