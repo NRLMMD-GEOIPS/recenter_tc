@@ -353,7 +353,10 @@ def call(
         raise KeyError("There needs to be variables specified in recenter_tc_config.")
     recenter_variables = recenter_tc_config["recenter_variables"]
 
-    recenter_algs = recenter_tc_config.get("recenter_algs", ["archer", "akima"])
+    if "recenter_algs" not in recenter_tc_config:
+        raise KeyError("recenter_algs must be specified in recenter_tc_config.")
+    recenter_algs = recenter_tc_config["recenter_algs"]
+    
     if not any(alg in recenter_algs for alg in ["akima", "archer"]):
         raise KeyError("recenter_algs must contain 'akima' or 'archer'.")
 
