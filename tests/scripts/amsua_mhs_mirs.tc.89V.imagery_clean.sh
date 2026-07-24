@@ -16,7 +16,10 @@ geoips run single_source \
     --trackfile_parser bdeck_parser \
     --trackfiles $GEOIPS_PACKAGES_DIR/geoips/tests/sectors/tc_bdecks/bwp022021.dat \
     --sector_adjuster_kwargs '{
+    "recenter_tc_config": {
+        "recenter_algs": ["archer","akima"],
         "archer_config": {
+            "recenter_variables": ["tb89hA","tb89vA","tc36h","tb36v"],
             "include_archer_metadata_in_sector_info": True,
             "required_vmax_kts": 50,
             "output_products_dict": {
@@ -27,6 +30,7 @@ geoips run single_source \
                 "archer_fix": {
                     "output_formatter": "archer_fix",
                     "filename_formatter": "archer_fix",
+                    }
                 }
             }
         }
