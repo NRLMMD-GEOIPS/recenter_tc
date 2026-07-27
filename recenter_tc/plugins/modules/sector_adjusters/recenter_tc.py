@@ -287,7 +287,7 @@ def run_archer(xarray_obj, varname, archer_config=None):
         if isinstance(archer_info[field], numpy.float64):
             archer_info[field] = float(archer_info[field])
         if field == "fdeck_string":
-            archer_info[field] == f"""{archer_info[field]}"""
+            archer_info[field] == f'"""{archer_info[field]}"""'
         LOG.info("ARCHER info %s: %s", field, out_dict.get(field))
 
     # if archer_info.get("eye_prob") and archer_info.get("eye_prob") < 100:
@@ -304,7 +304,7 @@ def call(
     variables,
     recenter_variables=None,
     akima_only=False,
-    archer_config=None,
+    recenter_tc_config=None,
 ):
     """Use archer (if enabled) and/or akima to recenter an area_def over a given TC.
 
@@ -321,7 +321,7 @@ def call(
     akima_only : bool, optional
         Only use akima to recenter the area_def, by default False
     archer_config : dict, optional
-        Dictionary holding archer config options, by default None
+        Dictionary holding recenter_tc config options, by default None.
         The recenter_tc plugin currently supports the following options:
         * required_vmax_kts : int
         - min windspeed threshold for running archer
@@ -346,31 +346,24 @@ def call(
     log_with_emphasis(LOG.interactive, "Attempting to recenter TC sector...")
     ret_area_def = area_def.copy()
 
-    # If recenter_variables is not defined, produce ARCHER output from all variables,
-    # and use the first variable alphabetically by default as the primary.
-    if recenter_variables is None:
-        recenter_variables = sorted(variables)
-        recenter_variables += ["akima"]
+    if not recenter_tc_config:
+        raise KeyError("recenter_tc_config must be specified in the script.")
 
-    if archer_config is None:
-        # NOTE - I'm adding in this logic to maintain existing behavior without the need
-        # to update all the test scripts. If we do not update the test scripts, the
-        # metadata yaml file will not contain the paths genereated by the archer_image
-        # and archer_fix outputs.
-        archer_config = {
-            "required_vmax_kts": DEFAULT_ARCHER_REQUIRED_VMAX_KTS,
-            "include_archer_metadata_in_sector_info": False,
-            "output_products_dict": {
-                "archer_image": {
-                    "output_formatter": "archer_image",
-                    "filename_formatter": "archer_image",
-                },
-                "archer_fix": {
-                    "output_formatter": "archer_fix",
-                    "filename_formatter": "archer_fix",
-                },
-            },
-        }
+    if "recenter_variables" not in recenter_tc_config:
+        raise KeyError("There needs to be variables specified in recenter_tc_config.")
+    recenter_variables = recenter_tc_config["recenter_variables"]
+
+    if "recenter_algs" not in recenter_tc_config:
+        raise KeyError("recenter_algs must be specified in recenter_tc_config.")
+    recenter_algs = recenter_tc_config["recenter_algs"]
+    
+    if not any(alg in recenter_algs for alg in ["akima", "archer"]):
+        raise KeyError("recenter_algs must contain 'akima' or 'archer'.")
+
+    archer_config = recenter_tc_config.get("archer_config", {})
+    if "archer" in recenter_algs and not akima_only:
+        if "archer_config" not in recenter_tc_config:
+            raise KeyError("archer_config must be present when 'archer' is in recenter_algs.")
 
     recentered_area_defs = {}
     curr_recenter_variables = []
@@ -418,7 +411,7 @@ def call(
             ret_area_def = recentered_area_defs[recenter_varname]
             break
 
-    LOG.info(f"\n\nout_fnames" f"\n{out_fnames}")
+    LOG.info(f"\n\nout_fnames\n{out_fnames}")
 
     log_with_emphasis(LOG.interactive, "Done recentering TC sector")
 
