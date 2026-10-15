@@ -9,7 +9,11 @@ import pyresample
 import xarray
 
 from geoips.geoips_utils import replace_geoips_paths
-from geoips.interfaces import filename_formatters, output_formatters
+from geoips.interfaces import (
+    filename_formatters,
+    output_formatters,
+    sector_spec_generators,
+)
 from geoips.errors import CoverageError
 from geoips.commandline.log_setup import log_with_emphasis
 from geoips.xarray_utils.data import sector_xarray_spatial
@@ -429,9 +433,9 @@ def call(
 def recenter_area_def(area_def, fields):
     """Recenter area definition."""
     from geoips.sector_utils.tc_tracks import get_tc_long_description
-    from geoips.plugins.modules.sector_spec_generators import center_coordinates
 
-    new_area_def = center_coordinates.call(
+    center_coordinates = sector_spec_generators.get_plugin("center_coordinates")
+    new_area_def = center_coordinates(
         area_id=area_def.area_id,
         long_description=get_tc_long_description(area_def.area_id, fields),
         clat=fields["clat"],
