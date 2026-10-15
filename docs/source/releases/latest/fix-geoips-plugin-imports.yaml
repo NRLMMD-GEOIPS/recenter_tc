@@ -1,126 +1,34 @@
 bug fix:
-- title: ''
-  description: ''
+- title: 'Fix imports of GeoIPS plugin modules that moved to geoips.plugins.classes'
+  description: |
+    GeoIPS moved its plugin code from `geoips.plugins.modules` to `geoips.plugins.classes`, and `center_coordinates` became a class-based plugin. recenter_tc still imported the old paths. These imports are inside functions, so `geoips config create-registries` succeeds, but every recenter_tc integration test fails at runtime with:
+
+    ```
+    ImportError: cannot import name 'center_coordinates' from 'geoips.plugins.modules.sector_spec_generators'
+    ```
+
+    Changes:
+
+    * `sector_adjusters/recenter_tc.py`: `recenter_area_def` now gets the `center_coordinates` plugin through `sector_spec_generators.get_plugin()` and calls the plugin object directly, instead of importing the module and calling `.call()`. The
+      keyword arguments are unchanged. `sector_spec_generators` was added to the existing top-level `geoips.interfaces` import.
+    * `filename_formatters/archer_fix.py` and `filename_formatters/archer_image.py`: the `tc_storm_basedir` import now points at
+      `geoips.plugins.classes.filename_formatters.utils.tc_file_naming`. These would have been the next failures once the center_coordinates` import was fixed, since `amsr2.tc.color37` runs both archer formatters.
+
+    No behavior or output changes are intended.
   files:
     deleted:
     - ''
     moved:
     - ''
     added:
-    - ''
+    - 'docs/source/releases/latest/fix-geoips-plugin-imports.yaml'
     modified:
-    - ''
+    - 'recenter_tc/plugins/modules/filename_formatters/archer_fix.py'
+    - 'recenter_tc/plugins/modules/filename_formatters/archer_image.py'
+    - 'recenter_tc/plugins/modules/sector_adjusters/recenter_tc.py'
   related-issue:
     number: null
-    repo_url: ''
+    repo_url: 'https://github.com/NRLMMD-GEOIPS/recenter_tc'
   date:
-    start: null
-    finish: null
-enhancement:
-- title: ''
-  description: ''
-  files:
-    deleted:
-    - ''
-    moved:
-    - ''
-    added:
-    - ''
-    modified:
-    - ''
-  related-issue:
-    number: null
-    repo_url: ''
-  date:
-    start: null
-    finish: null
-deprecation:
-- title: ''
-  description: ''
-  files:
-    deleted:
-    - ''
-    moved:
-    - ''
-    added:
-    - ''
-    modified:
-    - ''
-  related-issue:
-    number: null
-    repo_url: ''
-  date:
-    start: null
-    finish: null
-removal:
-- title: ''
-  description: ''
-  files:
-    deleted:
-    - ''
-    moved:
-    - ''
-    added:
-    - ''
-    modified:
-    - ''
-  related-issue:
-    number: null
-    repo_url: ''
-  date:
-    start: null
-    finish: null
-performance:
-- title: ''
-  description: ''
-  files:
-    deleted:
-    - ''
-    moved:
-    - ''
-    added:
-    - ''
-    modified:
-    - ''
-  related-issue:
-    number: null
-    repo_url: ''
-  date:
-    start: null
-    finish: null
-documentation:
-- title: ''
-  description: ''
-  files:
-    deleted:
-    - ''
-    moved:
-    - ''
-    added:
-    - ''
-    modified:
-    - ''
-  related-issue:
-    number: null
-    repo_url: ''
-  date:
-    start: null
-    finish: null
-continuous integration:
-- title: ''
-  description: ''
-  files:
-    deleted:
-    - ''
-    moved:
-    - ''
-    added:
-    - ''
-    modified:
-    - ''
-  related-issue:
-    number: null
-    repo_url: ''
-  date:
-    start: null
-    finish: null
+    start: 2026/10/15
+    finish: 2026/10/15
