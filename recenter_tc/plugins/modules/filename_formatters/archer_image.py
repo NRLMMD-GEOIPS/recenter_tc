@@ -85,7 +85,7 @@ def assemble_archer_fname(
         >>> '/outdir/tc2020/SH/SH162020/txt/\
             archer_smap_surface_winds_remss_20200216001412.png'
     """
-    from geoips.plugins.modules.filename_formatters.utils.tc_file_naming import (
+    from geoips.plugins.classes.filename_formatters.utils.tc_file_naming import (
         tc_storm_basedir,
     )
 
