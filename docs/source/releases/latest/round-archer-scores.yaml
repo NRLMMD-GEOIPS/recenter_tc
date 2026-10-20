@@ -1,0 +1,22 @@
+bug fix:
+- title: 'Round the ARCHER confidence score and alpha parameter in the metadata'
+  description: |
+    The last digits of the ARCHER `confidence_score` and `alpha_parameter`
+    differ between platforms (floating point rounding), so the
+    `amsr2.tc.color37.imagery_clean` metadata YAML never matched its test output
+    in the GeoIPS CI, for example `15.325279511465984` against
+    `15.325279511465972`. The sector adjuster now rounds both to 10 decimal
+    places before they go into the metadata, and the test output has the
+    rounded values.
+  files:
+    added:
+    - 'docs/source/releases/latest/round-archer-scores.yaml'
+    modified:
+    - 'recenter_tc/plugins/modules/sector_adjusters/recenter_tc.py'
+    - 'tests/outputs/amsr2.tc.color37.imagery_clean/20200518_073604_IO012020_amsr2_gcom-w1_color37_142kts_99p86_res1p0-artb36h-clean.png.yaml'
+  related-issue:
+    number: null
+    repo_url: 'https://github.com/NRLMMD-GEOIPS/recenter_tc'
+  date:
+    start: 2026-10-20
+    finish: 2026-10-20
