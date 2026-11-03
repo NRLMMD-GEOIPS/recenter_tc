@@ -290,6 +290,12 @@ def run_archer(xarray_obj, varname, archer_config=None):
         # Can't write numpy.float64 to yaml file
         if isinstance(archer_info[field], numpy.float64):
             archer_info[field] = float(archer_info[field])
+        # The last digits of these scores differ between platforms (floating point
+        # rounding), so they could not match the test outputs.
+        if field in ["confidence_score", "alpha_parameter"] and isinstance(
+            archer_info[field], float
+        ):
+            archer_info[field] = round(archer_info[field], 10)
         if field == "fdeck_string":
             archer_info[field] == f"""{archer_info[field]}"""
         LOG.info("ARCHER info %s: %s", field, out_dict.get(field))

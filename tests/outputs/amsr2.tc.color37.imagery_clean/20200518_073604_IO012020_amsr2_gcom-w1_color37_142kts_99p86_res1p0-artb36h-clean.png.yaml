@@ -4,13 +4,13 @@ archer_fdeck: IO, 1, 2005180736,  70, AMS2,          C,  , 1353N,  8620E,      ,
   AUT,    ,             ,             ,    ,     ,                        x, irad=0.40
   | r50=0.11 | r95=0.31 | ep=-99 | src=ARCH
 archer_info:
-  alpha_parameter: 15.325279511465972
+  alpha_parameter: 15.3252795115
   archer_channel_type: 37GHz
   archer_fix_fname: $GEOIPS_OUTDIRS/preprocessed/archer/fix/20200518.0736_IO012020_archer_amsr2_tb36h_37GHz_star_gcom-w1_01B_FIX
   archer_image_fname: $GEOIPS_OUTDIRS/preprocessed/archer/image/tc2020/IO/IO012020/png/archer/20200518.0736_IO012020_archer_amsr2_tb36h_37GHz_star_gcom-w1.png
   center_lat: 13.530000000000001
   center_lon: 86.19999999999999
-  confidence_score: 3.5684965909726536
+  confidence_score: 3.568496591
   eye_prob: null
   fdeck_string: IO, 1, 2005180736,  70, AMS2,          C,  , 1353N,  8620E,      ,
     1,    ,  ,     ,  ,     ,    ,     ,     ,     ,     ,     ,  ,  ,  ,  ,  ,    ,    ,  ,  CIMS,
